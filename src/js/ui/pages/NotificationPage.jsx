@@ -31,31 +31,31 @@ export class NotificationPage extends React.Component {
     componentDidMount() {
         const sandbox = Cuic.element('#ui-notification .sandbox');
         const blueprint = sandbox.find('.blueprint').eq(0);
-        const autoClose = sandbox.find('[name=autoClose]').eq(0);
+        const autoCloseCheckbox = sandbox.find('[name=autoClose]').eq(0);
         const debugCheckbox = sandbox.find("[name=\'debug\']").first();
-        const parent = sandbox.find('[name=parent]').eq(0);
-        const duration = sandbox.find('[name=duration]').eq(0);
-        const position = sandbox.find('[name=position]').eq(0);
+        const parentCheckbox = sandbox.find('[name=parent]').eq(0);
+        const durationField = sandbox.find('[name=duration]').eq(0);
+        const positionField = sandbox.find('[name=position]').eq(0);
 
         sandbox.find('form').on('submit', function (ev) {
             ev.preventDefault();
             window.notification = new Notification({
-                autoClose: autoClose.node().checked,
+                autoClose: autoCloseCheckbox.node().checked,
                 autoRemove: true,
                 closable: true,
-                content: 'Notification from <b>' + position.val() + '</b>',
+                content: 'Notification from <b>' + positionField.val() + '</b>',
                 debug: debugCheckbox.node().checked,
-                duration: duration.val(),
-                parent: parent.node().checked ? blueprint : document.body,
-                position: position.val()
+                duration: durationField.val(),
+                parent: parentCheckbox.node().checked ? blueprint : document.body,
+                position: positionField.val()
             }).open();
 
-            autoClose.on("change", function () {
-                notification.options.autoClose = autoClose.node().checked;
+            autoCloseCheckbox.on("change", function () {
+                notification.options.autoClose = autoCloseCheckbox.node().checked;
             });
-            position.off('change').on("change", function () {
+            positionField.off('change').on("change", function () {
                 if (!notification.isRemoved()) {
-                    notification.align(position.val(), parent.node().checked ? blueprint : document.body);
+                    notification.align(positionField.val(), parentCheckbox.node().checked ? blueprint : document.body);
                 }
             });
         });

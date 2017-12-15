@@ -33,12 +33,12 @@ export class ResizablePage extends React.Component {
         const sandbox = section.find('.sandbox').eq(0);
         const blueprint = sandbox.find('.blueprint').eq(0);
         const debugCheckbox = sandbox.find("[name=\'debug\']").first();
-        const width = sandbox.find('[name="width"]').eq(0);
-        const height = sandbox.find('[name="height"]').eq(0);
-        const hratio = sandbox.find('[name="hratio"]').eq(0);
-        const vratio = sandbox.find('[name="vratio"]').eq(0);
-        const horizontally = sandbox.find('[name="horizontally"]').eq(0);
-        const vertically = sandbox.find('[name="vertically"]').eq(0);
+        const widthField = sandbox.find('[name="width"]').eq(0);
+        const heightField = sandbox.find('[name="height"]').eq(0);
+        const hRatioField = sandbox.find('[name="hratio"]').eq(0);
+        const vRatioField = sandbox.find('[name="vratio"]').eq(0);
+        const horizontallyCheckbox = sandbox.find('[name="horizontally"]').eq(0);
+        const verticallyCheckbox = sandbox.find('[name="vertically"]').eq(0);
 
         window.resizables = [];
 
@@ -49,15 +49,15 @@ export class ResizablePage extends React.Component {
                 // debug: true,
                 element: box,
                 keepRatio: false,
-                horizontally: horizontally.node().checked,
-                vertically: vertically.node().checked
+                horizontally: horizontallyCheckbox.node().checked,
+                vertically: verticallyCheckbox.node().checked
             });
 
             resizable.onResize((ev) => {
-                width.val(resizable.width());
-                height.val(resizable.height());
-                hratio.val(Math.round(resizable.width() / resizable.height() * 100) / 100);
-                vratio.val(Math.round(resizable.height() / resizable.width() * 100) / 100);
+                widthField.val(resizable.width());
+                heightField.val(resizable.height());
+                hRatioField.val(Math.round(resizable.width() / resizable.height() * 100) / 100);
+                vRatioField.val(Math.round(resizable.height() / resizable.width() * 100) / 100);
             });
 
             // Expose component
@@ -71,13 +71,13 @@ export class ResizablePage extends React.Component {
             });
         });
 
-        horizontally.on("change", (ev) => {
+        horizontallyCheckbox.on("change", (ev) => {
             resizables.forEach((resizable) => {
                 resizable.options.horizontally = ev.currentTarget.checked === true;
             });
         });
 
-        vertically.on("change", (ev) => {
+        verticallyCheckbox.on("change", (ev) => {
             resizables.forEach((resizable) => {
                 resizable.options.vertically = ev.currentTarget.checked === true;
             });

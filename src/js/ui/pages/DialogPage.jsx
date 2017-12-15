@@ -35,28 +35,28 @@ export class DialogPage extends React.Component {
     componentDidMount() {
         const section = Cuic.element("#ui-dialog");
         const sandbox = section.find('#ui-dialog .sandbox');
-        const autoClose = sandbox.find('[name="autoClose"]').eq(0);
         const blueprint = sandbox.find('.blueprint').eq(0);
-        const css = sandbox.find('[name="css"]').eq(0);
+        const autoCloseCheckbox = sandbox.find('[name="autoClose"]').eq(0);
+        const cssField = sandbox.find('[name="css"]').eq(0);
         const debugCheckbox = section.find("[name=\'debug\']").first();
-        const fullscreen = sandbox.find('[name="fullscreen"]').eq(0);
-        const modal = sandbox.find('[name=modal]').eq(0);
-        const parent = sandbox.find('[name="parent"]').eq(0);
-        const position = sandbox.find('[name="position"]').eq(0);
-        const title = sandbox.find("[name=title]").eq(0);
+        const fullscreenCheckbox = sandbox.find('[name="fullscreen"]').eq(0);
+        const modalCheckbox = sandbox.find('[name=modal]').eq(0);
+        const parentCheckbox = sandbox.find('[name="parent"]').eq(0);
+        const positionField = sandbox.find('[name="position"]').eq(0);
+        const titleField = sandbox.find("[name=title]").eq(0);
 
         sandbox.find('form').on('submit', (ev) => {
             ev.preventDefault();
             window.dialog = new Dialog({
-                autoClose: autoClose.node().checked,
+                autoClose: autoCloseCheckbox.node().checked,
                 autoRemove: false,
                 debug: debugCheckbox.node().checked,
-                css: css.val(),
-                maximized: fullscreen.node().checked,
-                modal: modal.node().checked,
-                parent: parent.node().checked ? blueprint : document.body,
-                position: position.val(),
-                title: title.node().checked ? 'Header & title' : null,
+                css: cssField.val(),
+                maximized: fullscreenCheckbox.node().checked,
+                modal: modalCheckbox.node().checked,
+                parent: parentCheckbox.node().checked ? blueprint : document.body,
+                position: positionField.val(),
+                title: titleField.node().checked ? 'Header & title' : null,
                 content: 'This is a <b>simple dialog</b>.<p>Vivamus efficitur, ipsum sit amet blandit accumsan, tortor erat pharetra elit, a elementum urna ligula at diam. Etiam id eros ut leo aliquam bibendum ac id lectus. Donec elementum libero at ullamcorper mattis. Pellentesque sed ante nec nunc varius consectetur.</p><p>Vivamus efficitur, ipsum sit amet blandit accumsan, tortor erat pharetra elit, a elementum urna ligula at diam. Etiam id eros ut leo aliquam bibendum ac id lectus. Donec elementum libero at ullamcorper mattis. Pellentesque sed ante nec nunc varius consectetur.</p><br>',
                 buttons: sandbox.find("[name=buttons]").eq(0).node().checked ? [
                     {

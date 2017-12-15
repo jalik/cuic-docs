@@ -32,13 +32,13 @@ export class TooltipPage extends React.Component {
         const sandbox = Cuic.element('#ui-tooltip .sandbox');
         const anchor = sandbox.find("[name=anchor]").eq(0);
         const debugCheckbox = sandbox.find("[name=\'debug\']").first();
-        const followPointer = sandbox.find("[name=followPointer]").eq(0);
+        const followPointerCheckbox = sandbox.find("[name=followPointer]").eq(0);
 
         const tooltip = new Tooltip({
             anchor: anchor.val(),
             attribute: "title",
             debug: debugCheckbox.node().checked,
-            followPointer: followPointer.node().checked,
+            followPointer: followPointerCheckbox.node().checked,
             selector: '.group1 [title]'
         });
 
@@ -47,7 +47,7 @@ export class TooltipPage extends React.Component {
             attribute: "title",
             css: {background: 'rgba(93,190,221,0.9)'},
             debug: debugCheckbox.node().checked,
-            followPointer: followPointer.node().checked,
+            followPointer: followPointerCheckbox.node().checked,
             selector: '.group2 [title]'
         });
 
@@ -62,9 +62,9 @@ export class TooltipPage extends React.Component {
             tooltipBlue.options.debug = ev.currentTarget.checked === true;
         });
 
-        followPointer.on("change", function () {
-            window.tooltip.options.followPointer = followPointer.node().checked;
-            window.tooltipBlue.options.followPointer = followPointer.node().checked;
+        followPointerCheckbox.on("change", function () {
+            window.tooltip.options.followPointer = followPointerCheckbox.node().checked;
+            window.tooltipBlue.options.followPointer = followPointerCheckbox.node().checked;
         });
 
         // Expose component

@@ -25,20 +25,21 @@
 
 import Cuic from "cuic";
 import React from "react";
-import {NotificationStack} from "cuic/dist/ui/notification-stack";
 import {Notification} from "cuic/dist/ui/notification";
+import {NotificationStack} from "cuic/dist/ui/notification-stack";
 
 export class NotificationStackPage extends React.Component {
     componentDidMount() {
         const sandbox = Cuic.element('#ui-notification-stack');
         const blueprint = sandbox.find('.blueprint').eq(0);
         const debugCheckbox = sandbox.find("[name=\'debug\']").first();
-        const position = sandbox.find('[name=position]').eq(0);
+        const positionField = sandbox.find('[name=position]').eq(0);
 
+        // Create the component
         const notificationStack = new NotificationStack({
             debug: debugCheckbox.node().checked,
             parent: blueprint,
-            position: position.val()
+            position: positionField.val()
         });
 
         // Toggle debug mode
@@ -46,13 +47,16 @@ export class NotificationStackPage extends React.Component {
             notificationStack.options.debug = ev.currentTarget.checked === true;
         });
 
-        position.on("change", function () {
-            notificationStack.align(position.val());
+        // Update component position
+        positionField.on("change", () => {
+            notificationStack.align(positionField.val());
         });
 
-        sandbox.find('[name="add-notif"]').on('click', function (ev) {
+        // Add new notification
+        sandbox.find('[name="notify"]').on('click', function (ev) {
             notificationStack.addComponent(new Notification({
                 autoClose: false,
+                debug: debugCheckbox.node().checked,
                 content: "Custom event at <em>" + new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds() + "</em>"
             }));
         });
@@ -97,7 +101,7 @@ export class NotificationStackPage extends React.Component {
                             </div>
 
                             <h4>Actions</h4>
-                            <button className="btn btn-default btn-block" name="add-notif" type="button">
+                            <button className="btn btn-default btn-block" name="notify" type="button">
                                 <span className="glyphicon glyphicon-plus"/>
                                 <span>Add a notification</span>
                             </button>

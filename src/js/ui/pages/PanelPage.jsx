@@ -31,26 +31,26 @@ export class PanelPage extends React.Component {
     componentDidMount() {
         const sandbox = Cuic.element('#ui-panel .sandbox');
         const blueprint = sandbox.find('.blueprint').eq(0);
-        const autoClose = sandbox.find('[name=autoClose]').eq(0);
+        const autoCloseCheckbox = sandbox.find('[name=autoClose]').eq(0);
         const debugCheckbox = sandbox.find("[name=\'debug\']").first();
-        const parent = sandbox.find('[name=parent]').eq(0);
-        const position = sandbox.find('[name=position]').eq(0);
-        const maximized = sandbox.find('[name=maximized]').eq(0);
-        const opened = sandbox.find('[name=opened]').eq(0);
+        const parentCheckbox = sandbox.find('[name=parent]').eq(0);
+        const positionField = sandbox.find('[name=position]').eq(0);
+        const maximizedCheckbox = sandbox.find('[name=maximized]').eq(0);
+        const openedCheckbox = sandbox.find('[name=opened]').eq(0);
 
         const panel = new Panel({
-            autoClose: autoClose.node().checked,
+            autoClose: autoCloseCheckbox.node().checked,
             css: {'min-width': '200px'},
             debug: debugCheckbox.node().checked,
             element: blueprint.find('.panel').eq(0),
-            maximized: maximized.node().checked,
-            opened: opened.node().checked,
-            parent: parent.node().checked ? blueprint : document.body,
-            position: position.val()
+            maximized: maximizedCheckbox.node().checked,
+            opened: openedCheckbox.node().checked,
+            parent: parentCheckbox.node().checked ? blueprint : document.body,
+            position: positionField.val()
         });
 
-        autoClose.on("change", function () {
-            panel.options.autoClose = autoClose.node().checked;
+        autoCloseCheckbox.on("change", function () {
+            panel.options.autoClose = autoCloseCheckbox.node().checked;
         });
 
         // Toggle debug mode
@@ -70,16 +70,16 @@ export class PanelPage extends React.Component {
             panel.toggle();
         });
 
-        maximized.on("change", function () {
-            if (maximized.node().checked) {
+        maximizedCheckbox.on("change", function () {
+            if (maximizedCheckbox.node().checked) {
                 panel.maximize();
             } else {
                 panel.minimize();
             }
         });
 
-        position.on("change", function () {
-            panel.align(position.val());
+        positionField.on("change", function () {
+            panel.align(positionField.val());
         });
 
         // Expose component

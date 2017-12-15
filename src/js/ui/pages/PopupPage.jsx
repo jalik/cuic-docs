@@ -33,14 +33,14 @@ export class PopupPage extends React.Component {
         const sandbox = section.find('.sandbox').eq(0);
         const debugCheckbox = sandbox.find("[name=\'debug\']").first();
         const blueprint = sandbox.find('.blueprint').eq(0);
-        const anchor = sandbox.find("[name=anchor]").eq(0);
-        const anchorPoint = sandbox.find("[name=anchorPoint]").eq(0);
+        const anchorField = sandbox.find("[name=anchor]").eq(0);
+        const anchorPointField = sandbox.find("[name=anchorPoint]").eq(0);
 
         window.popups = [];
 
         blueprint.find('button').each(function (el, i) {
             window.popups[i] = new Popup({
-                anchor: anchor.val(),
+                anchor: anchorField.val(),
                 autoClose: false,
                 autoRemove: false,
                 closable: true,
@@ -49,11 +49,11 @@ export class PopupPage extends React.Component {
                 target: el
             });
 
-            anchor.on("change", function () {
-                window.popups[i].anchor(anchor.val(), anchorPoint.val());
+            anchorField.on("change", function () {
+                window.popups[i].anchor(anchorField.val(), anchorPointField.val());
             });
-            anchorPoint.on("change", function () {
-                window.popups[i].anchor(anchor.val(), anchorPoint.val());
+            anchorPointField.on("change", function () {
+                window.popups[i].anchor(anchorField.val(), anchorPointField.val());
             });
             el.on("click", function () {
                 popups[i].setContent("Clicked at <em>" + new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds() + "</em>");

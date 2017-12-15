@@ -34,11 +34,11 @@ export class MovablePage extends React.Component {
         const blueprint = sandbox.find('.blueprint').eq(0);
         const form = section.find('form').eq(0);
         const debugCheckbox = sandbox.find("[name=\'debug\']").first();
-        const x = form.find('[name="x"]').eq(0);
-        const y = form.find('[name="y"]').eq(0);
-        const state = form.find('[name="state"]').eq(0);
-        const horizontally = form.find('[name="horizontally"]').eq(0);
-        const vertically = form.find('[name="vertically"]').eq(0);
+        const xField = form.find('[name="x"]').eq(0);
+        const yField = form.find('[name="y"]').eq(0);
+        const stateField = form.find('[name="state"]').eq(0);
+        const horizontallyCheckbox = form.find('[name="horizontally"]').eq(0);
+        const verticallyCheckbox = form.find('[name="vertically"]').eq(0);
 
         window.movables = [];
 
@@ -47,29 +47,29 @@ export class MovablePage extends React.Component {
 
             const movable = new Movable({
                 element: box,
-                horizontally: horizontally.node().checked,
-                vertically: vertically.node().checked
+                horizontally: horizontallyCheckbox.node().checked,
+                vertically: verticallyCheckbox.node().checked
             });
 
             movable.onMove((ev) => {
-                state.val('onMove');
+                stateField.val('onMove');
                 const position = movable.position();
-                x.val(position.left);
-                y.val(position.top);
+                xField.val(position.left);
+                yField.val(position.top);
             });
 
             movable.onMoveStart((ev) => {
-                state.val('onMoveStart');
+                stateField.val('onMoveStart');
                 const position = movable.position();
-                x.val(position.left);
-                y.val(position.top);
+                xField.val(position.left);
+                yField.val(position.top);
             });
 
             movable.onMoveEnd((ev) => {
-                state.val('onMoveEnd');
+                stateField.val('onMoveEnd');
                 const position = movable.position();
-                x.val(position.left);
-                y.val(position.top);
+                xField.val(position.left);
+                yField.val(position.top);
             });
 
             // Expose component
@@ -83,13 +83,13 @@ export class MovablePage extends React.Component {
             });
         });
 
-        horizontally.on("change", (ev) => {
+        horizontallyCheckbox.on("change", (ev) => {
             movables.forEach((movable) => {
                 movable.options.horizontally = ev.currentTarget.checked === true;
             });
         });
 
-        vertically.on("change", (ev) => {
+        verticallyCheckbox.on("change", (ev) => {
             movables.forEach((movable) => {
                 movable.options.vertically = ev.currentTarget.checked === true;
             });
