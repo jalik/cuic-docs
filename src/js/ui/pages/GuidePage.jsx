@@ -139,17 +139,14 @@ export class GuidePage extends React.Component {
             }
         });
 
+        // Toggle debug mode
         debugCheckbox.on("click", (ev) => {
             guide.options.debug = ev.currentTarget.checked === true;
         });
 
         const startButton = section.find(".btn-start");
         startButton.on("click", () => {
-            if (guide.getCurrentStepIndex() > 0) {
-                guide.resume();
-            } else {
-                guide.start();
-            }
+            guide.start();
         });
 
         const nextStepButton = section.find(".btn-next-step");
@@ -167,6 +164,11 @@ export class GuidePage extends React.Component {
             guide.stop();
         });
 
+        const resumeButton = section.find(".btn-resume");
+        resumeButton.on("click", () => {
+            guide.resume();
+        });
+
         // Expose guide
         window.guide = guide;
     }
@@ -179,24 +181,6 @@ export class GuidePage extends React.Component {
                 <div className="sandbox">
                     <div className="row">
                         <div className="col-md-2">
-                            <div className="btn-group btn-block" role="group">
-                                <button className="btn btn-primary btn-start" type="button">
-                                    <span className="glyphicon glyphicon-play"/>
-                                    <span>Start</span>
-                                </button>
-                                <button className="btn btn-default btn-previous-step" type="button">
-                                    <span className="glyphicon glyphicon-backward"/>
-                                    <span className="sr-only">Previous</span>
-                                </button>
-                                <button className="btn btn-default btn-next-step" type="button">
-                                    <span className="glyphicon glyphicon-forward"/>
-                                    <span className="sr-only">Next</span>
-                                </button>
-                                <button className="btn btn-default btn-stop" type="button">
-                                    <span className="glyphicon glyphicon-pause"/>
-                                    <span className="sr-only">Stop</span>
-                                </button>
-                            </div>
                             <div className="settings">
                                 <h4>Settings</h4>
                                 <div className="checkbox">
@@ -207,6 +191,31 @@ export class GuidePage extends React.Component {
                                                defaultValue="true"/>
                                         <span>debug</span>
                                     </label>
+                                </div>
+                            </div>
+                            <div className="settings">
+                                <h4>Actions</h4>
+                                <div className="btn-group-vertical btn-block" role="group">
+                                    <button className="btn btn-default btn-start" type="button">
+                                        <span className="glyphicon glyphicon-play"/>
+                                        <span>start</span>
+                                    </button>
+                                    <button className="btn btn-default btn-previous-step" type="button">
+                                        <span className="glyphicon glyphicon-backward"/>
+                                        <span>previous</span>
+                                    </button>
+                                    <button className="btn btn-default btn-next-step" type="button">
+                                        <span className="glyphicon glyphicon-forward"/>
+                                        <span>next</span>
+                                    </button>
+                                    <button className="btn btn-default btn-stop" type="button">
+                                        <span className="glyphicon glyphicon-pause"/>
+                                        <span>stop</span>
+                                    </button>
+                                    <button className="btn btn-default btn-resume" type="button">
+                                        <span className="glyphicon glyphicon-play"/>
+                                        <span>resume</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>

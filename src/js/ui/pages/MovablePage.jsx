@@ -29,64 +29,71 @@ import {Movable} from "cuic/dist/ui/movable";
 
 export class MovablePage extends React.Component {
     componentDidMount() {
-        let section = Cuic.element('#ui-movable');
-        let form = section.find('form').eq(0);
-        let sandbox = section.find('.sandbox').eq(0);
-        let testBoxA = sandbox.find('.test-box-a').eq(0);
-        let testBoxB = sandbox.find('.test-box-b').eq(0);
-        let x = form.find('[name="x"]').eq(0);
-        let y = form.find('[name="y"]').eq(0);
-        let state = form.find('[name="state"]').eq(0);
-        let horizontally = form.find('[name="horizontally"]').eq(0);
-        let vertically = form.find('[name="vertically"]').eq(0);
+        const section = Cuic.element('#ui-movable');
+        const sandbox = section.find('.sandbox').eq(0);
+        const blueprint = sandbox.find('.blueprint').eq(0);
+        const form = section.find('form').eq(0);
+        const debugCheckbox = sandbox.find("[name=\'debug\']").first();
+        const x = form.find('[name="x"]').eq(0);
+        const y = form.find('[name="y"]').eq(0);
+        const state = form.find('[name="state"]').eq(0);
+        const horizontally = form.find('[name="horizontally"]').eq(0);
+        const vertically = form.find('[name="vertically"]').eq(0);
 
-        window.movable = new Movable({
-            element: testBoxA,
-            horizontally: horizontally.node().checked,
-            vertically: vertically.node().checked
-        });
+        window.movables = [];
 
-        window.movableB = new Movable({
-            element: testBoxB,
-            horizontally: horizontally.node().checked,
-            vertically: vertically.node().checked
-        });
+        // Make each test box selectable
+        blueprint.find('.test-box', blueprint).each((box) => {
 
-        horizontally.on("change", function (ev) {
-            movable.options.horizontally = ev.target.checked;
-            movableB.options.horizontally = ev.target.checked;
-        });
+            const movable = new Movable({
+                element: box,
+                horizontally: horizontally.node().checked,
+                vertically: vertically.node().checked
+            });
 
-        vertically.on("change", function (ev) {
-            movable.options.vertically = ev.target.checked;
-            movableB.options.vertically = ev.target.checked;
-        });
-
-        let movables = [movable, movableB];
-
-        for (let i = 0; i < movables.length; i += 1) {
-            movables[i].onMove(function (ev) {
+            movable.onMove((ev) => {
                 state.val('onMove');
-                const position = this.position();
+                const position = movable.position();
                 x.val(position.left);
                 y.val(position.top);
-//                                Cuic.debug('moving', position);
             });
-            movables[i].onMoveStart(function (ev) {
+
+            movable.onMoveStart((ev) => {
                 state.val('onMoveStart');
-                const position = this.position();
+                const position = movable.position();
                 x.val(position.left);
                 y.val(position.top);
-//                                Cuic.debug('move start', ev);
             });
-            movables[i].onMoveEnd(function (ev) {
+
+            movable.onMoveEnd((ev) => {
                 state.val('onMoveEnd');
-                const position = this.position();
+                const position = movable.position();
                 x.val(position.left);
                 y.val(position.top);
-//                                Cuic.debug('move stop', ev);
             });
-        }
+
+            // Expose component
+            movables.push(movable);
+        });
+
+        // Toggle debug mode
+        debugCheckbox.on("click", (ev) => {
+            movables.forEach((movable) => {
+                movable.options.debug = ev.currentTarget.checked === true;
+            });
+        });
+
+        horizontally.on("change", (ev) => {
+            movables.forEach((movable) => {
+                movable.options.horizontally = ev.currentTarget.checked === true;
+            });
+        });
+
+        vertically.on("change", (ev) => {
+            movables.forEach((movable) => {
+                movable.options.vertically = ev.currentTarget.checked === true;
+            });
+        });
     }
 
     render() {
@@ -97,18 +104,29 @@ export class MovablePage extends React.Component {
                 <div className="sandbox">
                     <div className="row">
                         <form className="col-md-2 settings">
-                            <h4>Settings</h4>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox" name="horizontally" defaultChecked/>
-                                    <span>horizontally</span>
-                                </label>
-                            </div>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox" name="vertically" defaultChecked/>
-                                    <span>vertically</span>
-                                </label>
+                            <div className="settings">
+                                <h4>Settings</h4>
+                                <div className="checkbox">
+                                    <label>
+                                        <input type="checkbox"
+                                               data-type="boolean"
+                                               name="debug"
+                                               defaultValue="true"/>
+                                        <span>debug</span>
+                                    </label>
+                                </div>
+                                <div className="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="horizontally" defaultChecked/>
+                                        <span>horizontally</span>
+                                    </label>
+                                </div>
+                                <div className="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="vertically" defaultChecked/>
+                                        <span>vertically</span>
+                                    </label>
+                                </div>
                             </div>
 
                             <h4>Info</h4>

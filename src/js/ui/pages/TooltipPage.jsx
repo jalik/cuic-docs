@@ -29,21 +29,24 @@ import {Tooltip} from "cuic/dist/ui/tooltip";
 
 export class TooltipPage extends React.Component {
     componentDidMount() {
-        let sandbox = Cuic.element('#ui-tooltip .sandbox');
-        let anchor = sandbox.find("[name=anchor]").eq(0);
-        let followPointer = sandbox.find("[name=followPointer]").eq(0);
+        const sandbox = Cuic.element('#ui-tooltip .sandbox');
+        const anchor = sandbox.find("[name=anchor]").eq(0);
+        const debugCheckbox = sandbox.find("[name=\'debug\']").first();
+        const followPointer = sandbox.find("[name=followPointer]").eq(0);
 
-        window.tooltip = new Tooltip({
+        const tooltip = new Tooltip({
             anchor: anchor.val(),
             attribute: "title",
+            debug: debugCheckbox.node().checked,
             followPointer: followPointer.node().checked,
             selector: '.group1 [title]'
         });
 
-        window.tooltipBlue = new Tooltip({
+        const tooltipBlue = new Tooltip({
             anchor: anchor.val(),
             attribute: "title",
             css: {background: 'rgba(93,190,221,0.9)'},
+            debug: debugCheckbox.node().checked,
             followPointer: followPointer.node().checked,
             selector: '.group2 [title]'
         });
@@ -53,10 +56,20 @@ export class TooltipPage extends React.Component {
             window.tooltipBlue.anchor(anchor.val());
         });
 
+        // Toggle debug mode
+        debugCheckbox.on("click", (ev) => {
+            tooltip.options.debug = ev.currentTarget.checked === true;
+            tooltipBlue.options.debug = ev.currentTarget.checked === true;
+        });
+
         followPointer.on("change", function () {
             window.tooltip.options.followPointer = followPointer.node().checked;
             window.tooltipBlue.options.followPointer = followPointer.node().checked;
         });
+
+        // Expose component
+        window.tooltip = tooltip;
+        window.tooltipBlue = tooltipBlue;
     }
 
     render() {
@@ -83,6 +96,15 @@ export class TooltipPage extends React.Component {
                                     <option>left bottom</option>
                                     <option>left</option>
                                 </select>
+                            </div>
+                            <div className="checkbox">
+                                <label>
+                                    <input type="checkbox"
+                                           data-type="boolean"
+                                           name="debug"
+                                           defaultValue="true"/>
+                                    <span>debug</span>
+                                </label>
                             </div>
                             <div className="checkbox">
                                 <label>

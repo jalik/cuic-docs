@@ -38,7 +38,10 @@ body {
 a {
   color: #57a0be;
   text-decoration: none;
-  transition: all 200ms;
+}
+
+a:focus {
+  outline: none;
 }
 
 a:hover {
@@ -115,7 +118,6 @@ table {
 td {
   border: solid 1px #ccc;
   padding: 0.5em;
-  transition: all 200ms;
 }
 
 tfoot th {
@@ -127,7 +129,6 @@ th {
   color: #555;
   font-weight: bold;
   padding: 0.5em;
-  transition: all 200ms;
 }
 
 thead th {
@@ -136,7 +137,6 @@ thead th {
 
 tr {
   border-bottom: solid 1px #ddd;
-  transition: all 200ms;
 }
 
 // BLUEPRINT
@@ -147,7 +147,6 @@ tr {
   box-sizing: border-box;
   height: 400px;
   min-height: 400px;
-  /*overflow: auto;*/
   padding: 10px;
   position: relative;
 }
@@ -156,9 +155,17 @@ tr {
   margin: 10px;
 }
 
+// CHECKBOX
+
 .checkbox label > * {
   margin-left: 5px;
   vertical-align: middle;
+}
+
+// FORM-GROUP
+
+.form-group label {
+  font-weight: normal;
 }
 
 // GUIDE
@@ -179,49 +186,6 @@ tr {
 
 .help-block {
   font-size: 0.9em;
-}
-
-// INLINE
-
-.inline {
-  display: inline-block;
-  margin-right: 2px;
-  text-align: center;
-  vertical-align: top;
-}
-
-// LABEL
-
-.label {
-  color: #888;
-  display: block;
-  font-size: 0.9em;
-  margin-bottom: 2px;
-}
-
-// NAVBAR
-
-.navbar {
-  background: #fff;
-  border-bottom: solid 3px #57a0be;
-  box-shadow: 0 1px 0.5em #888;
-  display: block;
-  z-index: 1;
-}
-
-.navbar-item {
-  border-right: solid 1px #eee;
-  cursor: pointer;
-  display: inline-block;
-  height: 60px;
-  line-height: 60px;
-  padding: 0 1em;
-  transition: all 200ms;
-}
-
-.navbar-item:hover {
-  background: rgba(87, 160, 190, 0.1);
-  border-bottom: none;
 }
 
 // SANDBOX
@@ -253,16 +217,6 @@ tr {
 
 .sidebar {
   background-color: @sidebar-background-color;
-}
-
-.sidebar a {
-  color: rgba(200, 200, 200, 1.0);
-  transition: all 0.2s;
-}
-
-.sidebar a:focus,
-.sidebar a:hover {
-  color: rgba(255, 255, 255, 1.0);
 }
 
 .sidebar-header {
@@ -317,7 +271,7 @@ tr {
   margin: 0;
   padding: @sidebar-padding / 2;
   text-transform: uppercase;
-  transition: all 0.2s;
+  transition: all 0.1s;
 }
 
 .sidebar .sidebar-menu-link:focus,
@@ -328,7 +282,7 @@ tr {
 }
 
 .sidebar .sidebar-menu-link.active {
-  background-color: lighten(@sidebar-background-color, 2%);
+  //background-color: lighten(@sidebar-background-color, 2%);
   color: @secondary-color;
 }
 
@@ -339,6 +293,19 @@ tr {
 .sidebar .sidebar-menu-link .glyphicons {
   font-size: 1.3em;
   margin-right: 5px;
+}
+
+// SWITCHER
+
+.blueprint .switcher {
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 300px;
+  width: 400px;
+}
+
+.blueprint .switcher .test-box {
+  font-size: 3em;
+  font-weight: bold;
 }
 
 // TEXT BOX
@@ -367,6 +334,18 @@ tr {
 
 .test-box.selected {
   border-color: tomato;
+}
+
+.test-box.green {
+  border-color: lightgreen;
+}
+
+.test-box.violet {
+  border-color: blueviolet;
+}
+
+.test-box.yellow {
+  border-color: gold;
 }
 
 /* CONTENT */

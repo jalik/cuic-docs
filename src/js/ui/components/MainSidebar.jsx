@@ -1,14 +1,14 @@
 import React from "react";
 import {FormattedMessage} from "react-intl";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 
 class MenuItem extends React.Component {
     render() {
         return (
-            <Link to={this.props.url} className="sidebar-menu-link">
+            <NavLink to={this.props.url} className="sidebar-menu-link" activeClassName="active">
                 <span className={this.props.icon}/>
                 <span>{this.props.name}</span>
-            </Link>
+            </NavLink>
         );
     }
 }
@@ -19,11 +19,11 @@ export class MainSidebar extends React.Component {
         return (
             <aside id="sidebar" className="sidebar">
                 <div className="sidebar-header">
-                    <Link to="/" className="sidebar-brand">
+                    <NavLink to="/" className="sidebar-brand">
                         <span className="glyphicons glyphicons-boat"/>
                         <span className="sidebar-logo">{Package.name}</span>
                         <sup className="sidebar-version">{Package.version}</sup>
-                    </Link>
+                    </NavLink>
                     <p className="sidebar-slogan">{Package.description}</p>
                 </div>
                 <nav className="sidebar-nav">
@@ -53,6 +53,9 @@ export class MainSidebar extends React.Component {
                         <MenuItem name={<FormattedMessage id="tooltip" defaultMessage="Tooltip"/>}
                                   icon="glyphicons glyphicons-"
                                   url="/ui/tooltip"/>
+                    </div>
+                    <div className="sidebar-menu" id="others-menu">
+                        <h3>Others</h3>
                         <MenuItem name={<FormattedMessage id="movable" defaultMessage="Movable"/>}
                                   icon="glyphicons glyphicons-"
                                   url="/ui/movable"/>

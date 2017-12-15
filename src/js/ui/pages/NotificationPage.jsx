@@ -29,12 +29,13 @@ import {Notification} from "cuic/dist/ui/notification";
 
 export class NotificationPage extends React.Component {
     componentDidMount() {
-        let sandbox = Cuic.element('#ui-notification .sandbox');
-        let blueprint = sandbox.find('.blueprint').eq(0);
-        let autoClose = sandbox.find('[name=autoClose]').eq(0);
-        let parent = sandbox.find('[name=parent]').eq(0);
-        let duration = sandbox.find('[name=duration]').eq(0);
-        let position = sandbox.find('[name=position]').eq(0);
+        const sandbox = Cuic.element('#ui-notification .sandbox');
+        const blueprint = sandbox.find('.blueprint').eq(0);
+        const autoClose = sandbox.find('[name=autoClose]').eq(0);
+        const debugCheckbox = sandbox.find("[name=\'debug\']").first();
+        const parent = sandbox.find('[name=parent]').eq(0);
+        const duration = sandbox.find('[name=duration]').eq(0);
+        const position = sandbox.find('[name=position]').eq(0);
 
         sandbox.find('form').on('submit', function (ev) {
             ev.preventDefault();
@@ -42,10 +43,10 @@ export class NotificationPage extends React.Component {
                 autoClose: autoClose.node().checked,
                 autoRemove: true,
                 closable: true,
-                debug: false,
-                parent: parent.node().checked ? blueprint : document.body,
                 content: 'Notification from <b>' + position.val() + '</b>',
+                debug: debugCheckbox.node().checked,
                 duration: duration.val(),
+                parent: parent.node().checked ? blueprint : document.body,
                 position: position.val()
             }).open();
 
@@ -99,6 +100,15 @@ export class NotificationPage extends React.Component {
                                            name="autoClose"
                                            defaultChecked/>
                                     <span>autoClose</span>
+                                </label>
+                            </div>
+                            <div className="checkbox">
+                                <label>
+                                    <input type="checkbox"
+                                           data-type="boolean"
+                                           name="debug"
+                                           defaultValue="true"/>
+                                    <span>debug</span>
                                 </label>
                             </div>
                             <div className="checkbox">

@@ -29,53 +29,58 @@ import {Resizable} from "cuic/dist/ui/resizable";
 
 export class ResizablePage extends React.Component {
     componentDidMount() {
-        let section = Cuic.element('#ui-resizable');
-        let sandbox = section.find('.sandbox').eq(0);
-        let blueprint = sandbox.find('.blueprint').eq(0);
-        let width = sandbox.find('[name="width"]').eq(0);
-        let height = sandbox.find('[name="height"]').eq(0);
-        let hratio = sandbox.find('[name="hratio"]').eq(0);
-        let vratio = sandbox.find('[name="vratio"]').eq(0);
-        let horizontally = sandbox.find('[name="horizontally"]').eq(0);
-        let vertically = sandbox.find('[name="vertically"]').eq(0);
+        const section = Cuic.element('#ui-resizable');
+        const sandbox = section.find('.sandbox').eq(0);
+        const blueprint = sandbox.find('.blueprint').eq(0);
+        const debugCheckbox = sandbox.find("[name=\'debug\']").first();
+        const width = sandbox.find('[name="width"]').eq(0);
+        const height = sandbox.find('[name="height"]').eq(0);
+        const hratio = sandbox.find('[name="hratio"]').eq(0);
+        const vratio = sandbox.find('[name="vratio"]').eq(0);
+        const horizontally = sandbox.find('[name="horizontally"]').eq(0);
+        const vertically = sandbox.find('[name="vertically"]').eq(0);
 
-        window.resizable = new Resizable({
-            // debug: true,
-            element: sandbox.find('.test-box-a').eq(0),
-            keepRatio: false,
-            horizontally: horizontally.node().checked,
-            vertically: vertically.node().checked
-        });
-        window.resizableB = new Resizable({
-            // debug: true,
-            element: sandbox.find('.test-box-b').eq(0),
-            keepRatio: false,
-            horizontally: horizontally.node().checked,
-            vertically: vertically.node().checked
+        window.resizables = [];
+
+        // Make each test box selectable
+        blueprint.find('.test-box', blueprint).each((box) => {
+
+            const resizable = new Resizable({
+                // debug: true,
+                element: box,
+                keepRatio: false,
+                horizontally: horizontally.node().checked,
+                vertically: vertically.node().checked
+            });
+
+            resizable.onResize((ev) => {
+                width.val(resizable.width());
+                height.val(resizable.height());
+                hratio.val(Math.round(resizable.width() / resizable.height() * 100) / 100);
+                vratio.val(Math.round(resizable.height() / resizable.width() * 100) / 100);
+            });
+
+            // Expose component
+            resizables.push(resizable);
         });
 
-        horizontally.on("change", function (ev) {
-            resizable.options.horizontally = ev.target.checked;
-            resizableB.options.horizontally = ev.target.checked;
+        // Toggle debug mode
+        debugCheckbox.on("click", (ev) => {
+            resizables.forEach((resizable) => {
+                resizable.options.debug = ev.currentTarget.checked === true;
+            });
         });
 
-        vertically.on("change", function (ev) {
-            resizable.options.vertically = ev.target.checked;
-            resizableB.options.vertically = ev.target.checked;
+        horizontally.on("change", (ev) => {
+            resizables.forEach((resizable) => {
+                resizable.options.horizontally = ev.currentTarget.checked === true;
+            });
         });
 
-        resizable.onResizeStart(function (ev) {
-//                                console.log('onResizeStart', ev.clientX, ev.clientY);
-        });
-        resizable.onResizeEnd(function (ev) {
-//                                console.log('onResizeEnd', ev.clientX, ev.clientY);
-        });
-        resizable.onResize(function (ev) {
-//                                console.log('resize', ev)
-            width.val(resizable.width());
-            height.val(resizable.height());
-            hratio.val(Math.round(resizable.width() / resizable.height() * 100) / 100);
-            vratio.val(Math.round(resizable.height() / resizable.width() * 100) / 100);
+        vertically.on("change", (ev) => {
+            resizables.forEach((resizable) => {
+                resizable.options.vertically = ev.currentTarget.checked === true;
+            });
         });
     }
 
@@ -87,18 +92,29 @@ export class ResizablePage extends React.Component {
                 <div className="sandbox">
                     <div className="row">
                         <form className="col-md-2 settings">
-                            <h4>Settings</h4>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox" name="horizontally" defaultChecked/>
-                                    <span>horizontally</span>
-                                </label>
-                            </div>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox" name="vertically" defaultChecked/>
-                                    <span>vertically</span>
-                                </label>
+                            <div className="settings">
+                                <h4>Settings</h4>
+                                <div className="checkbox">
+                                    <label>
+                                        <input type="checkbox"
+                                               data-type="boolean"
+                                               name="debug"
+                                               defaultValue="true"/>
+                                        <span>debug</span>
+                                    </label>
+                                </div>
+                                <div className="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="horizontally" defaultChecked/>
+                                        <span>horizontally</span>
+                                    </label>
+                                </div>
+                                <div className="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="vertically" defaultChecked/>
+                                        <span>vertically</span>
+                                    </label>
+                                </div>
                             </div>
 
                             <h4>Info</h4>

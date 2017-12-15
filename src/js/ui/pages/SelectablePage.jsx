@@ -29,13 +29,27 @@ import {Selectable} from "cuic/dist/ui/selectable";
 
 export class SelectablePage extends React.Component {
     componentDidMount() {
-        let section = Cuic.element('#ui-selectable');
-        let sandbox = section.find('.sandbox').eq(0);
-        let blueprint = sandbox.find('.blueprint').eq(0);
+        const section = Cuic.element('#ui-selectable');
+        const sandbox = section.find('.sandbox').eq(0);
+        const blueprint = sandbox.find('.blueprint').eq(0);
+        const debugCheckbox = sandbox.find("[name=\'debug\']").first();
 
-        Cuic.find('.test-box', blueprint).each(function (box) {
-            window.selectable = new Selectable({
+        window.selectables = [];
+
+        // Make each test box selectable
+        blueprint.find('.test-box', blueprint).each((box) => {
+            const selectable = new Selectable({
                 element: box
+            });
+
+            // Expose component
+            selectables.push(selectable);
+        });
+
+        // Toggle debug mode
+        debugCheckbox.on("click", (ev) => {
+            selectables.forEach((selectable) => {
+                selectable.options.debug = ev.currentTarget.checked === true;
             });
         });
     }
@@ -47,7 +61,20 @@ export class SelectablePage extends React.Component {
 
                 <div className="sandbox">
                     <div className="row">
-                        <div className="col-md-2"/>
+                        <div className="col-md-2">
+                            <div className="settings">
+                                <h4>Settings</h4>
+                                <div className="checkbox">
+                                    <label>
+                                        <input type="checkbox"
+                                               data-type="boolean"
+                                               name="debug"
+                                               defaultValue="true"/>
+                                        <span>debug</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                         <div className="col-md-10">
                             <div className="blueprint">
                                 <div className="test-box test-box-a">A</div>

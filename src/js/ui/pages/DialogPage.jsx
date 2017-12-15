@@ -33,24 +33,26 @@ export class DialogPage extends React.Component {
     }
 
     componentDidMount() {
-        let sandbox = Cuic.element('#ui-dialog .sandbox');
-        let blueprint = sandbox.find('.blueprint').eq(0);
-        let modal = sandbox.find('[name=modal]').eq(0);
-        let title = sandbox.find("[name=title]").eq(0);
-        let parent = sandbox.find('[name="parent"]').eq(0);
-        let fullscreen = sandbox.find('[name="fullscreen"]').eq(0);
-        let css = sandbox.find('[name="css"]').eq(0);
-        let position = sandbox.find('[name="position"]').eq(0);
-        let autoClose = sandbox.find('[name="autoClose"]').eq(0);
+        const section = Cuic.element("#ui-dialog");
+        const sandbox = section.find('#ui-dialog .sandbox');
+        const autoClose = sandbox.find('[name="autoClose"]').eq(0);
+        const blueprint = sandbox.find('.blueprint').eq(0);
+        const css = sandbox.find('[name="css"]').eq(0);
+        const debugCheckbox = section.find("[name=\'debug\']").first();
+        const fullscreen = sandbox.find('[name="fullscreen"]').eq(0);
+        const modal = sandbox.find('[name=modal]').eq(0);
+        const parent = sandbox.find('[name="parent"]').eq(0);
+        const position = sandbox.find('[name="position"]').eq(0);
+        const title = sandbox.find("[name=title]").eq(0);
 
-        sandbox.find('form').on('submit', function (ev) {
+        sandbox.find('form').on('submit', (ev) => {
             ev.preventDefault();
             window.dialog = new Dialog({
-//                                    debug: true,
                 autoClose: autoClose.node().checked,
                 autoRemove: false,
-                maximized: fullscreen.node().checked,
+                debug: debugCheckbox.node().checked,
                 css: css.val(),
+                maximized: fullscreen.node().checked,
                 modal: modal.node().checked,
                 parent: parent.node().checked ? blueprint : document.body,
                 position: position.val(),
@@ -118,6 +120,15 @@ export class DialogPage extends React.Component {
                                            name="buttons"
                                            defaultChecked/>
                                     <span>buttons</span>
+                                </label>
+                            </div>
+                            <div className="checkbox">
+                                <label>
+                                    <input type="checkbox"
+                                           data-type="boolean"
+                                           name="debug"
+                                           defaultValue="true"/>
+                                    <span>debug</span>
                                 </label>
                             </div>
                             <div className="checkbox">

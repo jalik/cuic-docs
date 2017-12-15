@@ -30,24 +30,35 @@ import {Notification} from "cuic/dist/ui/notification";
 
 export class NotificationStackPage extends React.Component {
     componentDidMount() {
-        let sandbox = Cuic.element('#ui-notification-stack');
-        let blueprint = sandbox.find('.blueprint').eq(0);
-        let position = sandbox.find('[name=position]').eq(0);
+        const sandbox = Cuic.element('#ui-notification-stack');
+        const blueprint = sandbox.find('.blueprint').eq(0);
+        const debugCheckbox = sandbox.find("[name=\'debug\']").first();
+        const position = sandbox.find('[name=position]').eq(0);
 
-        window.notificationStack = new NotificationStack({
+        const notificationStack = new NotificationStack({
+            debug: debugCheckbox.node().checked,
             parent: blueprint,
             position: position.val()
+        });
+
+        // Toggle debug mode
+        debugCheckbox.on("click", (ev) => {
+            notificationStack.options.debug = ev.currentTarget.checked === true;
         });
 
         position.on("change", function () {
             notificationStack.align(position.val());
         });
+
         sandbox.find('[name="add-notif"]').on('click', function (ev) {
             notificationStack.addComponent(new Notification({
                 autoClose: false,
                 content: "Custom event at <em>" + new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds() + "</em>"
             }));
         });
+
+        // Expose component
+        window.notificationStack = notificationStack;
     }
 
     render() {
@@ -75,6 +86,17 @@ export class NotificationStackPage extends React.Component {
                                     <option>left</option>
                                 </select>
                             </div>
+                            <div className="checkbox">
+                                <label>
+                                    <input type="checkbox"
+                                           data-type="boolean"
+                                           name="debug"
+                                           defaultValue="true"/>
+                                    <span>debug</span>
+                                </label>
+                            </div>
+
+                            <h4>Actions</h4>
                             <button className="btn btn-default btn-block" name="add-notif" type="button">
                                 <span className="glyphicon glyphicon-plus"/>
                                 <span>Add a notification</span>

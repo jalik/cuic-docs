@@ -29,14 +29,21 @@ import {Switcher} from "cuic/dist/ui/switcher";
 
 export class SwitcherPage extends React.Component {
     componentDidMount() {
-        let section = Cuic.element('#ui-switcher');
-        let sandbox = section.find('.sandbox').eq(0);
+        const section = Cuic.element('#ui-switcher');
+        const sandbox = section.find('.sandbox').eq(0);
+        const debugCheckbox = sandbox.find("[name=\'debug\']").first();
 
-        window.switcher = new Switcher({
+        const switcher = new Switcher({
             autoStart: false,
             delay: 1000,
+            debug: debugCheckbox.node().checked,
             element: sandbox.find('.switcher').eq(0),
             repeat: sandbox.find('[name=repeat]').eq(0).node().checked
+        });
+
+        // Toggle debug mode
+        debugCheckbox.on("click", (ev) => {
+            switcher.options.debug = ev.currentTarget.checked === true;
         });
 
         // Options
@@ -50,6 +57,9 @@ export class SwitcherPage extends React.Component {
             ev.preventDefault();
             switcher[ev.currentTarget.value]();
         });
+
+        // Expose component
+        window.switcher = switcher;
     }
 
     render() {
@@ -64,6 +74,15 @@ export class SwitcherPage extends React.Component {
                     <div className="row">
                         <div className="col-md-2 settings">
                             <h4>Settings</h4>
+                            <div className="checkbox">
+                                <label>
+                                    <input type="checkbox"
+                                           data-type="boolean"
+                                           name="debug"
+                                           defaultValue="true"/>
+                                    <span>debug</span>
+                                </label>
+                            </div>
                             <div className="checkbox">
                                 <label>
                                     <input type="checkbox"
@@ -121,12 +140,18 @@ export class SwitcherPage extends React.Component {
                         <div className="col-md-10">
                             <div className="blueprint">
                                 <div className="switcher">
-                                    <div className="test-box">1</div>
-                                    <div className="test-box">2</div>
-                                    <div className="test-box">3</div>
-                                    <div className="test-box">4</div>
-                                    <div className="test-box">5</div>
-                                    <div className="test-box">6</div>
+                                    <div className="test-box">
+                                        1
+                                    </div>
+                                    <div className="test-box violet">
+                                        2
+                                    </div>
+                                    <div className="test-box green">
+                                        3
+                                    </div>
+                                    <div className="test-box yellow">
+                                        4
+                                    </div>
                                 </div>
                             </div>
                         </div>

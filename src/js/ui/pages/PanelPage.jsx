@@ -29,17 +29,19 @@ import {Panel} from "cuic/dist/ui/panel";
 
 export class PanelPage extends React.Component {
     componentDidMount() {
-        let sandbox = Cuic.element('#ui-panel .sandbox');
-        let blueprint = sandbox.find('.blueprint').eq(0);
-        let autoClose = sandbox.find('[name=autoClose]').eq(0);
-        let parent = sandbox.find('[name=parent]').eq(0);
-        let position = sandbox.find('[name=position]').eq(0);
-        let maximized = sandbox.find('[name=maximized]').eq(0);
-        let opened = sandbox.find('[name=opened]').eq(0);
+        const sandbox = Cuic.element('#ui-panel .sandbox');
+        const blueprint = sandbox.find('.blueprint').eq(0);
+        const autoClose = sandbox.find('[name=autoClose]').eq(0);
+        const debugCheckbox = sandbox.find("[name=\'debug\']").first();
+        const parent = sandbox.find('[name=parent]').eq(0);
+        const position = sandbox.find('[name=position]').eq(0);
+        const maximized = sandbox.find('[name=maximized]').eq(0);
+        const opened = sandbox.find('[name=opened]').eq(0);
 
-        window.panel = new Panel({
-            css: {'min-width': '200px'},
+        const panel = new Panel({
             autoClose: autoClose.node().checked,
+            css: {'min-width': '200px'},
+            debug: debugCheckbox.node().checked,
             element: blueprint.find('.panel').eq(0),
             maximized: maximized.node().checked,
             opened: opened.node().checked,
@@ -47,18 +49,27 @@ export class PanelPage extends React.Component {
             position: position.val()
         });
 
-        sandbox.find('.fn-close').on('click', function () {
-            panel.close();
-        });
-        sandbox.find('.fn-open').on('click', function () {
-            panel.open();
-        });
-        sandbox.find('.fn-toggle').on('click', function () {
-            panel.toggle();
-        });
         autoClose.on("change", function () {
             panel.options.autoClose = autoClose.node().checked;
         });
+
+        // Toggle debug mode
+        debugCheckbox.on("click", (ev) => {
+            panel.options.debug = ev.currentTarget.checked === true;
+        });
+
+        sandbox.find('.fn-close').on('click', function () {
+            panel.close();
+        });
+
+        sandbox.find('.fn-open').on('click', function () {
+            panel.open();
+        });
+
+        sandbox.find('.fn-toggle').on('click', function () {
+            panel.toggle();
+        });
+
         maximized.on("change", function () {
             if (maximized.node().checked) {
                 panel.maximize();
@@ -66,9 +77,13 @@ export class PanelPage extends React.Component {
                 panel.minimize();
             }
         });
+
         position.on("change", function () {
             panel.align(position.val());
         });
+
+        // Expose component
+        window.panel = panel;
     }
 
     render() {
@@ -102,6 +117,15 @@ export class PanelPage extends React.Component {
                                     <input type="checkbox"
                                            name="autoClose"/>
                                     <span>autoClose</span>
+                                </label>
+                            </div>
+                            <div className="checkbox">
+                                <label>
+                                    <input type="checkbox"
+                                           data-type="boolean"
+                                           name="debug"
+                                           defaultValue="true"/>
+                                    <span>debug</span>
                                 </label>
                             </div>
                             <div className="checkbox">
