@@ -60,13 +60,17 @@ export class DialogPage extends React.Component {
                 content: 'This is a <b>simple dialog</b>.<p>Vivamus efficitur, ipsum sit amet blandit accumsan, tortor erat pharetra elit, a elementum urna ligula at diam. Etiam id eros ut leo aliquam bibendum ac id lectus. Donec elementum libero at ullamcorper mattis. Pellentesque sed ante nec nunc varius consectetur.</p><p>Vivamus efficitur, ipsum sit amet blandit accumsan, tortor erat pharetra elit, a elementum urna ligula at diam. Etiam id eros ut leo aliquam bibendum ac id lectus. Donec elementum libero at ullamcorper mattis. Pellentesque sed ante nec nunc varius consectetur.</p><br>',
                 buttons: sandbox.find("[name=buttons]").eq(0).node().checked ? [
                     {
-                        label: 'Accept',
-                        callback: 'close'
+                        label: 'Close',
+                        callback() {
+                            this.close();
+                        }
                     },
                     {
-                        label: 'Close',
-                        callback: 'close'
-                    }
+                        label: 'Accept',
+                        callback() {
+                            this.close();
+                        }
+                    },
                 ] : null
             });
             dialog.open();
