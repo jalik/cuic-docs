@@ -27,6 +27,7 @@ import React from "react";
 import {Tree} from "cuic/dist/ui/tree";
 
 export class TreePage extends React.Component {
+
     componentDidMount() {
         window.tree = new Tree({
             target: '#sb-tree > .tree',

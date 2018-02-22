@@ -28,6 +28,7 @@ import React from "react";
 import {Switcher} from "cuic/dist/ui/switcher";
 
 export class SwitcherPage extends React.Component {
+
     componentDidMount() {
         const section = Cuic.element('#ui-switcher');
         const sandbox = section.find('.sandbox').eq(0);
@@ -72,69 +73,75 @@ export class SwitcherPage extends React.Component {
 
                 <div className="sandbox">
                     <div className="row">
-                        <div className="col-md-2 settings">
-                            <h4>Settings</h4>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox"
-                                           data-type="boolean"
-                                           name="debug"
-                                           defaultValue="true"/>
-                                    <span>debug</span>
-                                </label>
+                        <div className="col-md-2">
+                            <div className="settings">
+                                <h4>Settings</h4>
+                                <div className="form-check">
+                                    <label className="form-check-label">
+                                        <input className="form-check-input"
+                                               type="checkbox"
+                                               data-type="boolean"
+                                               name="debug"
+                                               defaultValue="true"/>
+                                        <span>debug</span>
+                                    </label>
+                                </div>
+                                <div className="form-check">
+                                    <label className="form-check-label">
+                                        <input className="form-check-input"
+                                               type="checkbox"
+                                               name="repeat"
+                                               defaultChecked/>
+                                        <span>repeat</span>
+                                    </label>
+                                </div>
                             </div>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox"
-                                           name="repeat"
-                                           defaultChecked/>
-                                    <span>repeat</span>
-                                </label>
-                            </div>
-                            <h4>Actions</h4>
-                            <div className="btn-group-vertical btn-block" role="group">
-                                <button className="btn btn-default"
-                                        type="button"
-                                        name="method"
-                                        value="start">
-                                    <span className="glyphicon glyphicon-play"/>
-                                    <span>start</span>
-                                </button>
-                                <button className="btn btn-default"
-                                        type="button"
-                                        name="method"
-                                        value="stop">
-                                    <span className="glyphicon glyphicon-stop"/>
-                                    <span>stop</span>
-                                </button>
-                                <button className="btn btn-default"
-                                        type="button"
-                                        name="method"
-                                        value="first">
-                                    <span className="glyphicon glyphicon-step-backward"/>
-                                    <span>first</span>
-                                </button>
-                                <button className="btn btn-default"
-                                        type="button"
-                                        name="method"
-                                        value="previous">
-                                    <span className="glyphicon glyphicon-backward"/>
-                                    <span>previous</span>
-                                </button>
-                                <button className="btn btn-default"
-                                        type="button"
-                                        name="method"
-                                        value="next">
-                                    <span className="glyphicon glyphicon-forward"/>
-                                    <span>next</span>
-                                </button>
-                                <button className="btn btn-default"
-                                        type="button"
-                                        name="method"
-                                        value="last">
-                                    <span className="glyphicon glyphicon-step-forward"/>
-                                    <span>last</span>
-                                </button>
+                            <div className="settings">
+                                <h4>Actions</h4>
+                                <div className="btn-group-vertical btn-block" role="group">
+                                    <button className="btn btn-secondary"
+                                            type="button"
+                                            name="method"
+                                            value="start">
+                                        <span className="glyphicon glyphicon-play"/>
+                                        <span>start</span>
+                                    </button>
+                                    <button className="btn btn-secondary"
+                                            type="button"
+                                            name="method"
+                                            value="stop">
+                                        <span className="glyphicon glyphicon-stop"/>
+                                        <span>stop</span>
+                                    </button>
+                                    <button className="btn btn-secondary"
+                                            type="button"
+                                            name="method"
+                                            value="first">
+                                        <span className="glyphicon glyphicon-step-backward"/>
+                                        <span>first</span>
+                                    </button>
+                                    <button className="btn btn-secondary"
+                                            type="button"
+                                            name="method"
+                                            value="previous">
+                                        <span className="glyphicon glyphicon-backward"/>
+                                        <span>previous</span>
+                                    </button>
+                                    <button className="btn btn-secondary"
+                                            type="button"
+                                            name="method"
+                                            value="next">
+                                        <span className="glyphicon glyphicon-forward"/>
+                                        <span>next</span>
+                                    </button>
+                                    <button className="btn btn-secondary"
+                                            type="button"
+                                            name="method"
+                                            value="last">
+                                        <span className="glyphicon glyphicon-step-forward"/>
+                                        <span>last</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div className="col-md-10">

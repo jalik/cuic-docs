@@ -28,6 +28,7 @@ import {Element} from "cuic/dist/ui/element";
 import React from "react";
 
 export class UtilsPage extends React.Component {
+
     componentDidMount() {
         let section = Cuic.element('#ui-utils');
         let sandbox = section.find('.sandbox').eq(0);
@@ -61,32 +62,36 @@ export class UtilsPage extends React.Component {
                             </div>
                             <div className="btn-toolbar" role="toolbar">
                                 <div className="btn-group-vertical btn-block" role="group">
-                                    <button className="btn btn-default" name="method" value="height" type="button">
+                                    <button className="btn btn-secondary" name="method" value="height" type="button">
                                         <span>height()</span>
                                     </button>
-                                    <button className="btn btn-default" name="method" value="innerHeight" type="button">
+                                    <button className="btn btn-secondary" name="method" value="innerHeight"
+                                            type="button">
                                         <span>innerHeight()</span>
                                     </button>
-                                    <button className="btn btn-default" name="method" value="outerHeight" type="button">
+                                    <button className="btn btn-secondary" name="method" value="outerHeight"
+                                            type="button">
                                         <span>outerHeight()</span>
                                     </button>
                                 </div>
                                 <div className="btn-group-vertical btn-block" role="group">
-                                    <button className="btn btn-default" name="method" value="width" type="button">
+                                    <button className="btn btn-secondary" name="method" value="width" type="button">
                                         <span>width()</span>
                                     </button>
-                                    <button className="btn btn-default" name="method" value="innerWidth" type="button">
+                                    <button className="btn btn-secondary" name="method" value="innerWidth"
+                                            type="button">
                                         <span>innerWidth()</span>
                                     </button>
-                                    <button className="btn btn-default" name="method" value="outerWidth" type="button">
+                                    <button className="btn btn-secondary" name="method" value="outerWidth"
+                                            type="button">
                                         <span>outerWidth()</span>
                                     </button>
                                 </div>
                                 <div className="btn-group-vertical btn-block" role="group">
-                                    <button className="btn btn-default" name="method" value="offset" type="button">
+                                    <button className="btn btn-secondary" name="method" value="offset" type="button">
                                         <span>offset()</span>
                                     </button>
-                                    <button className="btn btn-default" name="method" value="position" type="button">
+                                    <button className="btn btn-secondary" name="method" value="position" type="button">
                                         <span>position()</span>
                                     </button>
                                 </div>

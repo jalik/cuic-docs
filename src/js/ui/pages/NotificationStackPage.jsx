@@ -29,6 +29,7 @@ import {Notification} from "cuic/dist/ui/notification";
 import {NotificationStack} from "cuic/dist/ui/notification-stack";
 
 export class NotificationStackPage extends React.Component {
+
     componentDidMount() {
         const sandbox = Cuic.element('#ui-notification-stack');
         const blueprint = sandbox.find('.blueprint').eq(0);
@@ -74,37 +75,42 @@ export class NotificationStackPage extends React.Component {
 
                 <div className="sandbox">
                     <div className="row">
-                        <form className="col-md-2 settings">
-                            <h4>Settings</h4>
-                            <div className="form-group">
-                                <label>position</label>
-                                <select className="form-control" name="position" defaultValue="left top">
-                                    <option>center</option>
-                                    <option>left top</option>
-                                    <option>top</option>
-                                    <option>right top</option>
-                                    <option>right</option>
-                                    <option>right bottom</option>
-                                    <option>bottom</option>
-                                    <option>left bottom</option>
-                                    <option>left</option>
-                                </select>
-                            </div>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox"
-                                           data-type="boolean"
-                                           name="debug"
-                                           defaultValue="true"/>
-                                    <span>debug</span>
-                                </label>
+                        <form className="col-md-2">
+                            <div className="settings">
+                                <h4>Settings</h4>
+                                <div className="form-group">
+                                    <label>position</label>
+                                    <select className="custom-select" name="position" defaultValue="left top">
+                                        <option>center</option>
+                                        <option>left top</option>
+                                        <option>top</option>
+                                        <option>right top</option>
+                                        <option>right</option>
+                                        <option>right bottom</option>
+                                        <option>bottom</option>
+                                        <option>left bottom</option>
+                                        <option>left</option>
+                                    </select>
+                                </div>
+                                <div className="form-check">
+                                    <label className="form-check-label">
+                                        <input className="form-check-input"
+                                               type="checkbox"
+                                               data-type="boolean"
+                                               name="debug"
+                                               defaultValue="true"/>
+                                        <span>debug</span>
+                                    </label>
+                                </div>
                             </div>
 
-                            <h4>Actions</h4>
-                            <button className="btn btn-default btn-block" name="notify" type="button">
-                                <span className="glyphicon glyphicon-plus"/>
-                                <span>Add a notification</span>
-                            </button>
+                            <div className="settings">
+                                <h4>Actions</h4>
+                                <button className="btn btn-secondary btn-block" name="notify" type="button">
+                                    <span className="glyphicon glyphicon-plus"/>
+                                    <span>Add a notification</span>
+                                </button>
+                            </div>
                         </form>
                         <div className="col-md-10">
                             <div className="blueprint"/>

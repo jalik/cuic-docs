@@ -28,6 +28,7 @@ import React from "react";
 import {Popup} from "cuic/dist/ui/popup";
 
 export class PopupPage extends React.Component {
+
     componentDidMount() {
         const section = Cuic.element("#ui-popup");
         const sandbox = section.find('.sandbox').eq(0);
@@ -50,10 +51,10 @@ export class PopupPage extends React.Component {
             });
 
             anchorField.on("change", function () {
-                window.popups[i].anchor(anchorField.val(), anchorPointField.val());
+                window.popups[i].anchor(anchorField.val(), anchorPointField.val(), el);
             });
             anchorPointField.on("change", function () {
-                window.popups[i].anchor(anchorField.val(), anchorPointField.val());
+                window.popups[i].anchor(anchorField.val(), anchorPointField.val(), el);
             });
             el.on("click", function () {
                 popups[i].setContent("Clicked at <em>" + new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds() + "</em>");
@@ -77,7 +78,7 @@ export class PopupPage extends React.Component {
                             <h4>Settings</h4>
                             <div className="form-group">
                                 <label>anchor</label>
-                                <select className="form-control" name="anchor" defaultValue="right">
+                                <select className="custom-select" name="anchor" defaultValue="right">
                                     <option>left top</option>
                                     <option>top</option>
                                     <option>right top</option>
@@ -90,7 +91,7 @@ export class PopupPage extends React.Component {
                             </div>
                             <div className="form-group">
                                 <label>anchor point</label>
-                                <select className="form-control" name="anchorPoint">
+                                <select className="custom-select" name="anchorPoint">
                                     <option/>
                                     <option>left top</option>
                                     <option>top</option>
@@ -102,9 +103,10 @@ export class PopupPage extends React.Component {
                                     <option>left</option>
                                 </select>
                             </div>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox"
+                            <div className="form-check">
+                                <label className="form-check-label">
+                                    <input className="form-check-input"
+                                           type="checkbox"
                                            data-type="boolean"
                                            name="debug"
                                            defaultValue="true"/>
@@ -114,44 +116,44 @@ export class PopupPage extends React.Component {
                         </form>
                         <div className="col-md-10">
                             <div className="blueprint">
-                                <button className="btn btn-default" type="button"
+                                <button className="btn btn-secondary" type="button"
                                         style={{position: "absolute", left: 0, top: 0}}
                                         data-anchor="bottom right">
                                     <span>Bottom Right</span>
                                 </button>
-                                <button className="btn btn-default" type="button"
+                                <button className="btn btn-secondary" type="button"
                                         style={{position: "absolute", left: "50%", top: 0, marginLeft: "-50px"}}
                                         data-anchor="bottom center">
                                     <span>Bottom Center</span>
                                 </button>
-                                <button className="btn btn-default" type="button"
+                                <button className="btn btn-secondary" type="button"
                                         style={{position: "absolute", right: 0, top: 0}}
                                         data-anchor="bottom left">
                                     <span>Bottom Left</span>
                                 </button>
 
-                                <button className="btn btn-default" type="button"
+                                <button className="btn btn-secondary" type="button"
                                         style={{position: "absolute", left: 0, top: "50%", marginTop: "-17px"}}
                                         data-anchor="middle right">
                                     <span>Middle Right</span>
                                 </button>
-                                <button className="btn btn-default" type="button"
+                                <button className="btn btn-secondary" type="button"
                                         style={{position: "absolute", right: 0, top: "50%", marginTop: "-17px"}}
                                         data-anchor="middle left">
                                     <span>Middle Left</span>
                                 </button>
 
-                                <button className="btn btn-default" type="button"
+                                <button className="btn btn-secondary" type="button"
                                         style={{position: "absolute", left: 0, bottom: 0}}
                                         data-anchor="top right">
                                     <span>Top Right</span>
                                 </button>
-                                <button className="btn btn-default" type="button"
+                                <button className="btn btn-secondary" type="button"
                                         style={{position: "absolute", left: "50%", bottom: 0, marginLeft: "-50px"}}
                                         data-anchor="top center">
                                     <span>Top Center</span>
                                 </button>
-                                <button className="btn btn-default" type="button"
+                                <button className="btn btn-secondary" type="button"
                                         style={{position: "absolute", right: 0, bottom: 0}}
                                         data-anchor="top left">
                                     <span>Top Left</span>

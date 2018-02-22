@@ -27,6 +27,7 @@ import React from "react";
 import {Tabs} from "cuic/dist/ui/tabs";
 
 export class TabsPage extends React.Component {
+
     componentDidMount() {
         window.tabs = new Tabs({
             target: '#sb-tabs > .tabs',

@@ -28,6 +28,7 @@ import React from "react";
 import {Panel} from "cuic/dist/ui/panel";
 
 export class PanelPage extends React.Component {
+
     componentDidMount() {
         const sandbox = Cuic.element('#ui-panel .sandbox');
         const blueprint = sandbox.find('.blueprint').eq(0);
@@ -96,67 +97,76 @@ export class PanelPage extends React.Component {
 
                 <div className="sandbox">
                     <div className="row">
-                        <form className="col-md-2 settings">
-                            <h4>Settings</h4>
-                            <div className="form-group">
-                                <label>position</label>
-                                <select className="form-control" name="position" defaultValue="left top">
-                                    <option>center</option>
-                                    <option>left top</option>
-                                    <option>top</option>
-                                    <option>right top</option>
-                                    <option>right</option>
-                                    <option>right bottom</option>
-                                    <option>bottom</option>
-                                    <option>left bottom</option>
-                                    <option>left</option>
-                                </select>
-                            </div>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox"
-                                           name="autoClose"/>
-                                    <span>autoClose</span>
-                                </label>
-                            </div>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox"
-                                           data-type="boolean"
-                                           name="debug"
-                                           defaultValue="true"/>
-                                    <span>debug</span>
-                                </label>
-                            </div>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox"
-                                           name="maximized"/>
-                                    <span>maximized</span>
-                                </label>
-                            </div>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox"
-                                           name="parent"
-                                           defaultChecked/>
-                                    <span>parent</span>
-                                </label>
-                            </div>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox"
-                                           name="opened"
-                                           defaultChecked/>
-                                    <span>opened</span>
-                                </label>
+                        <form className="col-md-2">
+                            <div className="settings">
+                                <h4>Settings</h4>
+                                <div className="form-group">
+                                    <label>position</label>
+                                    <select className="custom-select" name="position" defaultValue="left top">
+                                        <option>center</option>
+                                        <option>left top</option>
+                                        <option>top</option>
+                                        <option>right top</option>
+                                        <option>right</option>
+                                        <option>right bottom</option>
+                                        <option>bottom</option>
+                                        <option>left bottom</option>
+                                        <option>left</option>
+                                    </select>
+                                </div>
+                                <div className="form-check">
+                                    <label className="form-check-label">
+                                        <input className="form-check-input"
+                                               type="checkbox"
+                                               name="autoClose"/>
+                                        <span>autoClose</span>
+                                    </label>
+                                </div>
+                                <div className="form-check">
+                                    <label className="form-check-label">
+                                        <input className="form-check-input"
+                                               type="checkbox"
+                                               data-type="boolean"
+                                               name="debug"
+                                               defaultValue="true"/>
+                                        <span>debug</span>
+                                    </label>
+                                </div>
+                                <div className="form-check">
+                                    <label className="form-check-label">
+                                        <input className="form-check-input"
+                                               type="checkbox"
+                                               name="maximized"/>
+                                        <span>maximized</span>
+                                    </label>
+                                </div>
+                                <div className="form-check">
+                                    <label className="form-check-label">
+                                        <input className="form-check-input"
+                                               type="checkbox"
+                                               name="parent"
+                                               defaultChecked/>
+                                        <span>parent</span>
+                                    </label>
+                                </div>
+                                <div className="form-check">
+                                    <label className="form-check-label">
+                                        <input className="form-check-input"
+                                               type="checkbox"
+                                               name="opened"
+                                               defaultChecked/>
+                                        <span>opened</span>
+                                    </label>
+                                </div>
                             </div>
 
-                            <h4>Actions</h4>
-                            <div className="btn-block btn-group-vertical" role="group">
-                                <button className="btn btn-default fn-close" type="button">close</button>
-                                <button className="btn btn-default fn-open" type="button">open</button>
-                                <button className="btn btn-default fn-toggle" type="button">toggle</button>
+                            <div className="settings">
+                                <h4>Actions</h4>
+                                <div className="btn-block btn-group-vertical" role="group">
+                                    <button className="btn btn-secondary fn-close" type="button">close</button>
+                                    <button className="btn btn-secondary fn-open" type="button">open</button>
+                                    <button className="btn btn-secondary fn-toggle" type="button">toggle</button>
+                                </div>
                             </div>
                         </form>
                         <div className="col-md-10">

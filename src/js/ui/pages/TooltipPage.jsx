@@ -28,6 +28,7 @@ import React from "react";
 import {Tooltip} from "cuic/dist/ui/tooltip";
 
 export class TooltipPage extends React.Component {
+
     componentDidMount() {
         const sandbox = Cuic.element('#ui-tooltip .sandbox');
         const anchor = sandbox.find("[name=anchor]").eq(0);
@@ -86,7 +87,7 @@ export class TooltipPage extends React.Component {
                             <h4>Settings</h4>
                             <div className="form-group">
                                 <label>anchor</label>
-                                <select className="form-control" name="anchor" defaultValue="right">
+                                <select className="custom-select" name="anchor" defaultValue="right">
                                     <option>left top</option>
                                     <option>top</option>
                                     <option>right top</option>
@@ -97,18 +98,22 @@ export class TooltipPage extends React.Component {
                                     <option>left</option>
                                 </select>
                             </div>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox"
+                            <div className="form-check">
+                                <label className="form-check-label">
+                                    <input className="form-check-input"
+                                           type="checkbox"
                                            data-type="boolean"
                                            name="debug"
                                            defaultValue="true"/>
                                     <span>debug</span>
                                 </label>
                             </div>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox" name="followPointer" defaultChecked/>
+                            <div className="form-check">
+                                <label className="form-check-label">
+                                    <input className="form-check-input"
+                                           type="checkbox"
+                                           name="followPointer"
+                                           defaultChecked/>
                                     <span>followPointer</span>
                                 </label>
                             </div>

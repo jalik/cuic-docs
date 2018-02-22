@@ -28,6 +28,7 @@ import React from "react";
 import {Grid} from "cuic/dist/ui/grid";
 
 export class GridPage extends React.Component {
+
     componentDidMount() {
         let sandbox = Cuic.element('#sb-grid');
         let autoResize = sandbox.find('[name=autoResize]');

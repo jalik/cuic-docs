@@ -28,6 +28,7 @@ import React from "react";
 import {Movable} from "cuic/dist/ui/movable";
 
 export class MovablePage extends React.Component {
+
     componentDidMount() {
         const section = Cuic.element('#ui-movable');
         const sandbox = section.find('.sandbox').eq(0);
@@ -106,24 +107,31 @@ export class MovablePage extends React.Component {
                         <form className="col-md-2 settings">
                             <div className="settings">
                                 <h4>Settings</h4>
-                                <div className="checkbox">
-                                    <label>
-                                        <input type="checkbox"
+                                <div className="form-check">
+                                    <label className="form-check-label">
+                                        <input className="form-check-input"
+                                               type="checkbox"
                                                data-type="boolean"
                                                name="debug"
                                                defaultValue="true"/>
                                         <span>debug</span>
                                     </label>
                                 </div>
-                                <div className="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="horizontally" defaultChecked/>
+                                <div className="form-check">
+                                    <label className="form-check-label">
+                                        <input className="form-check-input"
+                                               type="checkbox"
+                                               name="horizontally"
+                                               defaultChecked/>
                                         <span>horizontally</span>
                                     </label>
                                 </div>
-                                <div className="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="vertically" defaultChecked/>
+                                <div className="form-check">
+                                    <label className="form-check-label">
+                                        <input className="form-check-input"
+                                               type="checkbox"
+                                               name="vertically"
+                                               defaultChecked/>
                                         <span>vertically</span>
                                     </label>
                                 </div>
@@ -135,18 +143,22 @@ export class MovablePage extends React.Component {
                                     <label>X</label>
                                     <div className="input-group">
                                         <input className="form-control" name="x" readOnly/>
-                                        <span className="input-group-addon">px</span>
+                                        <div className="input-group-append">
+                                            <span className="input-group-text">px</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="form-group">
                                     <label>Y</label>
                                     <div className="input-group">
                                         <input className="form-control" name="y" readOnly/>
-                                        <span className="input-group-addon">px</span>
+                                        <div className="input-group-append">
+                                            <span className="input-group-text">px</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="form-group">
-                                    <label>state</label>
+                                    <label>event</label>
                                     <input className="form-control" name="state" readOnly/>
                                 </div>
                             </div>

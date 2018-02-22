@@ -28,6 +28,7 @@ import React from "react";
 import {Dialog} from "cuic/dist/ui/dialog";
 
 export class DialogPage extends React.Component {
+
     constructor(props) {
         super(props);
     }
@@ -92,7 +93,7 @@ export class DialogPage extends React.Component {
                             <h4>Settings</h4>
                             <div className="form-group">
                                 <label>position</label>
-                                <select className="form-control" name="position" defaultValue="center">
+                                <select className="custom-select" name="position" defaultValue="center">
                                     <option>center</option>
                                     <option>left top</option>
                                     <option>top</option>
@@ -111,62 +112,70 @@ export class DialogPage extends React.Component {
                                        name="css"
                                        defaultValue="width: 400px"/>
                             </div>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox"
+                            <div className="form-check">
+                                <label className="form-check-label">
+                                    <input className="form-check-input"
+                                           type="checkbox"
                                            name="autoClose"
                                            defaultChecked/>
                                     <span>autoClose</span>
                                 </label>
                             </div>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox"
+                            <div className="form-check">
+                                <label className="form-check-label">
+                                    <input className="form-check-input"
+                                           type="checkbox"
                                            name="buttons"
                                            defaultChecked/>
                                     <span>buttons</span>
                                 </label>
                             </div>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox"
+                            <div className="form-check">
+                                <label className="form-check-label">
+                                    <input className="form-check-input"
+                                           type="checkbox"
                                            data-type="boolean"
                                            name="debug"
                                            defaultValue="true"/>
                                     <span>debug</span>
                                 </label>
                             </div>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox"
+                            <div className="form-check">
+                                <label className="form-check-label">
+                                    <input className="form-check-input"
+                                           type="checkbox"
                                            name="fullscreen"/>
                                     <span>fullscreen</span>
                                 </label>
                             </div>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox"
+                            <div className="form-check">
+                                <label className="form-check-label">
+                                    <input className="form-check-input"
+                                           type="checkbox"
                                            name="modal"
                                            defaultChecked/>
                                     <span>modal</span>
                                 </label>
                             </div>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox"
+                            <div className="form-check">
+                                <label className="form-check-label">
+                                    <input className="form-check-input"
+                                           type="checkbox"
                                            name="parent"
                                            defaultChecked/>
                                     <span>parent</span>
                                 </label>
                             </div>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox"
+                            <div className="form-check">
+                                <label className="form-check-label">
+                                    <input className="form-check-input"
+                                           type="checkbox"
                                            name="title"
                                            defaultChecked/>
                                     <span>title</span>
                                 </label>
                             </div>
+                            <hr/>
                             <button className="btn btn-primary btn-run btn-block" type="submit">
                                 <span className="glyphicon glyphicon-console"/>
                                 <span>Run</span>

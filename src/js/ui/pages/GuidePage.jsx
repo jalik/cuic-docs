@@ -28,6 +28,7 @@ import React from "react";
 import {Guide} from "cuic/dist/ui/guide";
 
 export class GuidePage extends React.Component {
+
     componentDidMount() {
         const section = Cuic.element("#ui-guide");
         const debugCheckbox = section.find("[name=\'debug\']").first();
@@ -183,9 +184,10 @@ export class GuidePage extends React.Component {
                         <div className="col-md-2">
                             <div className="settings">
                                 <h4>Settings</h4>
-                                <div className="checkbox">
-                                    <label>
-                                        <input type="checkbox"
+                                <div className="form-check">
+                                    <label className="form-check-label">
+                                        <input className="form-check-input"
+                                               type="checkbox"
                                                data-type="boolean"
                                                name="debug"
                                                defaultValue="true"/>
@@ -196,23 +198,23 @@ export class GuidePage extends React.Component {
                             <div className="settings">
                                 <h4>Actions</h4>
                                 <div className="btn-group-vertical btn-block" role="group">
-                                    <button className="btn btn-default btn-start" type="button">
+                                    <button className="btn btn-secondary btn-start" type="button">
                                         <span className="glyphicon glyphicon-play"/>
                                         <span>start</span>
                                     </button>
-                                    <button className="btn btn-default btn-previous-step" type="button">
+                                    <button className="btn btn-secondary btn-previous-step" type="button">
                                         <span className="glyphicon glyphicon-backward"/>
                                         <span>previous</span>
                                     </button>
-                                    <button className="btn btn-default btn-next-step" type="button">
+                                    <button className="btn btn-secondary btn-next-step" type="button">
                                         <span className="glyphicon glyphicon-forward"/>
                                         <span>next</span>
                                     </button>
-                                    <button className="btn btn-default btn-stop" type="button">
+                                    <button className="btn btn-secondary btn-stop" type="button">
                                         <span className="glyphicon glyphicon-pause"/>
                                         <span>stop</span>
                                     </button>
-                                    <button className="btn btn-default btn-resume" type="button">
+                                    <button className="btn btn-secondary btn-resume" type="button">
                                         <span className="glyphicon glyphicon-play"/>
                                         <span>resume</span>
                                     </button>

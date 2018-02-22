@@ -28,6 +28,7 @@ import React from "react";
 import {Notification} from "cuic/dist/ui/notification";
 
 export class NotificationPage extends React.Component {
+
     componentDidMount() {
         const sandbox = Cuic.element('#ui-notification .sandbox');
         const blueprint = sandbox.find('.blueprint').eq(0);
@@ -75,7 +76,7 @@ export class NotificationPage extends React.Component {
                             <h4>Settings</h4>
                             <div className="form-group">
                                 <label>position</label>
-                                <select className="form-control" name="position" defaultValue="center">
+                                <select className="custom-select" name="position" defaultValue="center">
                                     <option>center</option>
                                     <option>left top</option>
                                     <option>top</option>
@@ -89,36 +90,46 @@ export class NotificationPage extends React.Component {
                             </div>
                             <div className="form-group">
                                 <label>duration</label>
-                                <input className="form-control"
-                                       type="number"
-                                       name="duration"
-                                       defaultValue="2000"/>
+                                <div className="input-group">
+                                    <input className="form-control"
+                                           type="number"
+                                           name="duration"
+                                           defaultValue="2000"/>
+                                    <div className="input-group-append">
+                                        <span className="input-group-text">ms</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox"
+                            <div className="form-check">
+                                <label className="form-check-label">
+                                    <input className="form-check-input"
+                                           type="checkbox"
                                            name="autoClose"
                                            defaultChecked/>
                                     <span>autoClose</span>
                                 </label>
                             </div>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox"
+                            <div className="form-check">
+                                <label className="form-check-label">
+                                    <input className="form-check-input"
+                                           type="checkbox"
                                            data-type="boolean"
                                            name="debug"
                                            defaultValue="true"/>
                                     <span>debug</span>
                                 </label>
                             </div>
-                            <div className="checkbox">
-                                <label>
-                                    <input type="checkbox"
+                            <div className="form-check">
+                                <label className="form-check-label">
+                                    <input className="form-check-input"
+                                           type="checkbox"
                                            name="parent"
                                            defaultChecked/>
                                     <span>parent</span>
                                 </label>
                             </div>
+
+                            <hr/>
                             <button className="btn btn-primary btn-run btn-block" type="submit">
                                 <span className="glyphicon glyphicon-console"/>
                                 <span>Run</span>

@@ -25,9 +25,9 @@
 
 import Cuic from "cuic";
 import React from "react";
-import {Hook} from "cuic/dist/ui/hook";
 
 export class HookPage extends React.Component {
+
     componentDidMount() {
         let section = Cuic.find('#ui-hook').eq(0);
         let sandbox = section.find('.sandbox').eq(0);

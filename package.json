@@ -1,6 +1,6 @@
 {
   "name": "cuic-docs",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Cuic Documentation",
   "main": "dist/index.html",
   "private": true,
@@ -26,8 +26,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "bootstrap": "^3.3.7",
-    "cuic": "^0.11.0",
+    "bootstrap": "^4.0.0",
+    "cuic": "latest",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.13.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

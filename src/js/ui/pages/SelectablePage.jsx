@@ -28,6 +28,7 @@ import React from "react";
 import {Selectable} from "cuic/dist/ui/selectable";
 
 export class SelectablePage extends React.Component {
+
     componentDidMount() {
         const section = Cuic.element('#ui-selectable');
         const sandbox = section.find('.sandbox').eq(0);
@@ -64,9 +65,10 @@ export class SelectablePage extends React.Component {
                         <div className="col-md-2">
                             <div className="settings">
                                 <h4>Settings</h4>
-                                <div className="checkbox">
-                                    <label>
-                                        <input type="checkbox"
+                                <div className="form-check">
+                                    <label className="form-check-label">
+                                        <input className="form-check-input"
+                                               type="checkbox"
                                                data-type="boolean"
                                                name="debug"
                                                defaultValue="true"/>

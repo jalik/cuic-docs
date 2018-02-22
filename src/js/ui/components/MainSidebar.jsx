@@ -1,6 +1,6 @@
 import React from "react";
 import {FormattedMessage} from "react-intl";
-import {Link, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 class MenuItem extends React.Component {
     render() {
@@ -20,7 +20,7 @@ export class MainSidebar extends React.Component {
             <aside id="sidebar" className="sidebar">
                 <div className="sidebar-header">
                     <NavLink to="/" className="sidebar-brand">
-                        <span className="glyphicons glyphicons-boat"/>
+                        <span className=""/>
                         <span className="sidebar-logo">{Package.name}</span>
                         <sup className="sidebar-version">{Package.version}</sup>
                     </NavLink>
@@ -30,46 +30,34 @@ export class MainSidebar extends React.Component {
                     <div className="sidebar-menu" id="components-menu">
                         <h3>Components</h3>
                         <MenuItem name={<FormattedMessage id="dialog" defaultMessage="Dialog"/>}
-                                  icon="glyphicons glyphicons-"
                                   url="/ui/dialog"/>
                         <MenuItem name={<FormattedMessage id="guide" defaultMessage="Guide"/>}
-                                  icon="glyphicons glyphicons-"
                                   url="/ui/guide"/>
                         <MenuItem name={<FormattedMessage id="notification" defaultMessage="Notification"/>}
-                                  icon="glyphicons glyphicons-"
                                   url="/ui/notification"/>
                         <MenuItem name={<FormattedMessage id="notificationStack" defaultMessage="NotificationStack"/>}
-                                  icon="glyphicons glyphicons-"
                                   url="/ui/notification-stack"/>
                         <MenuItem name={<FormattedMessage id="panel" defaultMessage="Panel"/>}
-                                  icon="glyphicons glyphicons-"
                                   url="/ui/panel"/>
                         <MenuItem name={<FormattedMessage id="popup" defaultMessage="Popup"/>}
-                                  icon="glyphicons glyphicons-"
                                   url="/ui/popup"/>
                         <MenuItem name={<FormattedMessage id="switcher" defaultMessage="Switcher"/>}
-                                  icon="glyphicons glyphicons-"
                                   url="/ui/switcher"/>
                         <MenuItem name={<FormattedMessage id="tooltip" defaultMessage="Tooltip"/>}
-                                  icon="glyphicons glyphicons-"
                                   url="/ui/tooltip"/>
                     </div>
                     <div className="sidebar-menu" id="others-menu">
                         <h3>Others</h3>
                         <MenuItem name={<FormattedMessage id="movable" defaultMessage="Movable"/>}
-                                  icon="glyphicons glyphicons-"
                                   url="/ui/movable"/>
                         <MenuItem name={<FormattedMessage id="resizable" defaultMessage="Resizable"/>}
-                                  icon="glyphicons glyphicons-"
                                   url="/ui/resizable"/>
                         <MenuItem name={<FormattedMessage id="selectable" defaultMessage="Selectable"/>}
-                                  icon="glyphicons glyphicons-"
                                   url="/ui/selectable"/>
                     </div>
                     <div className="sidebar-menu" id="utils-menu">
                         <h3>Utils</h3>
                         <MenuItem name={<FormattedMessage id="utils" defaultMessage="Utils"/>}
-                                  icon="glyphicons glyphicons-"
                                   url="/utils"/>
                     </div>
                 </nav>

@@ -27,15 +27,23 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {App} from "./App";
 import {IntlProvider} from "react-intl";
+
+// Load cuic
+import "cuic/dist/cuic.css";
+
+// Load bootstrap
+import "bootstrap";
+import "bootstrap/dist/css/bootstrap.css";
+
+// Load dynamic styles
 import "../less/styles.less";
 import "../less/responsive-sm.less";
-import "cuic/dist/cuic.css";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap/dist/css/bootstrap-theme.css";
-import "bootstrap/dist/fonts/glyphicons-halflings-regular.eot";
-import "bootstrap/dist/fonts/glyphicons-halflings-regular.woff";
-import "bootstrap/dist/fonts/glyphicons-halflings-regular.woff2";
-import "bootstrap/dist/fonts/glyphicons-halflings-regular.ttf";
+
+// Load icons
+// import "bootstrap/dist/fonts/glyphicons-halflings-regular.eot";
+// import "bootstrap/dist/fonts/glyphicons-halflings-regular.woff";
+// import "bootstrap/dist/fonts/glyphicons-halflings-regular.woff2";
+// import "bootstrap/dist/fonts/glyphicons-halflings-regular.ttf";
 
 // Define user"s language. Different browsers have the user locale defined
 // on different fields on the `navigator` object, so we make sure to account

@@ -27,6 +27,7 @@ import React from "react";
 import {Table} from "cuic/dist/ui/table";
 
 export class TablePage extends React.Component {
+
     componentDidMount() {
         window.table = new Table({
             target: '#sb-table table',
