@@ -23,7 +23,6 @@ export class App extends React.Component {
             <HashRouter>
                 <Switch>
                     <Route path="/" component={SidebarLayout}/>
-                    {/*<Route path="*" component={ErrorLayout}/>*/}
                 </Switch>
             </HashRouter>
         )

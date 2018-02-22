@@ -36,7 +36,6 @@ export class SidebarLayout extends React.Component {
                             <Route exact path="/ui/switcher" component={SwitcherPage}/>
                             <Route exact path="/ui/tooltip" component={TooltipPage}/>
                             <Route exact path="/utils" component={UtilsPage}/>
-                            {/*<Route path="*" component={NotFoundPage}/>*/}
                         </Switch>
                     </div>
                 </div>

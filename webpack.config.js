@@ -41,6 +41,13 @@ function dirname(path) {
 }
 
 module.exports = {
+    devServer: {
+        hot: true,
+        port: 3000,
+        contentBase: paths.dist,
+        publicPath: `/${dirname(paths.build)}`,
+        watchContentBase: true
+    },
     entry: {
         bundle: path.join(paths.src, "js", "index.jsx")
     },
@@ -48,10 +55,6 @@ module.exports = {
         libraryTarget: "umd",
         path: paths.build,
         filename: path.join("js", "[name].js")
-    },
-    resolve: {
-        extensions: [".js", ".jsx"],
-        modules: [paths.src, "node_modules"]
     },
     module: {
         rules: [
@@ -80,11 +83,6 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 loader: "babel-loader"
-            },
-            {
-                test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
-                loader: "remove-comments-loader"
             }
         ]
     },
@@ -92,13 +90,10 @@ module.exports = {
         new ExtractTextPlugin({
             filename: path.join("css", "[name].css"),
             allChunks: true
-        }),
+        })
     ],
-    devServer: {
-        hot: true,
-        port: 3000,
-        contentBase: paths.dist,
-        publicPath: `/${dirname(paths.build)}`,
-        watchContentBase: true
-    },
+    resolve: {
+        extensions: [".js", ".jsx"],
+        modules: [paths.src, "node_modules"]
+    }
 };
