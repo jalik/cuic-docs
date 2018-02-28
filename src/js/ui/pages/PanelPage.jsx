@@ -42,7 +42,7 @@ export class PanelPage extends React.Component {
             autoClose: autoCloseCheckbox.node().checked,
             css: {'min-width': '200px'},
             debug: debugCheckbox.node().checked,
-            element: blueprint.find('.panel').eq(0),
+            element: blueprint.find('.cc-panel').first(),
             maximized: maximizedCheckbox.node().checked,
             opened: openedCheckbox.node().checked,
             parent: parentCheckbox.node().checked ? blueprint : document.body,
@@ -170,18 +170,20 @@ export class PanelPage extends React.Component {
                         </form>
                         <div className="col-md-10">
                             <div className="blueprint">
-                                <div className="panel panel-default">
-                                    <header className="panel-header">
-                                        <h5 className="panel-title">Title</h5>
+
+                                <div className="cc-panel">
+                                    <header className="cc-panel-header">
+                                        <h5 className="cc-panel-title">Title</h5>
                                     </header>
-                                    <div className="panel-content">
+                                    <div className="cc-panel-content">
                                         <p>content</p>
                                     </div>
-                                    <footer className="panel-footer">Footer -
+                                    <footer className="cc-panel-footer">Footer -
                                         <a href="#" className="btn-close">Close</a> -
                                         <a href="#" className="btn-toggle">Toggle</a>
                                     </footer>
                                 </div>
+
                             </div>
                         </div>
                     </div>

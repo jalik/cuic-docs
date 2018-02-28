@@ -33,7 +33,7 @@ export class GuidePage extends React.Component {
         const debugCheckbox = section.find("[name=\'debug\']").first();
 
         const nextButton = {
-            className: "btn-primary",
+            className: "btn btn-primary",
             label: "Next",
             callback() {
                 this.guide.next();
@@ -55,7 +55,7 @@ export class GuidePage extends React.Component {
         };
 
         const finishButton = {
-            className: "btn-primary",
+            className: "btn btn-primary",
             label: "Finish",
             callback() {
                 this.guide.stop();

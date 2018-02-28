@@ -28,10 +28,6 @@ import {Dialog} from "cuic/dist/ui/dialog";
 
 export class DialogPage extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         const section = Cuic.element("#ui-dialog");
         const sandbox = section.find('#ui-dialog .sandbox');
@@ -67,6 +63,7 @@ export class DialogPage extends React.Component {
                         }
                     },
                     {
+                        className: "btn btn-primary",
                         label: 'Accept',
                         callback() {
                             this.close();
