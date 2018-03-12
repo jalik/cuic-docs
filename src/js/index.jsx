@@ -35,6 +35,7 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 
 // Load dynamic styles
+import "../less/animations.less";
 import "../less/styles.less";
 import "../less/responsive-sm.less";
 
