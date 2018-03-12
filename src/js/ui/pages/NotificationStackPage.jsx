@@ -24,10 +24,10 @@
 
 import Cuic from "cuic";
 import React from "react";
-import {Notification} from "cuic/dist/ui/notification";
-import {NotificationStack} from "cuic/dist/ui/notification-stack";
+import Notification from "cuic/dist/ui/notification";
+import NotificationStack from "cuic/dist/ui/notification-stack";
 
-export class NotificationStackPage extends React.Component {
+class NotificationStackPage extends React.Component {
 
     componentDidMount() {
         const sandbox = Cuic.element('#ui-notification-stack');
@@ -120,3 +120,5 @@ export class NotificationStackPage extends React.Component {
         );
     }
 }
+
+export default NotificationStackPage;

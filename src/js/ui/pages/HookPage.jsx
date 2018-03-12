@@ -25,7 +25,7 @@
 import Cuic from "cuic";
 import React from "react";
 
-export class HookPage extends React.Component {
+class HookPage extends React.Component {
 
     componentDidMount() {
         let section = Cuic.find('#ui-hook').eq(0);
@@ -53,3 +53,5 @@ export class HookPage extends React.Component {
         );
     }
 }
+
+export default HookPage;

@@ -24,9 +24,9 @@
 
 import Cuic from "cuic";
 import React from "react";
-import {Dialog} from "cuic/dist/ui/dialog";
+import Dialog from "cuic/dist/ui/dialog";
 
-export class DialogPage extends React.Component {
+class DialogPage extends React.Component {
 
     componentDidMount() {
         const section = Cuic.element("#ui-dialog");
@@ -186,3 +186,5 @@ export class DialogPage extends React.Component {
         );
     }
 }
+
+export default DialogPage;

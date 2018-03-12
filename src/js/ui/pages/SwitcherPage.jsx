@@ -24,9 +24,9 @@
 
 import Cuic from "cuic";
 import React from "react";
-import {Switcher} from "cuic/dist/ui/switcher";
+import Switcher from "cuic/dist/ui/switcher";
 
-export class SwitcherPage extends React.Component {
+class SwitcherPage extends React.Component {
 
     componentDidMount() {
         const section = Cuic.element('#ui-switcher');
@@ -167,3 +167,5 @@ export class SwitcherPage extends React.Component {
         );
     }
 }
+
+export default SwitcherPage;

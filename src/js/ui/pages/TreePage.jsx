@@ -23,9 +23,9 @@
  */
 
 import React from "react";
-import {Tree} from "cuic/dist/ui/tree";
+import Tree from "cuic/dist/ui/tree";
 
-export class TreePage extends React.Component {
+class TreePage extends React.Component {
 
     componentDidMount() {
         window.tree = new Tree({
@@ -78,3 +78,5 @@ export class TreePage extends React.Component {
         );
     }
 }
+
+export default TreePage;

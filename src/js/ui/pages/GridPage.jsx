@@ -24,9 +24,9 @@
 
 import Cuic from "cuic";
 import React from "react";
-import {Grid} from "cuic/dist/ui/grid";
+import Grid from "cuic/dist/ui/grid";
 
-export class GridPage extends React.Component {
+class GridPage extends React.Component {
 
     componentDidMount() {
         let sandbox = Cuic.element('#sb-grid');
@@ -43,7 +43,7 @@ export class GridPage extends React.Component {
             let gridHeight = sandbox.find('[name=gridHeight]').val();
             let gridWidth = sandbox.find('[name=gridWidth]').val();
 
-            grid = new Cuic.Grid({
+            const grid = new Cuic.Grid({
                 animSpeed: 200,
                 autoResize: autoResize.is(":checked"),
                 cols: cols.val(),
@@ -129,3 +129,5 @@ export class GridPage extends React.Component {
         );
     }
 }
+
+export default GridPage;

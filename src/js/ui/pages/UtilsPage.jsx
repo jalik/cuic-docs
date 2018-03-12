@@ -23,10 +23,10 @@
  */
 
 import Cuic from "cuic";
-import {Element} from "cuic/dist/ui/element";
+import Element from "cuic/dist/ui/element";
 import React from "react";
 
-export class UtilsPage extends React.Component {
+class UtilsPage extends React.Component {
 
     componentDidMount() {
         let section = Cuic.element('#ui-utils');
@@ -107,3 +107,5 @@ export class UtilsPage extends React.Component {
         );
     }
 }
+
+export default UtilsPage;

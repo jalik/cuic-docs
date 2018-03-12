@@ -24,7 +24,7 @@
 
 import React from "react";
 
-export class HomePage extends React.Component {
+class HomePage extends React.Component {
 
     render() {
         return (
@@ -40,3 +40,5 @@ export class HomePage extends React.Component {
         );
     }
 }
+
+export default HomePage;

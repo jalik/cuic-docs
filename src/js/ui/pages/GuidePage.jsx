@@ -24,9 +24,9 @@
 
 import Cuic from "cuic";
 import React from "react";
-import {Guide} from "cuic/dist/ui/guide";
+import Guide from "cuic/dist/ui/guide";
 
-export class GuidePage extends React.Component {
+class GuidePage extends React.Component {
 
     componentDidMount() {
         const section = Cuic.element("#ui-guide");
@@ -246,3 +246,5 @@ export class GuidePage extends React.Component {
         );
     }
 }
+
+export default GuidePage;

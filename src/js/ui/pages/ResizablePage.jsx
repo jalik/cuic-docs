@@ -24,9 +24,9 @@
 
 import Cuic from "cuic";
 import React from "react";
-import {Resizable} from "cuic/dist/ui/resizable";
+import Resizable from "cuic/dist/ui/resizable";
 
-export class ResizablePage extends React.Component {
+class ResizablePage extends React.Component {
 
     componentDidMount() {
         const section = Cuic.element('#ui-resizable');
@@ -168,3 +168,5 @@ export class ResizablePage extends React.Component {
         );
     }
 }
+
+export default ResizablePage;

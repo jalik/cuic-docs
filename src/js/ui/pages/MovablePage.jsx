@@ -24,9 +24,9 @@
 
 import Cuic from "cuic";
 import React from "react";
-import {Movable} from "cuic/dist/ui/movable";
+import Movable from "cuic/dist/ui/movable";
 
-export class MovablePage extends React.Component {
+class MovablePage extends React.Component {
 
     componentDidMount() {
         const section = Cuic.element('#ui-movable');
@@ -177,3 +177,5 @@ export class MovablePage extends React.Component {
         );
     }
 }
+
+export default MovablePage;

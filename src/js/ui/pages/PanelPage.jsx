@@ -24,9 +24,9 @@
 
 import Cuic from "cuic";
 import React from "react";
-import {Panel} from "cuic/dist/ui/panel";
+import Panel from "cuic/dist/ui/panel";
 
-export class PanelPage extends React.Component {
+class PanelPage extends React.Component {
 
     componentDidMount() {
         const sandbox = Cuic.element('#ui-panel .sandbox');
@@ -192,3 +192,5 @@ export class PanelPage extends React.Component {
         );
     }
 }
+
+export default PanelPage;

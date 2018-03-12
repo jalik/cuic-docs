@@ -24,9 +24,9 @@
 
 import Cuic from "cuic";
 import React from "react";
-import {Selectable} from "cuic/dist/ui/selectable";
+import Selectable from "cuic/dist/ui/selectable";
 
-export class SelectablePage extends React.Component {
+class SelectablePage extends React.Component {
 
     componentDidMount() {
         const section = Cuic.element('#ui-selectable');
@@ -90,3 +90,5 @@ export class SelectablePage extends React.Component {
         );
     }
 }
+
+export default SelectablePage;

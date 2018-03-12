@@ -24,9 +24,9 @@
 
 import Cuic from "cuic";
 import React from "react";
-import {Tooltip} from "cuic/dist/ui/tooltip";
+import Tooltip from "cuic/dist/ui/tooltip";
 
-export class TooltipPage extends React.Component {
+class TooltipPage extends React.Component {
 
     componentDidMount() {
         const sandbox = Cuic.element('#ui-tooltip .sandbox');
@@ -173,3 +173,5 @@ export class TooltipPage extends React.Component {
         );
     }
 }
+
+export default TooltipPage;

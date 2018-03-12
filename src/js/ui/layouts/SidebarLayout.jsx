@@ -24,22 +24,22 @@
 
 import React from "react";
 import {Route, Switch} from "react-router-dom";
-import {DialogPage} from "../pages/DialogPage";
-import {GuidePage} from "../pages/GuidePage";
-import {HomePage} from "../pages/HomePage";
-import {MainSidebar} from "../components/MainSidebar";
-import {MovablePage} from "../pages/MovablePage";
-import {NotificationPage} from "../pages/NotificationPage";
-import {NotificationStackPage} from "../pages/NotificationStackPage";
-import {PanelPage} from "../pages/PanelPage";
-import {PopupPage} from "../pages/PopupPage";
-import {ResizablePage} from "../pages/ResizablePage";
-import {SelectablePage} from "../pages/SelectablePage";
-import {SwitcherPage} from "../pages/SwitcherPage";
-import {TooltipPage} from "../pages/TooltipPage";
-import {UtilsPage} from "../pages/UtilsPage";
+import DialogPage from "../pages/DialogPage";
+import GuidePage from "../pages/GuidePage";
+import HomePage from "../pages/HomePage";
+import MainSidebar from "../components/MainSidebar";
+import MovablePage from "../pages/MovablePage";
+import NotificationPage from "../pages/NotificationPage";
+import NotificationStackPage from "../pages/NotificationStackPage";
+import PanelPage from "../pages/PanelPage";
+import PopupPage from "../pages/PopupPage";
+import ResizablePage from "../pages/ResizablePage";
+import SelectablePage from "../pages/SelectablePage";
+import SwitcherPage from "../pages/SwitcherPage";
+import TooltipPage from "../pages/TooltipPage";
+import UtilsPage from "../pages/UtilsPage";
 
-export class SidebarLayout extends React.Component {
+class SidebarLayout extends React.Component {
     render() {
         return (
             <div id="layout" className="layout layout-sidebar">
@@ -67,3 +67,4 @@ export class SidebarLayout extends React.Component {
         );
     }
 }
+export default SidebarLayout;

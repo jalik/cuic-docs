@@ -37,7 +37,7 @@ class MenuItem extends React.Component {
     }
 }
 
-export class MainSidebar extends React.Component {
+class MainSidebar extends React.Component {
     render() {
         const Package = require("../../../../package.json");
         return (
@@ -89,3 +89,5 @@ export class MainSidebar extends React.Component {
         );
     }
 }
+
+export default MainSidebar;

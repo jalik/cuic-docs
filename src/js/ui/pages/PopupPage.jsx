@@ -24,9 +24,9 @@
 
 import Cuic from "cuic";
 import React from "react";
-import {Popup} from "cuic/dist/ui/popup";
+import Popup from "cuic/dist/ui/popup";
 
-export class PopupPage extends React.Component {
+class PopupPage extends React.Component {
 
     componentDidMount() {
         const section = Cuic.element("#ui-popup");
@@ -164,3 +164,5 @@ export class PopupPage extends React.Component {
         );
     }
 }
+
+export default PopupPage;

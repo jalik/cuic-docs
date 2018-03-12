@@ -24,9 +24,9 @@
 
 import Cuic from "cuic";
 import React from "react";
-import {Notification} from "cuic/dist/ui/notification";
+import Notification from "cuic/dist/ui/notification";
 
-export class NotificationPage extends React.Component {
+class NotificationPage extends React.Component {
 
     componentDidMount() {
         const sandbox = Cuic.element('#ui-notification .sandbox');
@@ -143,3 +143,5 @@ export class NotificationPage extends React.Component {
         );
     }
 }
+
+export default NotificationPage;

@@ -23,9 +23,9 @@
  */
 
 import React from "react";
-import {Table} from "cuic/dist/ui/table";
+import Table from "cuic/dist/ui/table";
 
-export class TablePage extends React.Component {
+class TablePage extends React.Component {
 
     componentDidMount() {
         window.table = new Table({
@@ -98,3 +98,5 @@ export class TablePage extends React.Component {
         );
     }
 }
+
+export default TablePage;
