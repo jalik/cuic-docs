@@ -26,6 +26,9 @@ import Cuic from "cuic";
 import React from "react";
 import Notification from "cuic/dist/ui/notification";
 
+// Define close button CSS class
+Notification.prototype.options.closeButtonClass = "fa fa-times-circle";
+
 class NotificationPage extends React.Component {
 
     componentDidMount() {

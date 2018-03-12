@@ -26,6 +26,9 @@ import Cuic from "cuic";
 import React from "react";
 import Dialog from "cuic/dist/ui/dialog";
 
+// Define close button CSS class
+Dialog.prototype.options.closeButtonClass = "fa fa-times-circle";
+
 class DialogPage extends React.Component {
 
     componentDidMount() {
