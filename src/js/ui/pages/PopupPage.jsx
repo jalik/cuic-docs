@@ -40,11 +40,11 @@ export class PopupPage extends React.Component {
 
         blueprint.find('button').each(function (el, i) {
             window.popups[i] = new Popup({
-                anchor: anchorField.val(),
+                anchor: el.data("anchor"),
                 autoClose: false,
                 autoRemove: false,
                 closable: true,
-                content: "This is a popup",
+                content: `Popup <em>${el.data("anchor")}</em>`,
                 debug: debugCheckbox.node().checked,
                 target: el
             });
@@ -56,7 +56,6 @@ export class PopupPage extends React.Component {
                 window.popups[i].anchor(anchorField.val(), anchorPointField.val(), el);
             });
             el.on("click", function () {
-                popups[i].setContent("Clicked at <em>" + new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds() + "</em>");
                 popups[i].toggle();
             });
             el.click();
