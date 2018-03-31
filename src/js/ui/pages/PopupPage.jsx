@@ -15,154 +15,203 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
 
-import Cuic from "cuic";
-import React from "react";
-import Popup from "cuic/dist/ui/popup";
+import Cuic from 'cuic';
+import Popup from 'cuic/dist/ui/popup';
+import React from 'react';
 
 class PopupPage extends React.Component {
+  componentDidMount() {
+    const section = Cuic.element('#ui-popup');
+    const sandbox = section.find('.sandbox').eq(0);
+    const debugCheckbox = sandbox.find('[name=\'debug\']').first();
+    const blueprint = sandbox.find('.blueprint').eq(0);
+    const anchorField = sandbox.find('[name=anchor]').eq(0);
+    const anchorPointField = sandbox.find('[name=anchorPoint]').eq(0);
 
-    componentDidMount() {
-        const section = Cuic.element("#ui-popup");
-        const sandbox = section.find('.sandbox').eq(0);
-        const debugCheckbox = sandbox.find("[name=\'debug\']").first();
-        const blueprint = sandbox.find('.blueprint').eq(0);
-        const anchorField = sandbox.find("[name=anchor]").eq(0);
-        const anchorPointField = sandbox.find("[name=anchorPoint]").eq(0);
+    const popups = [];
 
-        window.popups = [];
+    blueprint.find('button').each((el, i) => {
+      window.popups[i] = new Popup({
+        anchor: el.data('anchor'),
+        autoClose: false,
+        autoRemove: false,
+        closable: true,
+        content: `Popup <em>${el.data('anchor')}</em>`,
+        debug: debugCheckbox.node().checked,
+        target: el,
+      });
 
-        blueprint.find('button').each(function (el, i) {
-            window.popups[i] = new Popup({
-                anchor: el.data("anchor"),
-                autoClose: false,
-                autoRemove: false,
-                closable: true,
-                content: `Popup <em>${el.data("anchor")}</em>`,
-                debug: debugCheckbox.node().checked,
-                target: el
-            });
+      anchorField.on('change', () => {
+        window.popups[i].anchor(anchorField.val(), anchorPointField.val(), el);
+      });
+      anchorPointField.on('change', () => {
+        window.popups[i].anchor(anchorField.val(), anchorPointField.val(), el);
+      });
+      el.on('click', () => {
+        popups[i].toggle();
+      });
+      el.click();
+    });
+  }
 
-            anchorField.on("change", function () {
-                window.popups[i].anchor(anchorField.val(), anchorPointField.val(), el);
-            });
-            anchorPointField.on("change", function () {
-                window.popups[i].anchor(anchorField.val(), anchorPointField.val(), el);
-            });
-            el.on("click", function () {
-                popups[i].toggle();
-            });
-            el.click();
-        });
-    }
+  render() {
+    return (
+      <section id="ui-popup">
+        <h2>Cuic.Popup</h2>
 
-    render() {
-        return (
-            <section id="ui-popup">
-                <h2>Cuic.Popup</h2>
+        <p className="alert alert-info">Popups are often used to display menus, for example, when a
+          user clicks on a button, a popup menu appears next to it.
+        </p>
 
-                <p className="alert alert-info">Popups are often used to display menus, for example, when a user clicks
-                    on a button, a popup menu appears next to it.</p>
+        <div className="sandbox">
+          <div className="row">
+            <form className="col-md-2 settings">
+              <h4>Settings</h4>
+              <div className="form-group">
+                <label htmlFor="anchorField">anchor
+                  <select
+                    id="anchorField"
+                    className="custom-select"
+                    name="anchor"
+                    defaultValue="right"
+                  >
+                    <option>left top</option>
+                    <option>top</option>
+                    <option>right top</option>
+                    <option>right</option>
+                    <option>right bottom</option>
+                    <option>bottom</option>
+                    <option>left bottom</option>
+                    <option>left</option>
+                  </select>
+                </label>
+              </div>
+              <div className="form-group">
+                <label htmlFor="anchorPointField">anchor point
+                  <select
+                    id="anchorPointField"
+                    className="custom-select"
+                    name="anchorPoint"
+                  >
+                    <option />
+                    <option>left top</option>
+                    <option>top</option>
+                    <option>right top</option>
+                    <option>right</option>
+                    <option>right bottom</option>
+                    <option>bottom</option>
+                    <option>left bottom</option>
+                    <option>left</option>
+                  </select>
+                </label>
+              </div>
+              <div className="form-check">
+                <label
+                  htmlFor="debugField"
+                  className="form-check-label"
+                >
+                  <input
+                    id="debugField"
+                    className="form-check-input"
+                    type="checkbox"
+                    data-type="boolean"
+                    name="debug"
+                    defaultValue="true"
+                  />
+                  <span>debug</span>
+                </label>
+              </div>
+            </form>
+            <div className="col-md-10">
+              <div className="blueprint">
+                <button
+                  className="btn btn-secondary"
+                  type="button"
+                  style={{ position: 'absolute', left: 0, top: 0 }}
+                  data-anchor="bottom right"
+                >
+                  <span>Bottom Right</span>
+                </button>
+                <button
+                  className="btn btn-secondary"
+                  type="button"
+                  style={{
+                    position: 'absolute', left: '50%', top: 0, marginLeft: '-50px',
+                  }}
+                  data-anchor="bottom center"
+                >
+                  <span>Bottom Center</span>
+                </button>
+                <button
+                  className="btn btn-secondary"
+                  type="button"
+                  style={{ position: 'absolute', right: 0, top: 0 }}
+                  data-anchor="bottom left"
+                >
+                  <span>Bottom Left</span>
+                </button>
 
-                <div className="sandbox">
-                    <div className="row">
-                        <form className="col-md-2 settings">
-                            <h4>Settings</h4>
-                            <div className="form-group">
-                                <label>anchor</label>
-                                <select className="custom-select" name="anchor" defaultValue="right">
-                                    <option>left top</option>
-                                    <option>top</option>
-                                    <option>right top</option>
-                                    <option>right</option>
-                                    <option>right bottom</option>
-                                    <option>bottom</option>
-                                    <option>left bottom</option>
-                                    <option>left</option>
-                                </select>
-                            </div>
-                            <div className="form-group">
-                                <label>anchor point</label>
-                                <select className="custom-select" name="anchorPoint">
-                                    <option/>
-                                    <option>left top</option>
-                                    <option>top</option>
-                                    <option>right top</option>
-                                    <option>right</option>
-                                    <option>right bottom</option>
-                                    <option>bottom</option>
-                                    <option>left bottom</option>
-                                    <option>left</option>
-                                </select>
-                            </div>
-                            <div className="form-check">
-                                <label className="form-check-label">
-                                    <input className="form-check-input"
-                                           type="checkbox"
-                                           data-type="boolean"
-                                           name="debug"
-                                           defaultValue="true"/>
-                                    <span>debug</span>
-                                </label>
-                            </div>
-                        </form>
-                        <div className="col-md-10">
-                            <div className="blueprint">
-                                <button className="btn btn-secondary" type="button"
-                                        style={{position: "absolute", left: 0, top: 0}}
-                                        data-anchor="bottom right">
-                                    <span>Bottom Right</span>
-                                </button>
-                                <button className="btn btn-secondary" type="button"
-                                        style={{position: "absolute", left: "50%", top: 0, marginLeft: "-50px"}}
-                                        data-anchor="bottom center">
-                                    <span>Bottom Center</span>
-                                </button>
-                                <button className="btn btn-secondary" type="button"
-                                        style={{position: "absolute", right: 0, top: 0}}
-                                        data-anchor="bottom left">
-                                    <span>Bottom Left</span>
-                                </button>
+                <button
+                  className="btn btn-secondary"
+                  type="button"
+                  style={{
+                    position: 'absolute', left: 0, top: '50%', marginTop: '-17px',
+                  }}
+                  data-anchor="middle right"
+                >
+                  <span>Middle Right</span>
+                </button>
+                <button
+                  className="btn btn-secondary"
+                  type="button"
+                  style={{
+                    position: 'absolute', right: 0, top: '50%', marginTop: '-17px',
+                  }}
+                  data-anchor="middle left"
+                >
+                  <span>Middle Left</span>
+                </button>
 
-                                <button className="btn btn-secondary" type="button"
-                                        style={{position: "absolute", left: 0, top: "50%", marginTop: "-17px"}}
-                                        data-anchor="middle right">
-                                    <span>Middle Right</span>
-                                </button>
-                                <button className="btn btn-secondary" type="button"
-                                        style={{position: "absolute", right: 0, top: "50%", marginTop: "-17px"}}
-                                        data-anchor="middle left">
-                                    <span>Middle Left</span>
-                                </button>
-
-                                <button className="btn btn-secondary" type="button"
-                                        style={{position: "absolute", left: 0, bottom: 0}}
-                                        data-anchor="top right">
-                                    <span>Top Right</span>
-                                </button>
-                                <button className="btn btn-secondary" type="button"
-                                        style={{position: "absolute", left: "50%", bottom: 0, marginLeft: "-50px"}}
-                                        data-anchor="top center">
-                                    <span>Top Center</span>
-                                </button>
-                                <button className="btn btn-secondary" type="button"
-                                        style={{position: "absolute", right: 0, bottom: 0}}
-                                        data-anchor="top left">
-                                    <span>Top Left</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        );
-    }
+                <button
+                  className="btn btn-secondary"
+                  type="button"
+                  style={{ position: 'absolute', left: 0, bottom: 0 }}
+                  data-anchor="top right"
+                >
+                  <span>Top Right</span>
+                </button>
+                <button
+                  className="btn btn-secondary"
+                  type="button"
+                  style={{
+                    position: 'absolute', left: '50%', bottom: 0, marginLeft: '-50px',
+                  }}
+                  data-anchor="top center"
+                >
+                  <span>Top Center</span>
+                </button>
+                <button
+                  className="btn btn-secondary"
+                  type="button"
+                  style={{ position: 'absolute', right: 0, bottom: 0 }}
+                  data-anchor="top left"
+                >
+                  <span>Top Left</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 }
 
 export default PopupPage;

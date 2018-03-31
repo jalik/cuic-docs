@@ -15,158 +15,208 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
 
-import Cuic from "cuic";
-import React from "react";
-import Resizable from "cuic/dist/ui/resizable";
+import Cuic from 'cuic';
+import Resizable from 'cuic/dist/ui/resizable';
+import React from 'react';
 
 class ResizablePage extends React.Component {
+  componentDidMount() {
+    const section = Cuic.element('#ui-resizable');
+    const sandbox = section.find('.sandbox').eq(0);
+    const blueprint = sandbox.find('.blueprint').eq(0);
+    const debugCheckbox = sandbox.find('[name=\'debug\']').first();
+    const widthField = sandbox.find('[name="width"]').eq(0);
+    const heightField = sandbox.find('[name="height"]').eq(0);
+    const hRatioField = sandbox.find('[name="hratio"]').eq(0);
+    const vRatioField = sandbox.find('[name="vratio"]').eq(0);
+    const horizontallyCheckbox = sandbox.find('[name="horizontally"]').eq(0);
+    const verticallyCheckbox = sandbox.find('[name="vertically"]').eq(0);
 
-    componentDidMount() {
-        const section = Cuic.element('#ui-resizable');
-        const sandbox = section.find('.sandbox').eq(0);
-        const blueprint = sandbox.find('.blueprint').eq(0);
-        const debugCheckbox = sandbox.find("[name=\'debug\']").first();
-        const widthField = sandbox.find('[name="width"]').eq(0);
-        const heightField = sandbox.find('[name="height"]').eq(0);
-        const hRatioField = sandbox.find('[name="hratio"]').eq(0);
-        const vRatioField = sandbox.find('[name="vratio"]').eq(0);
-        const horizontallyCheckbox = sandbox.find('[name="horizontally"]').eq(0);
-        const verticallyCheckbox = sandbox.find('[name="vertically"]').eq(0);
+    const resizables = [];
 
-        window.resizables = [];
+    // Make each test box selectable
+    blueprint.find('.test-box', blueprint).each((box) => {
+      const resizable = new Resizable({
+        // debug: true,
+        element: box,
+        keepRatio: false,
+        horizontally: horizontallyCheckbox.node().checked,
+        vertically: verticallyCheckbox.node().checked,
+      });
 
-        // Make each test box selectable
-        blueprint.find('.test-box', blueprint).each((box) => {
+      resizable.onResize(() => {
+        widthField.val(resizable.width());
+        heightField.val(resizable.height());
+        hRatioField.val(Math.round((resizable.width() / resizable.height()) * 100) / 100);
+        vRatioField.val(Math.round((resizable.height() / resizable.width()) * 100) / 100);
+      });
 
-            const resizable = new Resizable({
-                // debug: true,
-                element: box,
-                keepRatio: false,
-                horizontally: horizontallyCheckbox.node().checked,
-                vertically: verticallyCheckbox.node().checked
-            });
+      // Expose component
+      resizables.push(resizable);
+    });
 
-            resizable.onResize((ev) => {
-                widthField.val(resizable.width());
-                heightField.val(resizable.height());
-                hRatioField.val(Math.round(resizable.width() / resizable.height() * 100) / 100);
-                vRatioField.val(Math.round(resizable.height() / resizable.width() * 100) / 100);
-            });
+    // Toggle debug mode
+    debugCheckbox.on('click', (ev) => {
+      resizables.forEach((resizable) => {
+        // eslint-disable-next-line no-param-reassign
+        resizable.options.debug = ev.currentTarget.checked === true;
+      });
+    });
 
-            // Expose component
-            resizables.push(resizable);
-        });
+    horizontallyCheckbox.on('change', (ev) => {
+      resizables.forEach((resizable) => {
+        // eslint-disable-next-line no-param-reassign
+        resizable.options.horizontally = ev.currentTarget.checked === true;
+      });
+    });
 
-        // Toggle debug mode
-        debugCheckbox.on("click", (ev) => {
-            resizables.forEach((resizable) => {
-                resizable.options.debug = ev.currentTarget.checked === true;
-            });
-        });
+    verticallyCheckbox.on('change', (ev) => {
+      resizables.forEach((resizable) => {
+        // eslint-disable-next-line no-param-reassign
+        resizable.options.vertically = ev.currentTarget.checked === true;
+      });
+    });
+  }
 
-        horizontallyCheckbox.on("change", (ev) => {
-            resizables.forEach((resizable) => {
-                resizable.options.horizontally = ev.currentTarget.checked === true;
-            });
-        });
+  render() {
+    return (
+      <section id="ui-resizable">
+        <h2>Cuic.Resizable</h2>
 
-        verticallyCheckbox.on("change", (ev) => {
-            resizables.forEach((resizable) => {
-                resizable.options.vertically = ev.currentTarget.checked === true;
-            });
-        });
-    }
-
-    render() {
-        return (
-            <section id="ui-resizable">
-                <h2>Cuic.Resizable</h2>
-
-                <div className="sandbox">
-                    <div className="row">
-                        <form className="col-md-2 settings">
-                            <div className="settings">
-                                <h4>Settings</h4>
-                                <div className="form-check">
-                                    <label className="form-check-label">
-                                        <input className="form-check-input"
-                                               type="checkbox"
-                                               data-type="boolean"
-                                               name="debug"
-                                               defaultValue="true"/>
-                                        <span>debug</span>
-                                    </label>
-                                </div>
-                                <div className="form-check">
-                                    <label className="form-check-label">
-                                        <input className="form-check-input"
-                                               type="checkbox"
-                                               name="horizontally"
-                                               defaultChecked/>
-                                        <span>horizontally</span>
-                                    </label>
-                                </div>
-                                <div className="form-check">
-                                    <label className="form-check-label">
-                                        <input className="form-check-input"
-                                               type="checkbox"
-                                               name="vertically"
-                                               defaultChecked/>
-                                        <span>vertically</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <h4>Info</h4>
-                            <div>
-                                <div className="form-group">
-                                    <label>width</label>
-                                    <div className="input-group">
-                                        <input className="form-control" name="width" readOnly/>
-                                        <div className="input-group-append">
-                                            <span className="input-group-text">px</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="form-group">
-                                    <label>height</label>
-                                    <div className="input-group">
-                                        <input className="form-control" name="height" readOnly/>
-                                        <div className="input-group-append">
-                                            <span className="input-group-text">px</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="form-group">
-                                    <label>vertical ratio</label>
-                                    <input className="form-control" name="vratio" readOnly/>
-                                </div>
-                                <div className="form-group">
-                                    <label>horizontal ratio</label>
-                                    <input className="form-control" name="hratio" readOnly/>
-                                </div>
-                            </div>
-                        </form>
-                        <div className="col-md-10">
-                            <div className="blueprint">
-                                <div className="test-box test-box-a" style={{position: "relative"}}>Relative</div>
-                                <div className="test-box test-box-b" style={{position: "absolute", left: "50%"}}>
-                                    Absolute
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div className="sandbox">
+          <div className="row">
+            <form className="col-md-2 settings">
+              <div className="settings">
+                <h4>Settings</h4>
+                <div className="form-check">
+                  <label
+                    htmlFor="debugField"
+                    className="form-check-label"
+                  >
+                    <input
+                      id="debugField"
+                      className="form-check-input"
+                      type="checkbox"
+                      data-type="boolean"
+                      name="debug"
+                      defaultValue="true"
+                    />
+                    <span>debug</span>
+                  </label>
                 </div>
-            </section>
-        );
-    }
+                <div className="form-check">
+                  <label
+                    htmlFor="horizontallyField"
+                    className="form-check-label"
+                  >
+                    <input
+                      id="horizontallyField"
+                      className="form-check-input"
+                      type="checkbox"
+                      name="horizontally"
+                      defaultChecked
+                    />
+                    <span>horizontally</span>
+                  </label>
+                </div>
+                <div className="form-check">
+                  <label
+                    htmlFor="verticallyField"
+                    className="form-check-label"
+                  >
+                    <input
+                      id="verticallyField"
+                      className="form-check-input"
+                      type="checkbox"
+                      name="vertically"
+                      defaultChecked
+                    />
+                    <span>vertically</span>
+                  </label>
+                </div>
+              </div>
+
+              <h4>Info</h4>
+              <div>
+                <div className="form-group">
+                  <label htmlFor="widthField">width
+                    <div className="input-group">
+                      <input
+                        id="widthField"
+                        className="form-control"
+                        name="width"
+                        readOnly
+                      />
+                      <div className="input-group-append">
+                        <span className="input-group-text">px</span>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="heightField">height
+                    <div className="input-group">
+                      <input
+                        id="heightField"
+                        className="form-control"
+                        name="height"
+                        readOnly
+                      />
+                      <div className="input-group-append">
+                        <span className="input-group-text">px</span>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="vratioField">vertical ratio
+                    <input
+                      id="vratioField"
+                      className="form-control"
+                      name="vratio"
+                      readOnly
+                    />
+                  </label>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="hratioField">horizontal ratio
+                    <input
+                      id="hratioField"
+                      className="form-control"
+                      name="hratio"
+                      readOnly
+                    />
+                  </label>
+                </div>
+              </div>
+            </form>
+            <div className="col-md-10">
+              <div className="blueprint">
+                <div
+                  className="test-box test-box-a"
+                  style={{ position: 'relative' }}
+                >Relative
+                </div>
+                <div
+                  className="test-box test-box-b"
+                  style={{ position: 'absolute', left: '50%' }}
+                >
+                  Absolute
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 }
 
 export default ResizablePage;

@@ -15,84 +15,84 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
 
-const path = require("path");
+const path = require('path');
 // const Package = require("./package.json");
 // const isProd = process.argv.indexOf("-p") !== -1;
 // const isHTTPS = process.argv.indexOf("--https") !== -1;
 // const filename = Package.name + "-aio" + (isProd ? ".min" : "");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const paths = {
-    build: path.join(__dirname, "dist", "assets"),
-    dist: path.join(__dirname, "dist"),
-    src: path.join(__dirname, "src")
+  build: path.join(__dirname, 'dist', 'assets'),
+  dist: path.join(__dirname, 'dist'),
+  src: path.join(__dirname, 'src'),
 };
 
-function dirname(path) {
-    return path.split(/[\/\\]/).pop();
+function dirname(absPath) {
+  return absPath.split(/[/\\]/).pop();
 }
 
 module.exports = {
-    devServer: {
-        hot: true,
-        port: 3000,
-        contentBase: paths.dist,
-        publicPath: `/${dirname(paths.build)}`,
-        watchContentBase: true
-    },
-    entry: {
-        bundle: path.join(paths.src, "js", "index.jsx")
-    },
-    output: {
-        libraryTarget: "umd",
-        path: paths.build,
-        filename: path.join("js", "[name].js")
-    },
-    module: {
-        rules: [
-            {
-                test: /\.(eot|gif|png|svg|ttf|woff|woff2)$/,
-                loader: "url-loader?limit=100000"
-            },
-            {
-                test: /\.css$/,
-                loader: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: "css-loader"
-                })
-            },
-            {
-                test: /\.less$/,
-                loader: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: [
-                        {loader: "css-loader"},
-                        {loader: "less-loader"}
-                    ]
-                })
-            },
-            {
-                test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
-                loader: "babel-loader"
-            }
-        ]
-    },
-    plugins: [
-        new ExtractTextPlugin({
-            filename: path.join("css", "[name].css"),
-            allChunks: true
-        })
+  devServer: {
+    hot: true,
+    port: 3000,
+    contentBase: paths.dist,
+    publicPath: `/${dirname(paths.build)}`,
+    watchContentBase: true,
+  },
+  entry: {
+    bundle: path.join(paths.src, 'js', 'index.jsx'),
+  },
+  output: {
+    libraryTarget: 'umd',
+    path: paths.build,
+    filename: path.join('js', '[name].js'),
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(eot|gif|png|svg|ttf|woff|woff2)$/,
+        loader: 'url-loader?limit=100000',
+      },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader',
+        }),
+      },
+      {
+        test: /\.less$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            { loader: 'css-loader' },
+            { loader: 'less-loader' },
+          ],
+        }),
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
     ],
-    resolve: {
-        extensions: [".js", ".jsx"],
-        modules: [paths.src, "node_modules"]
-    }
+  },
+  plugins: [
+    new ExtractTextPlugin({
+      filename: path.join('css', '[name].css'),
+      allChunks: true,
+    }),
+  ],
+  resolve: {
+    extensions: ['.js', '.jsx'],
+    modules: [paths.src, 'node_modules'],
+  },
 };

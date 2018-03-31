@@ -15,80 +15,86 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
 
-import Cuic from "cuic";
-import React from "react";
-import Selectable from "cuic/dist/ui/selectable";
+import Cuic from 'cuic';
+import Selectable from 'cuic/dist/ui/selectable';
+import React from 'react';
 
 class SelectablePage extends React.Component {
+  componentDidMount() {
+    const section = Cuic.element('#ui-selectable');
+    const sandbox = section.find('.sandbox').eq(0);
+    const blueprint = sandbox.find('.blueprint').eq(0);
+    const debugCheckbox = sandbox.find('[name=\'debug\']').first();
 
-    componentDidMount() {
-        const section = Cuic.element('#ui-selectable');
-        const sandbox = section.find('.sandbox').eq(0);
-        const blueprint = sandbox.find('.blueprint').eq(0);
-        const debugCheckbox = sandbox.find("[name=\'debug\']").first();
+    const selectables = [];
 
-        window.selectables = [];
+    // Make each test box selectable
+    blueprint.find('.test-box', blueprint).each((box) => {
+      const selectable = new Selectable({
+        element: box,
+      });
 
-        // Make each test box selectable
-        blueprint.find('.test-box', blueprint).each((box) => {
-            const selectable = new Selectable({
-                element: box
-            });
+      // Expose component
+      selectables.push(selectable);
+    });
 
-            // Expose component
-            selectables.push(selectable);
-        });
+    // Toggle debug mode
+    debugCheckbox.on('click', (ev) => {
+      selectables.forEach((selectable) => {
+        // eslint-disable-next-line no-param-reassign
+        selectable.options.debug = ev.currentTarget.checked === true;
+      });
+    });
+  }
 
-        // Toggle debug mode
-        debugCheckbox.on("click", (ev) => {
-            selectables.forEach((selectable) => {
-                selectable.options.debug = ev.currentTarget.checked === true;
-            });
-        });
-    }
+  render() {
+    return (
+      <section id="ui-selectable">
+        <h2>Cuic.Selectable</h2>
 
-    render() {
-        return (
-            <section id="ui-selectable">
-                <h2>Cuic.Selectable</h2>
-
-                <div className="sandbox">
-                    <div className="row">
-                        <div className="col-md-2">
-                            <div className="settings">
-                                <h4>Settings</h4>
-                                <div className="form-check">
-                                    <label className="form-check-label">
-                                        <input className="form-check-input"
-                                               type="checkbox"
-                                               data-type="boolean"
-                                               name="debug"
-                                               defaultValue="true"/>
-                                        <span>debug</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-10">
-                            <div className="blueprint">
-                                <div className="test-box test-box-a">A</div>
-                                <div className="test-box test-box-b">B</div>
-                                <div className="test-box test-box-c">C</div>
-                                <div className="test-box test-box-d">D</div>
-                            </div>
-                        </div>
-                    </div>
+        <div className="sandbox">
+          <div className="row">
+            <div className="col-md-2">
+              <div className="settings">
+                <h4>Settings</h4>
+                <div className="form-check">
+                  <label
+                    htmlFor="debugField"
+                    className="form-check-label"
+                  >
+                    <input
+                      id="debugField"
+                      className="form-check-input"
+                      type="checkbox"
+                      data-type="boolean"
+                      name="debug"
+                      defaultValue="true"
+                    />
+                    <span>debug</span>
+                  </label>
                 </div>
-            </section>
-        );
-    }
+              </div>
+            </div>
+            <div className="col-md-10">
+              <div className="blueprint">
+                <div className="test-box test-box-a">A</div>
+                <div className="test-box test-box-b">B</div>
+                <div className="test-box test-box-c">C</div>
+                <div className="test-box test-box-d">D</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 }
 
 export default SelectablePage;

@@ -15,56 +15,110 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
 
-import React from "react";
-import {Route, Switch} from "react-router-dom";
-import DialogPage from "../pages/DialogPage";
-import GuidePage from "../pages/GuidePage";
-import HomePage from "../pages/HomePage";
-import MainSidebar from "../components/MainSidebar";
-import MovablePage from "../pages/MovablePage";
-import NotificationPage from "../pages/NotificationPage";
-import NotificationStackPage from "../pages/NotificationStackPage";
-import PanelPage from "../pages/PanelPage";
-import PopupPage from "../pages/PopupPage";
-import ResizablePage from "../pages/ResizablePage";
-import SelectablePage from "../pages/SelectablePage";
-import SwitcherPage from "../pages/SwitcherPage";
-import TooltipPage from "../pages/TooltipPage";
-import UtilsPage from "../pages/UtilsPage";
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import MainSidebar from '../components/MainSidebar';
+import DialogPage from '../pages/DialogPage';
+import GuidePage from '../pages/GuidePage';
+import HomePage from '../pages/HomePage';
+import MovablePage from '../pages/MovablePage';
+import NotificationPage from '../pages/NotificationPage';
+import NotificationStackPage from '../pages/NotificationStackPage';
+import PanelPage from '../pages/PanelPage';
+import PopupPage from '../pages/PopupPage';
+import ResizablePage from '../pages/ResizablePage';
+import SelectablePage from '../pages/SelectablePage';
+import SwitcherPage from '../pages/SwitcherPage';
+import TooltipPage from '../pages/TooltipPage';
+import UtilsPage from '../pages/UtilsPage';
 
-class SidebarLayout extends React.Component {
-    render() {
-        return (
-            <div id="layout" className="layout layout-sidebar">
-                <div id="body">
-                    <MainSidebar/>
-                    <div id="content">
-                        <Switch>
-                            <Route exact path="/" component={HomePage}/>
-                            <Route exact path="/ui/dialog" component={DialogPage}/>
-                            <Route exact path="/ui/guide" component={GuidePage}/>
-                            <Route exact path="/ui/movable" component={MovablePage}/>
-                            <Route exact path="/ui/notification" component={NotificationPage}/>
-                            <Route exact path="/ui/notification-stack" component={NotificationStackPage}/>
-                            <Route exact path="/ui/panel" component={PanelPage}/>
-                            <Route exact path="/ui/popup" component={PopupPage}/>
-                            <Route exact path="/ui/resizable" component={ResizablePage}/>
-                            <Route exact path="/ui/selectable" component={SelectablePage}/>
-                            <Route exact path="/ui/switcher" component={SwitcherPage}/>
-                            <Route exact path="/ui/tooltip" component={TooltipPage}/>
-                            <Route exact path="/utils" component={UtilsPage}/>
-                        </Switch>
-                    </div>
-                </div>
-            </div>
-        );
-    }
+function SidebarLayout() {
+  return (
+    <div
+      id="layout"
+      className="layout layout-sidebar"
+    >
+      <div id="body">
+        <MainSidebar />
+        <div id="content">
+          <Switch>
+            <Route
+              exact
+              path="/"
+              component={HomePage}
+            />
+            <Route
+              exact
+              path="/ui/dialog"
+              component={DialogPage}
+            />
+            <Route
+              exact
+              path="/ui/guide"
+              component={GuidePage}
+            />
+            <Route
+              exact
+              path="/ui/movable"
+              component={MovablePage}
+            />
+            <Route
+              exact
+              path="/ui/notification"
+              component={NotificationPage}
+            />
+            <Route
+              exact
+              path="/ui/notification-stack"
+              component={NotificationStackPage}
+            />
+            <Route
+              exact
+              path="/ui/panel"
+              component={PanelPage}
+            />
+            <Route
+              exact
+              path="/ui/popup"
+              component={PopupPage}
+            />
+            <Route
+              exact
+              path="/ui/resizable"
+              component={ResizablePage}
+            />
+            <Route
+              exact
+              path="/ui/selectable"
+              component={SelectablePage}
+            />
+            <Route
+              exact
+              path="/ui/switcher"
+              component={SwitcherPage}
+            />
+            <Route
+              exact
+              path="/ui/tooltip"
+              component={TooltipPage}
+            />
+            <Route
+              exact
+              path="/utils"
+              component={UtilsPage}
+            />
+          </Switch>
+        </div>
+      </div>
+    </div>
+  );
 }
+
 export default SidebarLayout;

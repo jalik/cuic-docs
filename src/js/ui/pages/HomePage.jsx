@@ -15,30 +15,27 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
 
-import React from "react";
+import React from 'react';
 
-class HomePage extends React.Component {
+function HomePage() {
+  return (
+    <section>
+      <h1>Cuic.js - Common User Interface Components</h1>
 
-    render() {
-        return (
-            <section>
-                <h1>Cuic.js - Common User Interface Components</h1>
-
-                <p className="alert alert-info">
-                    Cuic.js is a library that provides various components used in dynamic UIs (like notifications,
-                    tooltips,
-                    tabs...). It was designed to be simple and easy to use, with convention over configuration pattern.
-                </p>
-            </section>
-        );
-    }
+      <p className="alert alert-info">
+        Cuic.js is a library that provides various components used in dynamic UIs (like
+        notifications, tooltips, tabs...). It was designed to be simple and easy to use, with
+        convention over configuration pattern.
+      </p>
+    </section>
+  );
 }
 
 export default HomePage;

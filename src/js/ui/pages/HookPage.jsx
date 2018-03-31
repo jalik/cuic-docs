@@ -15,43 +15,44 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
 
-import Cuic from "cuic";
-import React from "react";
+import Cuic from 'cuic';
+import React from 'react';
 
 class HookPage extends React.Component {
+  componentDidMount() {
+    const section = Cuic.find('#ui-hook').eq(0);
+    const sandbox = section.find('.sandbox').eq(0);
+    const testBox = sandbox.find('.test-box').eq(0);
 
-    componentDidMount() {
-        let section = Cuic.find('#ui-hook').eq(0);
-        let sandbox = section.find('.sandbox').eq(0);
-        let testBox = sandbox.find('.test-box').eq(0);
+    window.hook = new Cuic.Hook({
+      element: testBox,
+    });
+  }
 
-        window.hook = new Cuic.Hook({
-            element: testBox
-        });
-    }
+  render() {
+    return (
+      <div id="ui-hook">
+        <h2>Cuic.Hook</h2>
 
-    render() {
-        return (
-            <div id="ui-hook">
-                <h2>Cuic.Hook</h2>
+        <p className="alert alert-info">Hooks allows you to keep elements visible while scrolling
+          the page.
+        </p>
 
-                <p className="alert alert-info">Hooks allows you to keep elements visible while scrolling the page.</p>
-
-                <div className="sandbox">
-                    <div className="blueprint">
-                        <div className="test-box"/>
-                    </div>
-                </div>
-            </div>
-        );
-    }
+        <div className="sandbox">
+          <div className="blueprint">
+            <div className="test-box" />
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default HookPage;
