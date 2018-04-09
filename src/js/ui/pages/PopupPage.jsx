@@ -38,7 +38,7 @@ class PopupPage extends React.Component {
     const popups = [];
 
     blueprint.find('button').each((el, i) => {
-      window.popups[i] = new Popup({
+      popups[i] = new Popup({
         anchor: el.data('anchor'),
         autoClose: false,
         autoRemove: false,
@@ -49,10 +49,10 @@ class PopupPage extends React.Component {
       });
 
       anchorField.on('change', () => {
-        window.popups[i].anchor(anchorField.val(), anchorPointField.val(), el);
+        popups[i].anchor(anchorField.val(), anchorPointField.val(), el);
       });
       anchorPointField.on('change', () => {
-        window.popups[i].anchor(anchorField.val(), anchorPointField.val(), el);
+        popups[i].anchor(anchorField.val(), anchorPointField.val(), el);
       });
       el.on('click', () => {
         popups[i].toggle();
