@@ -29,8 +29,7 @@
     "lint-fix": "./node_modules/.bin/eslint --fix .",
     "package": "./node_modules/.bin/webpack -p",
     "prepare": "npm run package && npm test",
-    "prepublishOnly": "npm test",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublishOnly": "npm test"
   },
   "dependencies": {
     "bootstrap": "^4.0.0",
