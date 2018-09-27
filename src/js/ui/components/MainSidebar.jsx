@@ -30,14 +30,15 @@ import { NavLink } from 'react-router-dom';
 const Package = require('../../../../package.json');
 
 function MenuItem(props) {
+  const { url, icon, name } = props;
   return (
     <NavLink
-      to={props.url}
+      to={url}
       className="sidebar-menu-link"
       activeClassName="active"
     >
-      <span className={props.icon} />
-      <span>{props.name}</span>
+      <span className={icon} />
+      <span>{name}</span>
     </NavLink>
   );
 }
@@ -48,7 +49,7 @@ MenuItem.defaultProps = {
 
 MenuItem.propTypes = {
   icon: PropTypes.string,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.node.isRequired,
   url: PropTypes.string.isRequired,
 };
 
@@ -76,59 +77,75 @@ function MainSidebar() {
         >
           <h3>Components</h3>
           <MenuItem
-            name={<FormattedMessage
-              id="dialog"
-              defaultMessage="Dialog"
-            />}
+            name={(
+              <FormattedMessage
+                id="dialog"
+                defaultMessage="Dialog"
+              />
+            )}
             url="/ui/dialog"
           />
           <MenuItem
-            name={<FormattedMessage
-              id="guide"
-              defaultMessage="Guide"
-            />}
+            name={(
+              <FormattedMessage
+                id="guide"
+                defaultMessage="Guide"
+              />
+            )}
             url="/ui/guide"
           />
           <MenuItem
-            name={<FormattedMessage
-              id="notification"
-              defaultMessage="Notification"
-            />}
+            name={(
+              <FormattedMessage
+                id="notification"
+                defaultMessage="Notification"
+              />
+            )}
             url="/ui/notification"
           />
           <MenuItem
-            name={<FormattedMessage
-              id="notificationStack"
-              defaultMessage="NotificationStack"
-            />}
+            name={(
+              <FormattedMessage
+                id="notificationStack"
+                defaultMessage="NotificationStack"
+              />
+            )}
             url="/ui/notification-stack"
           />
           <MenuItem
-            name={<FormattedMessage
-              id="panel"
-              defaultMessage="Panel"
-            />}
+            name={(
+              <FormattedMessage
+                id="panel"
+                defaultMessage="Panel"
+              />
+            )}
             url="/ui/panel"
           />
           <MenuItem
-            name={<FormattedMessage
-              id="popup"
-              defaultMessage="Popup"
-            />}
+            name={(
+              <FormattedMessage
+                id="popup"
+                defaultMessage="Popup"
+              />
+            )}
             url="/ui/popup"
           />
           <MenuItem
-            name={<FormattedMessage
-              id="switcher"
-              defaultMessage="Switcher"
-            />}
+            name={(
+              <FormattedMessage
+                id="switcher"
+                defaultMessage="Switcher"
+              />
+            )}
             url="/ui/switcher"
           />
           <MenuItem
-            name={<FormattedMessage
-              id="tooltip"
-              defaultMessage="Tooltip"
-            />}
+            name={(
+              <FormattedMessage
+                id="tooltip"
+                defaultMessage="Tooltip"
+              />
+            )}
             url="/ui/tooltip"
           />
         </div>
@@ -138,24 +155,30 @@ function MainSidebar() {
         >
           <h3>Others</h3>
           <MenuItem
-            name={<FormattedMessage
-              id="movable"
-              defaultMessage="Movable"
-            />}
+            name={(
+              <FormattedMessage
+                id="movable"
+                defaultMessage="Movable"
+              />
+            )}
             url="/ui/movable"
           />
           <MenuItem
-            name={<FormattedMessage
-              id="resizable"
-              defaultMessage="Resizable"
-            />}
+            name={(
+              <FormattedMessage
+                id="resizable"
+                defaultMessage="Resizable"
+              />
+            )}
             url="/ui/resizable"
           />
           <MenuItem
-            name={<FormattedMessage
-              id="selectable"
-              defaultMessage="Selectable"
-            />}
+            name={(
+              <FormattedMessage
+                id="selectable"
+                defaultMessage="Selectable"
+              />
+            )}
             url="/ui/selectable"
           />
         </div>
@@ -165,10 +188,12 @@ function MainSidebar() {
         >
           <h3>Utils</h3>
           <MenuItem
-            name={<FormattedMessage
-              id="utils"
-              defaultMessage="Utils"
-            />}
+            name={(
+              <FormattedMessage
+                id="utils"
+                defaultMessage="Utils"
+              />
+            )}
             url="/utils"
           />
         </div>
