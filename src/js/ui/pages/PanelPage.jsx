@@ -30,7 +30,7 @@ class PanelPage extends React.Component {
   componentDidMount() {
     const sandbox = Cuic.element('#ui-panel .sandbox');
     const blueprint = sandbox.find('.blueprint').eq(0);
-    const autoCloseCheckbox = sandbox.find('[name=autoClose]').eq(0);
+    const closeOnBlurCheckbox = sandbox.find('[name=closeOnBlur]').eq(0);
     const debugCheckbox = sandbox.find('[name=\'debug\']').first();
     const parentCheckbox = sandbox.find('[name=parent]').eq(0);
     const positionField = sandbox.find('[name=position]').eq(0);
@@ -38,7 +38,7 @@ class PanelPage extends React.Component {
     const openedCheckbox = sandbox.find('[name=opened]').eq(0);
 
     const panel = new Panel({
-      autoClose: autoCloseCheckbox.node().checked,
+      closeOnBlur: closeOnBlurCheckbox.node().checked,
       css: { 'min-width': '200px' },
       debug: debugCheckbox.node().checked,
       element: blueprint.find('.cc-panel').first(),
@@ -48,8 +48,8 @@ class PanelPage extends React.Component {
       position: positionField.val(),
     });
 
-    autoCloseCheckbox.on('change', () => {
-      panel.options.autoClose = autoCloseCheckbox.node().checked;
+    closeOnBlurCheckbox.on('change', () => {
+      panel.options.closeOnBlur = closeOnBlurCheckbox.node().checked;
     });
 
     // Toggle debug mode
@@ -121,16 +121,16 @@ class PanelPage extends React.Component {
                 </div>
                 <div className="form-check">
                   <label
-                    htmlFor="autoCloseField"
+                    htmlFor="closeOnBlurField"
                     className="form-check-label"
                   >
                     <input
-                      id="autoCloseField"
+                      id="closeOnBlurField"
                       className="form-check-input"
                       type="checkbox"
-                      name="autoClose"
+                      name="closeOnBlur"
                     />
-                    <span>autoClose</span>
+                    <span>closeOnBlur</span>
                   </label>
                 </div>
                 <div className="form-check">

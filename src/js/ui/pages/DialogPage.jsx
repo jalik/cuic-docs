@@ -34,7 +34,8 @@ class DialogPage extends React.Component {
     const section = Cuic.element('#ui-dialog');
     const sandbox = section.find('#ui-dialog .sandbox');
     const blueprint = sandbox.find('.blueprint').eq(0);
-    const autoCloseCheckbox = sandbox.find('[name="autoClose"]').eq(0);
+    const autoRemoveCheckbox = section.find('[name=\'autoRemove\']').first();
+    const closeOnBlurCheckbox = section.find('[name=\'closeOnBlur\']').first();
     const cssField = sandbox.find('[name="css"]').eq(0);
     const debugCheckbox = section.find('[name=\'debug\']').first();
     const fullscreenCheckbox = sandbox.find('[name="fullscreen"]').eq(0);
@@ -45,11 +46,12 @@ class DialogPage extends React.Component {
 
     sandbox.find('form').on('submit', (ev) => {
       ev.preventDefault();
-      const dialog = new Dialog({
-        autoClose: autoCloseCheckbox.node().checked,
-        autoRemove: false,
-        debug: debugCheckbox.node().checked,
+      this.dialog = new Dialog({
+        autoRemove: autoRemoveCheckbox.node().checked,
+        closed: true,
+        closeOnBlur: closeOnBlurCheckbox.node().checked,
         css: cssField.val(),
+        debug: debugCheckbox.node().checked,
         maximized: fullscreenCheckbox.node().checked,
         modal: modalCheckbox.node().checked,
         parent: parentCheckbox.node().checked ? blueprint : document.body,
@@ -73,7 +75,7 @@ class DialogPage extends React.Component {
           },
         ] : null,
       });
-      dialog.open();
+      this.dialog.open();
     });
   }
 
@@ -124,21 +126,6 @@ class DialogPage extends React.Component {
               </div>
               <div className="form-check">
                 <label
-                  htmlFor="autoCloseField"
-                  className="form-check-label"
-                >
-                  <input
-                    id="autoCloseField"
-                    className="form-check-input"
-                    type="checkbox"
-                    name="autoClose"
-                    defaultChecked
-                  />
-                  <span>autoClose</span>
-                </label>
-              </div>
-              <div className="form-check">
-                <label
                   htmlFor="buttonsField"
                   className="form-check-label"
                 >
@@ -150,6 +137,38 @@ class DialogPage extends React.Component {
                     defaultChecked
                   />
                   <span>buttons</span>
+                </label>
+              </div>
+              <div className="form-check">
+                <label
+                  htmlFor="autoRemoveField"
+                  className="form-check-label"
+                >
+                  <input
+                    id="autoRemoveField"
+                    className="form-check-input"
+                    type="checkbox"
+                    data-type="boolean"
+                    name="autoRemove"
+                    defaultValue="true"
+                  />
+                  <span>autoRemove</span>
+                </label>
+              </div>
+              <div className="form-check">
+                <label
+                  htmlFor="closeOnBlurField"
+                  className="form-check-label"
+                >
+                  <input
+                    id="closeOnBlurField"
+                    className="form-check-input"
+                    type="checkbox"
+                    data-type="boolean"
+                    name="closeOnBlur"
+                    defaultValue="true"
+                  />
+                  <span>closeOnBlur</span>
                 </label>
               </div>
               <div className="form-check">

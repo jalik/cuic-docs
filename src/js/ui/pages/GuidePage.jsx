@@ -62,8 +62,6 @@ class GuidePage extends React.Component {
     };
 
     const guide = new Guide({
-      // autoClose: false,
-      // autoRemove: false,
       autoStart: false,
       debug: debugCheckbox.node().checked,
       steps: [

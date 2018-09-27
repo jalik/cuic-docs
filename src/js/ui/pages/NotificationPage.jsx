@@ -34,20 +34,22 @@ class NotificationPage extends React.Component {
     const sandbox = Cuic.element('#ui-notification .sandbox');
     const blueprint = sandbox.find('.blueprint').eq(0);
     const autoCloseCheckbox = sandbox.find('[name=autoClose]').eq(0);
+    const autoCloseDelayField = sandbox.find('[name=autoCloseDelay]').eq(0);
+    const closeOnFocusCheckbox = sandbox.find('[name=closeOnFocus]').eq(0);
     const debugCheckbox = sandbox.find('[name=\'debug\']').first();
     const parentCheckbox = sandbox.find('[name=parent]').eq(0);
-    const durationField = sandbox.find('[name=duration]').eq(0);
     const positionField = sandbox.find('[name=position]').eq(0);
 
     sandbox.find('form').on('submit', (ev) => {
       ev.preventDefault();
       const notification = new Notification({
         autoClose: autoCloseCheckbox.node().checked,
+        autoCloseDelay: autoCloseDelayField.val(),
         autoRemove: true,
         closable: true,
+        closeOnFocus: closeOnFocusCheckbox.node().checked,
         content: `Notification from <b>${positionField.val()}</b>`,
         debug: debugCheckbox.node().checked,
-        duration: durationField.val(),
         parent: parentCheckbox.node().checked ? blueprint : document.body,
         position: positionField.val(),
       }).open();
@@ -98,13 +100,13 @@ class NotificationPage extends React.Component {
                 </label>
               </div>
               <div className="form-group">
-                <label htmlFor="durationField">duration
+                <label htmlFor="autoCloseDelayField">autoCloseDelay
                   <div className="input-group">
                     <input
-                      id="durationField"
+                      id="autoCloseDelayField"
                       className="form-control"
                       type="number"
-                      name="duration"
+                      name="autoCloseDelay"
                       defaultValue="2000"
                     />
                     <div className="input-group-append">
@@ -126,6 +128,21 @@ class NotificationPage extends React.Component {
                     defaultChecked
                   />
                   <span>autoClose</span>
+                </label>
+              </div>
+              <div className="form-check">
+                <label
+                  htmlFor="closeOnFocusField"
+                  className="form-check-label"
+                >
+                  <input
+                    id="closeOnFocusField"
+                    className="form-check-input"
+                    type="checkbox"
+                    name="closeOnFocus"
+                    defaultChecked
+                  />
+                  <span>closeOnFocus</span>
                 </label>
               </div>
               <div className="form-check">
