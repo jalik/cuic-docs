@@ -24,6 +24,7 @@
 
 import Cuic from 'cuic';
 import Popup from 'cuic/dist/ui/popup';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 class PopupPage extends React.Component {
@@ -62,11 +63,13 @@ class PopupPage extends React.Component {
   }
 
   render() {
+    const { buttonWidth } = this.props;
     return (
       <section id="ui-popup">
         <h2>Cuic.Popup</h2>
 
-        <p className="alert alert-info">Popups are often used to display menus, for example, when a
+        <p className="alert alert-info">
+          Popups are often used to display menus, for example, when a
           user clicks on a button, a popup menu appears next to it.
         </p>
 
@@ -75,42 +78,40 @@ class PopupPage extends React.Component {
             <form className="col-md-2 settings">
               <h4>Settings</h4>
               <div className="form-group">
-                <label htmlFor="anchorField">anchor
-                  <select
-                    id="anchorField"
-                    className="custom-select"
-                    name="anchor"
-                    defaultValue="right"
-                  >
-                    <option>left top</option>
-                    <option>top</option>
-                    <option>right top</option>
-                    <option>right</option>
-                    <option>right bottom</option>
-                    <option>bottom</option>
-                    <option>left bottom</option>
-                    <option>left</option>
-                  </select>
-                </label>
+                <label htmlFor="anchorField">anchor</label>
+                <select
+                  id="anchorField"
+                  className="custom-select"
+                  name="anchor"
+                  defaultValue="right"
+                >
+                  <option>left top</option>
+                  <option>top</option>
+                  <option>right top</option>
+                  <option>right</option>
+                  <option>right bottom</option>
+                  <option>bottom</option>
+                  <option>left bottom</option>
+                  <option>left</option>
+                </select>
               </div>
               <div className="form-group">
-                <label htmlFor="anchorPointField">anchor point
-                  <select
-                    id="anchorPointField"
-                    className="custom-select"
-                    name="anchorPoint"
-                  >
-                    <option />
-                    <option>left top</option>
-                    <option>top</option>
-                    <option>right top</option>
-                    <option>right</option>
-                    <option>right bottom</option>
-                    <option>bottom</option>
-                    <option>left bottom</option>
-                    <option>left</option>
-                  </select>
-                </label>
+                <label htmlFor="anchorPointField">anchor point</label>
+                <select
+                  id="anchorPointField"
+                  className="custom-select"
+                  name="anchorPoint"
+                >
+                  <option />
+                  <option>left top</option>
+                  <option>top</option>
+                  <option>right top</option>
+                  <option>right</option>
+                  <option>right bottom</option>
+                  <option>bottom</option>
+                  <option>left bottom</option>
+                  <option>left</option>
+                </select>
               </div>
               <div className="form-check">
                 <label
@@ -134,7 +135,12 @@ class PopupPage extends React.Component {
                 <button
                   className="btn btn-secondary"
                   type="button"
-                  style={{ position: 'absolute', left: 0, top: 0 }}
+                  style={{
+                    position: 'absolute',
+                    left: 0,
+                    top: 0,
+                    width: buttonWidth,
+                  }}
                   data-anchor="bottom right"
                 >
                   <span>Bottom Right</span>
@@ -143,7 +149,11 @@ class PopupPage extends React.Component {
                   className="btn btn-secondary"
                   type="button"
                   style={{
-                    position: 'absolute', left: '50%', top: 0, marginLeft: '-50px',
+                    position: 'absolute',
+                    left: '50%',
+                    top: 0,
+                    marginLeft: -(buttonWidth / 2),
+                    width: buttonWidth,
                   }}
                   data-anchor="bottom center"
                 >
@@ -152,7 +162,12 @@ class PopupPage extends React.Component {
                 <button
                   className="btn btn-secondary"
                   type="button"
-                  style={{ position: 'absolute', right: 0, top: 0 }}
+                  style={{
+                    position: 'absolute',
+                    right: 0,
+                    top: 0,
+                    width: buttonWidth,
+                  }}
                   data-anchor="bottom left"
                 >
                   <span>Bottom Left</span>
@@ -162,7 +177,11 @@ class PopupPage extends React.Component {
                   className="btn btn-secondary"
                   type="button"
                   style={{
-                    position: 'absolute', left: 0, top: '50%', marginTop: '-17px',
+                    position: 'absolute',
+                    left: 0,
+                    top: '50%',
+                    marginTop: '-17px',
+                    width: buttonWidth,
                   }}
                   data-anchor="middle right"
                 >
@@ -172,7 +191,11 @@ class PopupPage extends React.Component {
                   className="btn btn-secondary"
                   type="button"
                   style={{
-                    position: 'absolute', right: 0, top: '50%', marginTop: '-17px',
+                    position: 'absolute',
+                    right: 0,
+                    top: '50%',
+                    marginTop: '-17px',
+                    width: buttonWidth,
                   }}
                   data-anchor="middle left"
                 >
@@ -182,7 +205,12 @@ class PopupPage extends React.Component {
                 <button
                   className="btn btn-secondary"
                   type="button"
-                  style={{ position: 'absolute', left: 0, bottom: 0 }}
+                  style={{
+                    position: 'absolute',
+                    left: 0,
+                    bottom: 0,
+                    width: buttonWidth,
+                  }}
                   data-anchor="top right"
                 >
                   <span>Top Right</span>
@@ -191,7 +219,11 @@ class PopupPage extends React.Component {
                   className="btn btn-secondary"
                   type="button"
                   style={{
-                    position: 'absolute', left: '50%', bottom: 0, marginLeft: '-50px',
+                    position: 'absolute',
+                    left: '50%',
+                    bottom: 0,
+                    marginLeft: -(buttonWidth / 2),
+                    width: buttonWidth,
                   }}
                   data-anchor="top center"
                 >
@@ -200,7 +232,12 @@ class PopupPage extends React.Component {
                 <button
                   className="btn btn-secondary"
                   type="button"
-                  style={{ position: 'absolute', right: 0, bottom: 0 }}
+                  style={{
+                    position: 'absolute',
+                    right: 0,
+                    bottom: 0,
+                    width: buttonWidth,
+                  }}
                   data-anchor="top left"
                 >
                   <span>Top Left</span>
@@ -213,5 +250,13 @@ class PopupPage extends React.Component {
     );
   }
 }
+
+PopupPage.defaultProps = {
+  buttonWidth: 200,
+};
+
+PopupPage.propTypes = {
+  buttonWidth: PropTypes.number,
+};
 
 export default PopupPage;
