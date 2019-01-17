@@ -35,7 +35,7 @@ const srcPath = path.resolve(__dirname, 'src');
 
 module.exports = {
   devServer: {
-    port: 8080,
+    port: 3000,
   },
   entry: {
     bundle: path.join(srcPath, 'js', 'index.jsx'),
