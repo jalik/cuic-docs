@@ -60,11 +60,11 @@ module.exports = {
         ],
       },
       {
-        test: /\.(css|less|sass|scss)$/,
+        test: /\.(css|scss)$/,
         use: [
           (isDevMode ? 'style-loader' : MiniCssExtractPlugin.loader),
           'css-loader',
-          'less-loader',
+          'sass-loader',
         ],
       },
       {

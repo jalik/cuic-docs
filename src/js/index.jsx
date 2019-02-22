@@ -31,9 +31,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { IntlProvider } from 'react-intl';
 // Load dynamic styles
-import '../less/animations.less';
-import '../less/responsive-sm.less';
-import '../less/styles.less';
+import '../scss/animations.scss';
+import '../scss/responsive-sm.scss';
+import '../scss/styles.scss';
 import App from './App';
 
 // Load icons

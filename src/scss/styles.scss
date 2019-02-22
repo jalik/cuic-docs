@@ -22,13 +22,13 @@
  * SOFTWARE.
  */
 
-@secondary-color: #72c6ff;
-@sidebar-background-color: #333;
-@sidebar-padding: 10px;
-@sidebar-text-color: rgba(200, 200, 200, 1.0);
+$secondary-color: #72C6FF;
+$sidebar-background-color: #333333;
+$sidebar-padding: 10px;
+$sidebar-text-color: rgba(200, 200, 200, 1.0);
 
 a {
-  color: #57a0be;
+  color: #57A0BE;
   text-decoration: none;
 }
 
@@ -96,8 +96,8 @@ small {
 }
 
 table {
-  background: #fff;
-  border: solid 1px #ccc;
+  background: #FFFFFF;
+  border: solid 1px #CCCCCC;
   border-collapse: collapse;
   border-spacing: 0;
   empty-cells: show;
@@ -107,34 +107,34 @@ table {
 }
 
 td {
-  border: solid 1px #ccc;
+  border: solid 1px #CCCCCC;
   padding: 0.5em;
 }
 
 tfoot th {
-  border-top: solid 2px #ccc;
+  border-top: solid 2px #CCCCCC;
 }
 
 th {
-  border: solid 1px #ccc;
-  color: #555;
+  border: solid 1px #CCCCCC;
+  color: #555555;
   font-weight: bold;
   padding: 0.5em;
 }
 
 thead th {
-  border-bottom: solid 3px #ccc;
+  border-bottom: solid 3px #CCCCCC;
 }
 
 tr {
-  border-bottom: solid 1px #ddd;
+  border-bottom: solid 1px #DDDDDD;
 }
 
 // BLUEPRINT
 
 .blueprint {
   background: url('../images/blueprint.png') repeat;
-  border: solid 1px #ccc;
+  border: solid 1px #CCCCCC;
   box-sizing: border-box;
   height: 400px;
   min-height: 400px;
@@ -188,8 +188,8 @@ tr {
 // SANDBOX
 
 .sandbox {
-  background: #fafafa;
-  border: solid 1px #ddd;
+  background: #FAFAFA;
+  border: solid 1px #DDDDDD;
   border-radius: 3px;
   box-sizing: border-box;
   padding: 20px;
@@ -202,26 +202,26 @@ tr {
 }
 
 .settings h4 {
-  border-bottom: solid 1px #ddd;
-  color: #888;
+  border-bottom: solid 1px #DDDDDD;
+  color: #888888;
   font-size: 0.8em;
   padding-bottom: 5px;
   text-transform: uppercase;
 }
 
 .settings label {
-  color: #888;
+  color: #888888;
   font-size: 0.9em;
 }
 
 // SIDEBAR
 
 .sidebar {
-  background-color: @sidebar-background-color;
+  background-color: $sidebar-background-color;
 }
 
 .sidebar-header {
-  padding: @sidebar-padding;
+  padding: $sidebar-padding;
 }
 
 .sidebar-header .sidebar-brand {
@@ -251,7 +251,7 @@ tr {
 // Sidebar Menu
 
 .sidebar .sidebar-menu {
-  border-top: solid 1px lighten(@sidebar-background-color, 5%);
+  border-top: solid 1px lighten($sidebar-background-color, 5%);
   font-size: 0.9em;
 }
 
@@ -261,7 +261,7 @@ tr {
   font-size: 1.2em;
   font-weight: normal;
   margin: 10px 0;
-  padding: 0 @sidebar-padding;
+  padding: 0 $sidebar-padding;
   text-transform: uppercase;
 }
 
@@ -272,21 +272,21 @@ tr {
   font-size: 1em;
   font-weight: bold;
   margin: 0;
-  padding: (@sidebar-padding / 2) @sidebar-padding;
+  padding: ($sidebar-padding / 2) $sidebar-padding;
   text-transform: uppercase;
   transition: all 0.1s;
 }
 
 .sidebar .sidebar-menu-link:focus,
 .sidebar .sidebar-menu-link:hover {
-  background-color: lighten(@sidebar-background-color, 5%);
-  color: rgb(255, 255, 255, 1.0);
+  background-color: lighten($sidebar-background-color, 5%);
+  color: #FFFF;
   text-decoration: none;
 }
 
 .sidebar .sidebar-menu-link.active {
-  //background-color: lighten(@sidebar-background-color, 2%);
-  color: @secondary-color;
+  //background-color: lighten($sidebar-background-color, 2%);
+  color: $secondary-color;
 }
 
 .sidebar .sidebar-menu-link > * {
@@ -371,7 +371,7 @@ tr {
 }
 
 #content h2 {
-  color: #666;
+  color: #666666;
   font-size: 2.5em;
   margin-top: 0;
   padding: 0 0 20px 0;
