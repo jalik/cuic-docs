@@ -28,11 +28,10 @@ import React from 'react';
 
 class MovablePage extends React.Component {
   componentDidMount() {
-    const section = Cuic.element('#ui-movable');
+    const section = Cuic.asElement('#ui-movable');
     const sandbox = section.find('.sandbox').eq(0);
     const blueprint = sandbox.find('.blueprint').eq(0);
     const form = section.find('form').eq(0);
-    const debugCheckbox = sandbox.find('[name=\'debug\']').first();
     const xField = form.find('[name="x"]').eq(0);
     const yField = form.find('[name="y"]').eq(0);
     const stateField = form.find('[name="state"]').eq(0);
@@ -74,14 +73,6 @@ class MovablePage extends React.Component {
       movables.push(movable);
     });
 
-    // Toggle debug mode
-    debugCheckbox.on('click', (ev) => {
-      movables.forEach((movable) => {
-        // eslint-disable-next-line no-param-reassign
-        movable.options.debug = ev.currentTarget.checked === true;
-      });
-    });
-
     horizontallyCheckbox.on('change', (ev) => {
       movables.forEach((movable) => {
         // eslint-disable-next-line no-param-reassign
@@ -107,22 +98,6 @@ class MovablePage extends React.Component {
             <form className="col-md-2 settings">
               <div className="settings">
                 <h4>Settings</h4>
-                <div className="form-check">
-                  <label
-                    htmlFor="debugField"
-                    className="form-check-label"
-                  >
-                    <input
-                      id="debugField"
-                      className="form-check-input"
-                      type="checkbox"
-                      data-type="boolean"
-                      name="debug"
-                      defaultValue="true"
-                    />
-                    <span>debug</span>
-                  </label>
-                </div>
                 <div className="form-check">
                   <label
                     htmlFor="horizontallyField"

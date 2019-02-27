@@ -26,7 +26,7 @@ import React from 'react';
 
 class GridPage extends React.Component {
   componentDidMount() {
-    // const sandbox = Cuic.element('#sb-grid');
+    // const sandbox = Cuic.asElement('#sb-grid');
     // const autoResize = sandbox.find('[name=autoResize]');
     // const cols = sandbox.find('[name=cols]');
     // const colsWidth = sandbox.find('[name=colsWidth]');

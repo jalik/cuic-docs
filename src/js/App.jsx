@@ -23,7 +23,11 @@
  */
 
 import React from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import {
+  HashRouter,
+  Route,
+  Switch,
+} from 'react-router-dom';
 import SidebarLayout from './ui/layouts/SidebarLayout';
 
 function App() {

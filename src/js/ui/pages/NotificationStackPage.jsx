@@ -29,21 +29,14 @@ import React from 'react';
 
 class NotificationStackPage extends React.Component {
   componentDidMount() {
-    const sandbox = Cuic.element('#ui-notification-stack');
+    const sandbox = Cuic.asElement('#ui-notification-stack');
     const blueprint = sandbox.find('.blueprint').eq(0);
-    const debugCheckbox = sandbox.find('[name=\'debug\']').first();
     const positionField = sandbox.find('[name=position]').eq(0);
 
     // Create the component
     const notificationStack = new NotificationStack({
-      debug: debugCheckbox.node().checked,
       parent: blueprint,
       position: positionField.val(),
-    });
-
-    // Toggle debug mode
-    debugCheckbox.on('click', (ev) => {
-      notificationStack.options.debug = ev.currentTarget.checked === true;
     });
 
     // Update component position
@@ -55,7 +48,6 @@ class NotificationStackPage extends React.Component {
     sandbox.find('[name="notify"]').on('click', () => {
       notificationStack.addComponent(new Notification({
         autoClose: false,
-        debug: debugCheckbox.node().checked,
         content: `Custom event at <em>${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}</em>`,
       }));
     });
@@ -96,22 +88,6 @@ class NotificationStackPage extends React.Component {
                       <option>left bottom</option>
                       <option>left</option>
                     </select>
-                  </label>
-                </div>
-                <div className="form-check">
-                  <label
-                    htmlFor="debugField"
-                    className="form-check-label"
-                  >
-                    <input
-                      id="debugField"
-                      className="form-check-input"
-                      type="checkbox"
-                      data-type="boolean"
-                      name="debug"
-                      defaultValue="true"
-                    />
-                    <span>debug</span>
                   </label>
                 </div>
               </div>

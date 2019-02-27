@@ -31,12 +31,11 @@ Notification.prototype.options.closeButtonClass = 'fa fa-times-circle';
 
 class NotificationPage extends React.Component {
   componentDidMount() {
-    const sandbox = Cuic.element('#ui-notification .sandbox');
+    const sandbox = Cuic.asElement('#ui-notification .sandbox');
     const blueprint = sandbox.find('.blueprint').eq(0);
     const autoCloseCheckbox = sandbox.find('[name=autoClose]').eq(0);
     const autoCloseDelayField = sandbox.find('[name=autoCloseDelay]').eq(0);
     const closeOnFocusCheckbox = sandbox.find('[name=closeOnFocus]').eq(0);
-    const debugCheckbox = sandbox.find('[name=\'debug\']').first();
     const parentCheckbox = sandbox.find('[name=parent]').eq(0);
     const positionField = sandbox.find('[name=position]').eq(0);
 
@@ -49,7 +48,6 @@ class NotificationPage extends React.Component {
         closable: true,
         closeOnFocus: closeOnFocusCheckbox.node().checked,
         content: `Notification from <b>${positionField.val()}</b>`,
-        debug: debugCheckbox.node().checked,
         parent: parentCheckbox.node().checked ? blueprint : document.body,
         position: positionField.val(),
       }).open();
@@ -143,22 +141,6 @@ class NotificationPage extends React.Component {
                     defaultChecked
                   />
                   <span>closeOnFocus</span>
-                </label>
-              </div>
-              <div className="form-check">
-                <label
-                  htmlFor="debugField"
-                  className="form-check-label"
-                >
-                  <input
-                    id="debugField"
-                    className="form-check-input"
-                    type="checkbox"
-                    data-type="boolean"
-                    name="debug"
-                    defaultValue="true"
-                  />
-                  <span>debug</span>
                 </label>
               </div>
               <div className="form-check">

@@ -28,10 +28,9 @@ import React from 'react';
 
 class SelectablePage extends React.Component {
   componentDidMount() {
-    const section = Cuic.element('#ui-selectable');
+    const section = Cuic.asElement('#ui-selectable');
     const sandbox = section.find('.sandbox').eq(0);
     const blueprint = sandbox.find('.blueprint').eq(0);
-    const debugCheckbox = sandbox.find('[name=\'debug\']').first();
 
     const selectables = [];
 
@@ -43,14 +42,6 @@ class SelectablePage extends React.Component {
 
       // Expose component
       selectables.push(selectable);
-    });
-
-    // Toggle debug mode
-    debugCheckbox.on('click', (ev) => {
-      selectables.forEach((selectable) => {
-        // eslint-disable-next-line no-param-reassign
-        selectable.options.debug = ev.currentTarget.checked === true;
-      });
     });
   }
 
@@ -64,22 +55,6 @@ class SelectablePage extends React.Component {
             <div className="col-md-2">
               <div className="settings">
                 <h4>Settings</h4>
-                <div className="form-check">
-                  <label
-                    htmlFor="debugField"
-                    className="form-check-label"
-                  >
-                    <input
-                      id="debugField"
-                      className="form-check-input"
-                      type="checkbox"
-                      data-type="boolean"
-                      name="debug"
-                      defaultValue="true"
-                    />
-                    <span>debug</span>
-                  </label>
-                </div>
               </div>
             </div>
             <div className="col-md-10">

@@ -28,10 +28,9 @@ import React from 'react';
 
 class PanelPage extends React.Component {
   componentDidMount() {
-    const sandbox = Cuic.element('#ui-panel .sandbox');
+    const sandbox = Cuic.asElement('#ui-panel .sandbox');
     const blueprint = sandbox.find('.blueprint').eq(0);
     const closeOnBlurCheckbox = sandbox.find('[name=closeOnBlur]').eq(0);
-    const debugCheckbox = sandbox.find('[name=\'debug\']').first();
     const parentCheckbox = sandbox.find('[name=parent]').eq(0);
     const positionField = sandbox.find('[name=position]').eq(0);
     const maximizedCheckbox = sandbox.find('[name=maximized]').eq(0);
@@ -40,7 +39,6 @@ class PanelPage extends React.Component {
     const panel = new Panel({
       closeOnBlur: closeOnBlurCheckbox.node().checked,
       css: { 'min-width': '200px' },
-      debug: debugCheckbox.node().checked,
       element: blueprint.find('.cc-panel').first(),
       maximized: maximizedCheckbox.node().checked,
       opened: openedCheckbox.node().checked,
@@ -50,11 +48,6 @@ class PanelPage extends React.Component {
 
     closeOnBlurCheckbox.on('change', () => {
       panel.options.closeOnBlur = closeOnBlurCheckbox.node().checked;
-    });
-
-    // Toggle debug mode
-    debugCheckbox.on('click', (ev) => {
-      panel.options.debug = ev.currentTarget.checked === true;
     });
 
     sandbox.find('.fn-close').on('click', () => {
@@ -131,22 +124,6 @@ class PanelPage extends React.Component {
                       name="closeOnBlur"
                     />
                     <span>closeOnBlur</span>
-                  </label>
-                </div>
-                <div className="form-check">
-                  <label
-                    htmlFor="debugField"
-                    className="form-check-label"
-                  >
-                    <input
-                      id="debugField"
-                      className="form-check-input"
-                      type="checkbox"
-                      data-type="boolean"
-                      name="debug"
-                      defaultValue="true"
-                    />
-                    <span>debug</span>
                   </label>
                 </div>
                 <div className="form-check">

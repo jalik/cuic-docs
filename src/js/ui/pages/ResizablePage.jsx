@@ -28,10 +28,9 @@ import React from 'react';
 
 class ResizablePage extends React.Component {
   componentDidMount() {
-    const section = Cuic.element('#ui-resizable');
+    const section = Cuic.asElement('#ui-resizable');
     const sandbox = section.find('.sandbox').eq(0);
     const blueprint = sandbox.find('.blueprint').eq(0);
-    const debugCheckbox = sandbox.find('[name=\'debug\']').first();
     const widthField = sandbox.find('[name="width"]').eq(0);
     const heightField = sandbox.find('[name="height"]').eq(0);
     const hRatioField = sandbox.find('[name="hratio"]').eq(0);
@@ -44,7 +43,6 @@ class ResizablePage extends React.Component {
     // Make each test box selectable
     blueprint.find('.test-box', blueprint).each((box) => {
       const resizable = new Resizable({
-        // debug: true,
         element: box,
         keepRatio: false,
         horizontally: horizontallyCheckbox.node().checked,
@@ -60,14 +58,6 @@ class ResizablePage extends React.Component {
 
       // Expose component
       resizables.push(resizable);
-    });
-
-    // Toggle debug mode
-    debugCheckbox.on('click', (ev) => {
-      resizables.forEach((resizable) => {
-        // eslint-disable-next-line no-param-reassign
-        resizable.options.debug = ev.currentTarget.checked === true;
-      });
     });
 
     horizontallyCheckbox.on('change', (ev) => {
@@ -95,22 +85,6 @@ class ResizablePage extends React.Component {
             <form className="col-md-2 settings">
               <div className="settings">
                 <h4>Settings</h4>
-                <div className="form-check">
-                  <label
-                    htmlFor="debugField"
-                    className="form-check-label"
-                  >
-                    <input
-                      id="debugField"
-                      className="form-check-input"
-                      type="checkbox"
-                      data-type="boolean"
-                      name="debug"
-                      defaultValue="true"
-                    />
-                    <span>debug</span>
-                  </label>
-                </div>
                 <div className="form-check">
                   <label
                     htmlFor="horizontallyField"

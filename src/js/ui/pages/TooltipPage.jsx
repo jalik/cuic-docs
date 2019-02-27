@@ -28,15 +28,13 @@ import React from 'react';
 
 class TooltipPage extends React.Component {
   componentDidMount() {
-    const sandbox = Cuic.element('#ui-tooltip .sandbox');
+    const sandbox = Cuic.asElement('#ui-tooltip .sandbox');
     const anchor = sandbox.find('[name=anchor]').eq(0);
-    const debugCheckbox = sandbox.find('[name=\'debug\']').first();
     const followPointerCheckbox = sandbox.find('[name=followPointer]').eq(0);
 
     const tooltip = new Tooltip({
       anchor: anchor.val(),
       attribute: 'title',
-      debug: debugCheckbox.node().checked,
       followPointer: followPointerCheckbox.node().checked,
       selector: '.group1 [title]',
     });
@@ -45,7 +43,6 @@ class TooltipPage extends React.Component {
       anchor: anchor.val(),
       attribute: 'title',
       css: { background: 'rgba(93,190,221,0.9)' },
-      debug: debugCheckbox.node().checked,
       followPointer: followPointerCheckbox.node().checked,
       selector: '.group2 [title]',
     });
@@ -53,12 +50,6 @@ class TooltipPage extends React.Component {
     anchor.on('change', () => {
       window.tooltip.anchor(anchor.val());
       window.tooltipBlue.anchor(anchor.val());
-    });
-
-    // Toggle debug mode
-    debugCheckbox.on('click', (ev) => {
-      tooltip.options.debug = ev.currentTarget.checked === true;
-      tooltipBlue.options.debug = ev.currentTarget.checked === true;
     });
 
     followPointerCheckbox.on('change', () => {
@@ -102,22 +93,6 @@ class TooltipPage extends React.Component {
                   <option>left bottom</option>
                   <option>left</option>
                 </select>
-              </div>
-              <div className="form-check">
-                <label
-                  htmlFor="debugField"
-                  className="form-check-label"
-                >
-                  <input
-                    id="debugField"
-                    className="form-check-input"
-                    type="checkbox"
-                    data-type="boolean"
-                    name="debug"
-                    defaultValue="true"
-                  />
-                  <span>debug</span>
-                </label>
               </div>
               <div className="form-check">
                 <label

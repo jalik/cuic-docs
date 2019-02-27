@@ -29,9 +29,8 @@ import React from 'react';
 
 class PopupPage extends React.Component {
   componentDidMount() {
-    const section = Cuic.element('#ui-popup');
+    const section = Cuic.asElement('#ui-popup');
     const sandbox = section.find('.sandbox').eq(0);
-    const debugCheckbox = sandbox.find('[name=\'debug\']').first();
     const blueprint = sandbox.find('.blueprint').eq(0);
     const anchorField = sandbox.find('[name=anchor]').eq(0);
     const anchorPointField = sandbox.find('[name=anchorPoint]').eq(0);
@@ -45,7 +44,6 @@ class PopupPage extends React.Component {
         autoRemove: false,
         closable: true,
         content: `Popup <em>${el.data('anchor')}</em>`,
-        debug: debugCheckbox.node().checked,
         target: el,
       });
 
@@ -112,22 +110,6 @@ class PopupPage extends React.Component {
                   <option>left bottom</option>
                   <option>left</option>
                 </select>
-              </div>
-              <div className="form-check">
-                <label
-                  htmlFor="debugField"
-                  className="form-check-label"
-                >
-                  <input
-                    id="debugField"
-                    className="form-check-input"
-                    type="checkbox"
-                    data-type="boolean"
-                    name="debug"
-                    defaultValue="true"
-                  />
-                  <span>debug</span>
-                </label>
               </div>
             </form>
             <div className="col-md-10">

@@ -28,8 +28,7 @@ import React from 'react';
 
 class GuidePage extends React.Component {
   componentDidMount() {
-    const section = Cuic.element('#ui-guide');
-    const debugCheckbox = section.find('[name=\'debug\']').first();
+    const section = Cuic.asElement('#ui-guide');
 
     const nextButton = {
       className: 'btn btn-primary',
@@ -63,7 +62,6 @@ class GuidePage extends React.Component {
 
     const guide = new Guide({
       autoStart: false,
-      debug: debugCheckbox.node().checked,
       steps: [
         {
           id: 'components',
@@ -119,7 +117,7 @@ class GuidePage extends React.Component {
 
       if (lastStep) {
         // Remove highlighted class on last target
-        const lastTarget = Cuic.element(lastStep.target);
+        const lastTarget = Cuic.asElement(lastStep.target);
         if (lastTarget) lastTarget.removeClass('guide-active-element');
       }
       // Highlight current target
@@ -131,14 +129,9 @@ class GuidePage extends React.Component {
 
       if (step) {
         // Remove highlighted class on last target
-        const target = Cuic.element(step.target);
+        const target = Cuic.asElement(step.target);
         if (target) target.removeClass('guide-active-element');
       }
-    });
-
-    // Toggle debug mode
-    debugCheckbox.on('click', (ev) => {
-      guide.options.debug = ev.currentTarget.checked === true;
     });
 
     const startButton = section.find('.btn-start');
@@ -180,22 +173,6 @@ class GuidePage extends React.Component {
             <div className="col-md-2">
               <div className="settings">
                 <h4>Settings</h4>
-                <div className="form-check">
-                  <label
-                    htmlFor="debugField"
-                    className="form-check-label"
-                  >
-                    <input
-                      id="debugField"
-                      className="form-check-input"
-                      type="checkbox"
-                      data-type="boolean"
-                      name="debug"
-                      defaultValue="true"
-                    />
-                    <span>debug</span>
-                  </label>
-                </div>
               </div>
               <div className="settings">
                 <h4>Actions</h4>

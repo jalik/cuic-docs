@@ -31,13 +31,12 @@ Dialog.prototype.options.closeButtonClass = 'fa fa-times-circle';
 
 class DialogPage extends React.Component {
   componentDidMount() {
-    const section = Cuic.element('#ui-dialog');
+    const section = Cuic.asElement('#ui-dialog');
     const sandbox = section.find('#ui-dialog .sandbox');
     const blueprint = sandbox.find('.blueprint').eq(0);
     const autoRemoveCheckbox = section.find('[name=\'autoRemove\']').first();
     const closeOnBlurCheckbox = section.find('[name=\'closeOnBlur\']').first();
     const cssField = sandbox.find('[name="css"]').eq(0);
-    const debugCheckbox = section.find('[name=\'debug\']').first();
     const fullscreenCheckbox = sandbox.find('[name="fullscreen"]').eq(0);
     const modalCheckbox = sandbox.find('[name=modal]').eq(0);
     const parentCheckbox = sandbox.find('[name="parent"]').eq(0);
@@ -51,7 +50,6 @@ class DialogPage extends React.Component {
         closed: true,
         closeOnBlur: closeOnBlurCheckbox.node().checked,
         css: cssField.val(),
-        debug: debugCheckbox.node().checked,
         maximized: fullscreenCheckbox.node().checked,
         modal: modalCheckbox.node().checked,
         parent: parentCheckbox.node().checked ? blueprint : document.body,
@@ -169,22 +167,6 @@ class DialogPage extends React.Component {
                     defaultValue="true"
                   />
                   <span>closeOnBlur</span>
-                </label>
-              </div>
-              <div className="form-check">
-                <label
-                  htmlFor="debugField"
-                  className="form-check-label"
-                >
-                  <input
-                    id="debugField"
-                    className="form-check-input"
-                    type="checkbox"
-                    data-type="boolean"
-                    name="debug"
-                    defaultValue="true"
-                  />
-                  <span>debug</span>
                 </label>
               </div>
               <div className="form-check">

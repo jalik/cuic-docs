@@ -28,21 +28,14 @@ import React from 'react';
 
 class SwitcherPage extends React.Component {
   componentDidMount() {
-    const section = Cuic.element('#ui-switcher');
+    const section = Cuic.asElement('#ui-switcher');
     const sandbox = section.find('.sandbox').eq(0);
-    const debugCheckbox = sandbox.find('[name=\'debug\']').first();
 
     const switcher = new Switcher({
       autoStart: false,
       delay: 1000,
-      debug: debugCheckbox.node().checked,
       element: sandbox.find('.switcher').eq(0),
       repeat: sandbox.find('[name=repeat]').eq(0).node().checked,
-    });
-
-    // Toggle debug mode
-    debugCheckbox.on('click', (ev) => {
-      switcher.options.debug = ev.currentTarget.checked === true;
     });
 
     // Options
@@ -75,22 +68,6 @@ class SwitcherPage extends React.Component {
             <div className="col-md-2">
               <div className="settings">
                 <h4>Settings</h4>
-                <div className="form-check">
-                  <label
-                    htmlFor="debugField"
-                    className="form-check-label"
-                  >
-                    <input
-                      id="debugField"
-                      className="form-check-input"
-                      type="checkbox"
-                      data-type="boolean"
-                      name="debug"
-                      defaultValue="true"
-                    />
-                    <span>debug</span>
-                  </label>
-                </div>
                 <div className="form-check">
                   <label
                     htmlFor="repeatField"

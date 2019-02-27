@@ -28,7 +28,7 @@ import React from 'react';
 
 class UtilsPage extends React.Component {
   componentDidMount() {
-    const section = Cuic.element('#ui-utils');
+    const section = Cuic.asElement('#ui-utils');
     const blueprint = section.find('.blueprint').eq(0);
     const target = blueprint.find('.target').eq(0);
     const form = section.find('form').eq(0);
@@ -39,7 +39,7 @@ class UtilsPage extends React.Component {
       let value = null;
 
       if (typeof Element.prototype[button.value] === 'function') {
-        value = Cuic.element(target)[button.value]();
+        value = Cuic.asElement(target)[button.value]();
       }
       field.val(value);
       console.log(button.value, value);
