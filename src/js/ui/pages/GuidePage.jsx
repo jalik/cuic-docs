@@ -22,13 +22,15 @@
  * SOFTWARE.
  */
 
-import Cuic from 'cuic';
-import Guide from 'cuic/dist/ui/guide';
+import {
+  asElement,
+  Guide,
+} from 'cuic';
 import React from 'react';
 
 class GuidePage extends React.Component {
   componentDidMount() {
-    const section = Cuic.asElement('#ui-guide');
+    const section = asElement('#ui-guide');
 
     const nextButton = {
       className: 'btn btn-primary',
@@ -117,7 +119,7 @@ class GuidePage extends React.Component {
 
       if (lastStep) {
         // Remove highlighted class on last target
-        const lastTarget = Cuic.asElement(lastStep.target);
+        const lastTarget = asElement(lastStep.target);
         if (lastTarget) lastTarget.removeClass('guide-active-element');
       }
       // Highlight current target
@@ -129,7 +131,7 @@ class GuidePage extends React.Component {
 
       if (step) {
         // Remove highlighted class on last target
-        const target = Cuic.asElement(step.target);
+        const target = asElement(step.target);
         if (target) target.removeClass('guide-active-element');
       }
     });

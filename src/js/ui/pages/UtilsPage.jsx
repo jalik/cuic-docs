@@ -22,13 +22,15 @@
  * SOFTWARE.
  */
 
-import Cuic from 'cuic';
-import Element from 'cuic/dist/ui/element';
+import {
+  asElement,
+  Element,
+} from 'cuic';
 import React from 'react';
 
 class UtilsPage extends React.Component {
   componentDidMount() {
-    const section = Cuic.asElement('#ui-utils');
+    const section = asElement('#ui-utils');
     const blueprint = section.find('.blueprint').eq(0);
     const target = blueprint.find('.target').eq(0);
     const form = section.find('form').eq(0);
@@ -36,13 +38,13 @@ class UtilsPage extends React.Component {
 
     form.find('[name="method"]').on('click', (ev) => {
       const button = ev.currentTarget;
+      const method = button.value;
       let value = null;
 
-      if (typeof Element.prototype[button.value] === 'function') {
-        value = Cuic.asElement(target)[button.value]();
+      if (typeof Element.prototype[method] === 'function') {
+        value = asElement(target)[button.value]();
       }
       field.val(value);
-      console.log(button.value, value);
     });
   }
 

@@ -22,8 +22,10 @@
  * SOFTWARE.
  */
 
-import Cuic from 'cuic';
-import Notification from 'cuic/dist/ui/notification';
+import {
+  asElement,
+  Notification,
+} from 'cuic';
 import React from 'react';
 
 // Define close button CSS class
@@ -31,7 +33,7 @@ Notification.prototype.options.closeButtonClass = 'fa fa-times-circle';
 
 class NotificationPage extends React.Component {
   componentDidMount() {
-    const sandbox = Cuic.asElement('#ui-notification .sandbox');
+    const sandbox = asElement('#ui-notification .sandbox');
     const blueprint = sandbox.find('.blueprint').eq(0);
     const autoCloseCheckbox = sandbox.find('[name=autoClose]').eq(0);
     const autoCloseDelayField = sandbox.find('[name=autoCloseDelay]').eq(0);
@@ -69,8 +71,8 @@ class NotificationPage extends React.Component {
       <section id="ui-notification">
         <h2>Cuic.Notification</h2>
 
-        <p className="alert alert-info">Notifications are used to display messages that does not
-          require any interaction.
+        <p className="alert alert-info">
+          Notifications are used to display messages that does not require any interaction.
         </p>
 
         <div className="sandbox">
@@ -78,7 +80,8 @@ class NotificationPage extends React.Component {
             <form className="col-md-2 settings">
               <h4>Settings</h4>
               <div className="form-group">
-                <label htmlFor="positionField">position
+                <label htmlFor="positionField">
+                  position
                   <select
                     id="positionField"
                     className="custom-select"
@@ -98,7 +101,8 @@ class NotificationPage extends React.Component {
                 </label>
               </div>
               <div className="form-group">
-                <label htmlFor="autoCloseDelayField">autoCloseDelay
+                <label htmlFor="autoCloseDelayField">
+                  autoCloseDelay
                   <div className="input-group">
                     <input
                       id="autoCloseDelayField"

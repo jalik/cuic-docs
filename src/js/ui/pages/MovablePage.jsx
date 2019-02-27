@@ -22,13 +22,15 @@
  * SOFTWARE.
  */
 
-import Cuic from 'cuic';
-import Movable from 'cuic/dist/ui/movable';
+import {
+  asElement,
+  Movable,
+} from 'cuic';
 import React from 'react';
 
 class MovablePage extends React.Component {
   componentDidMount() {
-    const section = Cuic.asElement('#ui-movable');
+    const section = asElement('#ui-movable');
     const sandbox = section.find('.sandbox').eq(0);
     const blueprint = sandbox.find('.blueprint').eq(0);
     const form = section.find('form').eq(0);
@@ -133,7 +135,8 @@ class MovablePage extends React.Component {
               <h4>Info</h4>
               <div>
                 <div className="form-group">
-                  <label htmlFor="xField">X
+                  <label htmlFor="xField">
+                    X
                     <div className="input-group">
                       <input
                         id="xField"
@@ -148,7 +151,8 @@ class MovablePage extends React.Component {
                   </label>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="yField">Y
+                  <label htmlFor="yField">
+                    Y
                     <div className="input-group">
                       <input
                         id="yField"
@@ -163,7 +167,8 @@ class MovablePage extends React.Component {
                   </label>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="eventField">event
+                  <label htmlFor="eventField">
+                    event
                     <input
                       id="eventField"
                       className="form-control"
@@ -179,7 +184,8 @@ class MovablePage extends React.Component {
                 <div
                   className="test-box test-box-a"
                   style={{ position: 'relative' }}
-                >Relative
+                >
+                  Relative
                 </div>
                 <div
                   className="test-box test-box-b"

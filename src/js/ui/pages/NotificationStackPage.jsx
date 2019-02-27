@@ -22,14 +22,16 @@
  * SOFTWARE.
  */
 
-import Cuic from 'cuic';
-import Notification from 'cuic/dist/ui/notification';
-import NotificationStack from 'cuic/dist/ui/notification-stack';
+import {
+  asElement,
+  Notification,
+  NotificationStack,
+} from 'cuic';
 import React from 'react';
 
 class NotificationStackPage extends React.Component {
   componentDidMount() {
-    const sandbox = Cuic.asElement('#ui-notification-stack');
+    const sandbox = asElement('#ui-notification-stack');
     const blueprint = sandbox.find('.blueprint').eq(0);
     const positionField = sandbox.find('[name=position]').eq(0);
 
@@ -61,8 +63,8 @@ class NotificationStackPage extends React.Component {
       <section id="ui-notification-stack">
         <h2>Cuic.NotificationStack</h2>
 
-        <p className="alert alert-info">Notification areas are used to centralize notifications
-          display.
+        <p className="alert alert-info">
+          Notification areas are used to centralize notifications display.
         </p>
 
         <div className="sandbox">
@@ -71,24 +73,25 @@ class NotificationStackPage extends React.Component {
               <div className="settings">
                 <h4>Settings</h4>
                 <div className="form-group">
-                  <label htmlFor="positionField">position
-                    <select
-                      id="positionField"
-                      className="custom-select"
-                      name="position"
-                      defaultValue="left top"
-                    >
-                      <option>center</option>
-                      <option>left top</option>
-                      <option>top</option>
-                      <option>right top</option>
-                      <option>right</option>
-                      <option>right bottom</option>
-                      <option>bottom</option>
-                      <option>left bottom</option>
-                      <option>left</option>
-                    </select>
+                  <label htmlFor="positionField">
+                    position
                   </label>
+                  <select
+                    id="positionField"
+                    className="custom-select"
+                    name="position"
+                    defaultValue="left top"
+                  >
+                    <option>center</option>
+                    <option>left top</option>
+                    <option>top</option>
+                    <option>right top</option>
+                    <option>right</option>
+                    <option>right bottom</option>
+                    <option>bottom</option>
+                    <option>left bottom</option>
+                    <option>left</option>
+                  </select>
                 </div>
               </div>
 

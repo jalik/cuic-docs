@@ -22,13 +22,15 @@
  * SOFTWARE.
  */
 
-import Cuic from 'cuic';
-import Selectable from 'cuic/dist/ui/selectable';
+import {
+  asElement,
+  Selectable,
+} from 'cuic';
 import React from 'react';
 
 class SelectablePage extends React.Component {
   componentDidMount() {
-    const section = Cuic.asElement('#ui-selectable');
+    const section = asElement('#ui-selectable');
     const sandbox = section.find('.sandbox').eq(0);
     const blueprint = sandbox.find('.blueprint').eq(0);
 

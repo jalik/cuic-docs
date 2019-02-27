@@ -22,13 +22,15 @@
  * SOFTWARE.
  */
 
-import Cuic from 'cuic';
-import Switcher from 'cuic/dist/ui/switcher';
+import {
+  asElement,
+  Switcher,
+} from 'cuic';
 import React from 'react';
 
 class SwitcherPage extends React.Component {
   componentDidMount() {
-    const section = Cuic.asElement('#ui-switcher');
+    const section = asElement('#ui-switcher');
     const sandbox = section.find('.sandbox').eq(0);
 
     const switcher = new Switcher({
@@ -59,7 +61,8 @@ class SwitcherPage extends React.Component {
       <section id="ui-switcher">
         <h2>Cuic.Switcher</h2>
 
-        <p className="alert alert-info">The switcher is a parent that take a group of elements and
+        <p className="alert alert-info">
+          The switcher is a parent that take a group of elements and
           displays only one at a time, allowing to navigate forward and backward.
         </p>
 

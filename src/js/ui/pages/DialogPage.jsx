@@ -22,8 +22,10 @@
  * SOFTWARE.
  */
 
-import Cuic from 'cuic';
-import Dialog from 'cuic/dist/ui/dialog';
+import {
+  asElement,
+  Dialog,
+} from 'cuic';
 import React from 'react';
 
 // Define close button CSS class
@@ -31,7 +33,7 @@ Dialog.prototype.options.closeButtonClass = 'fa fa-times-circle';
 
 class DialogPage extends React.Component {
   componentDidMount() {
-    const section = Cuic.asElement('#ui-dialog');
+    const section = asElement('#ui-dialog');
     const sandbox = section.find('#ui-dialog .sandbox');
     const blueprint = sandbox.find('.blueprint').eq(0);
     const autoRemoveCheckbox = section.find('[name=\'autoRemove\']').first();
@@ -82,9 +84,9 @@ class DialogPage extends React.Component {
       <section id="ui-dialog">
         <h2>Cuic.Dialog</h2>
 
-        <p className="alert alert-info">Dialogs are used to display things that needs interactions,
-          for example
-          a confirmation, or a login form.
+        <p className="alert alert-info">
+          Dialogs are used to display things that needs interactions,
+          for example a confirmation, or a login form.
         </p>
 
         <div className="sandbox">
@@ -92,27 +94,29 @@ class DialogPage extends React.Component {
             <form className="col-md-2 settings">
               <h4>Settings</h4>
               <div className="form-group">
-                <label htmlFor="positionField">position
-                  <select
-                    id="positionField"
-                    className="custom-select"
-                    name="position"
-                    defaultValue="center"
-                  >
-                    <option>center</option>
-                    <option>left top</option>
-                    <option>top</option>
-                    <option>right top</option>
-                    <option>right</option>
-                    <option>right bottom</option>
-                    <option>bottom</option>
-                    <option>left bottom</option>
-                    <option>left</option>
-                  </select>
+                <label htmlFor="positionField">
+                  position
                 </label>
+                <select
+                  id="positionField"
+                  className="custom-select"
+                  name="position"
+                  defaultValue="center"
+                >
+                  <option>center</option>
+                  <option>left top</option>
+                  <option>top</option>
+                  <option>right top</option>
+                  <option>right</option>
+                  <option>right bottom</option>
+                  <option>bottom</option>
+                  <option>left bottom</option>
+                  <option>left</option>
+                </select>
               </div>
               <div className="form-group">
-                <label htmlFor="cssField">css
+                <label htmlFor="cssField">
+                  css
                   <input
                     id="cssField"
                     className="form-control"

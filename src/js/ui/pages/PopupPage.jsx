@@ -22,14 +22,16 @@
  * SOFTWARE.
  */
 
-import Cuic from 'cuic';
-import Popup from 'cuic/dist/ui/popup';
+import {
+  asElement,
+  Popup,
+} from 'cuic';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 class PopupPage extends React.Component {
   componentDidMount() {
-    const section = Cuic.asElement('#ui-popup');
+    const section = asElement('#ui-popup');
     const sandbox = section.find('.sandbox').eq(0);
     const blueprint = sandbox.find('.blueprint').eq(0);
     const anchorField = sandbox.find('[name=anchor]').eq(0);

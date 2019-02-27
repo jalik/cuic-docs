@@ -22,16 +22,19 @@
  * SOFTWARE.
  */
 
-import Cuic from 'cuic';
+import {
+  asElement,
+  Hook,
+} from 'cuic';
 import React from 'react';
 
 class HookPage extends React.Component {
   componentDidMount() {
-    const section = Cuic.find('#ui-hook').eq(0);
+    const section = asElement('#ui-hook');
     const sandbox = section.find('.sandbox').eq(0);
     const testBox = sandbox.find('.test-box').eq(0);
 
-    window.hook = new Cuic.Hook({
+    window.hook = new Hook({
       element: testBox,
     });
   }
@@ -41,8 +44,8 @@ class HookPage extends React.Component {
       <div id="ui-hook">
         <h2>Cuic.Hook</h2>
 
-        <p className="alert alert-info">Hooks allows you to keep elements visible while scrolling
-          the page.
+        <p className="alert alert-info">
+          Hooks allows you to keep elements visible while scrolling the page.
         </p>
 
         <div className="sandbox">

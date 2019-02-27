@@ -22,13 +22,15 @@
  * SOFTWARE.
  */
 
-import Cuic from 'cuic';
-import Resizable from 'cuic/dist/ui/resizable';
+import {
+  asElement,
+  Resizable,
+} from 'cuic';
 import React from 'react';
 
 class ResizablePage extends React.Component {
   componentDidMount() {
-    const section = Cuic.asElement('#ui-resizable');
+    const section = asElement('#ui-resizable');
     const sandbox = section.find('.sandbox').eq(0);
     const blueprint = sandbox.find('.blueprint').eq(0);
     const widthField = sandbox.find('[name="width"]').eq(0);
@@ -120,7 +122,8 @@ class ResizablePage extends React.Component {
               <h4>Info</h4>
               <div>
                 <div className="form-group">
-                  <label htmlFor="widthField">width
+                  <label htmlFor="widthField">
+                    width
                     <div className="input-group">
                       <input
                         id="widthField"
@@ -135,7 +138,8 @@ class ResizablePage extends React.Component {
                   </label>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="heightField">height
+                  <label htmlFor="heightField">
+                    height
                     <div className="input-group">
                       <input
                         id="heightField"
@@ -150,7 +154,8 @@ class ResizablePage extends React.Component {
                   </label>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="vratioField">vertical ratio
+                  <label htmlFor="vratioField">
+                    vertical ratio
                     <input
                       id="vratioField"
                       className="form-control"
@@ -160,7 +165,8 @@ class ResizablePage extends React.Component {
                   </label>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="hratioField">horizontal ratio
+                  <label htmlFor="hratioField">
+                    horizontal ratio
                     <input
                       id="hratioField"
                       className="form-control"
@@ -176,7 +182,8 @@ class ResizablePage extends React.Component {
                 <div
                   className="test-box test-box-a"
                   style={{ position: 'relative' }}
-                >Relative
+                >
+                  Relative
                 </div>
                 <div
                   className="test-box test-box-b"

@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "cuic": "^0.50.0",
+    "cuic": "^0.50.1",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.7",
     "prop-types": "^15.7.2",

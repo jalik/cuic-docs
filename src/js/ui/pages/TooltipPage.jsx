@@ -22,13 +22,15 @@
  * SOFTWARE.
  */
 
-import Cuic from 'cuic';
-import Tooltip from 'cuic/dist/ui/tooltip';
+import {
+  asElement,
+  Tooltip,
+} from 'cuic';
 import React from 'react';
 
 class TooltipPage extends React.Component {
   componentDidMount() {
-    const sandbox = Cuic.asElement('#ui-tooltip .sandbox');
+    const sandbox = asElement('#ui-tooltip .sandbox');
     const anchor = sandbox.find('[name=anchor]').eq(0);
     const followPointerCheckbox = sandbox.find('[name=followPointer]').eq(0);
 

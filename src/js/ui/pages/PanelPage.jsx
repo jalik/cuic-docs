@@ -22,13 +22,15 @@
  * SOFTWARE.
  */
 
-import Cuic from 'cuic';
-import Panel from 'cuic/dist/ui/panel';
+import {
+  asElement,
+  Panel,
+} from 'cuic';
 import React from 'react';
 
 class PanelPage extends React.Component {
   componentDidMount() {
-    const sandbox = Cuic.asElement('#ui-panel .sandbox');
+    const sandbox = asElement('#ui-panel .sandbox');
     const blueprint = sandbox.find('.blueprint').eq(0);
     const closeOnBlurCheckbox = sandbox.find('[name=closeOnBlur]').eq(0);
     const parentCheckbox = sandbox.find('[name=parent]').eq(0);
@@ -83,7 +85,8 @@ class PanelPage extends React.Component {
       <section id="ui-panel">
         <h2>Cuic.Panel</h2>
 
-        <p className="alert alert-info">Panels are used to display content that could be hidden when
+        <p className="alert alert-info">
+          Panels are used to display content that could be hidden when
           more screen space is needed.
         </p>
 
@@ -93,24 +96,25 @@ class PanelPage extends React.Component {
               <div className="settings">
                 <h4>Settings</h4>
                 <div className="form-group">
-                  <label htmlFor="positionField">position
-                    <select
-                      id="positionField"
-                      className="custom-select"
-                      name="position"
-                      defaultValue="left top"
-                    >
-                      <option>center</option>
-                      <option>left top</option>
-                      <option>top</option>
-                      <option>right top</option>
-                      <option>right</option>
-                      <option>right bottom</option>
-                      <option>bottom</option>
-                      <option>left bottom</option>
-                      <option>left</option>
-                    </select>
+                  <label htmlFor="positionField">
+                    position
                   </label>
+                  <select
+                    id="positionField"
+                    className="custom-select"
+                    name="position"
+                    defaultValue="left top"
+                  >
+                    <option>center</option>
+                    <option>left top</option>
+                    <option>top</option>
+                    <option>right top</option>
+                    <option>right</option>
+                    <option>right bottom</option>
+                    <option>bottom</option>
+                    <option>left bottom</option>
+                    <option>left</option>
+                  </select>
                 </div>
                 <div className="form-check">
                   <label
@@ -181,17 +185,20 @@ class PanelPage extends React.Component {
                   <button
                     className="btn btn-secondary fn-close"
                     type="button"
-                  >close
+                  >
+                    close
                   </button>
                   <button
                     className="btn btn-secondary fn-open"
                     type="button"
-                  >open
+                  >
+                    open
                   </button>
                   <button
                     className="btn btn-secondary fn-toggle"
                     type="button"
-                  >toggle
+                  >
+                    toggle
                   </button>
                 </div>
               </div>
@@ -208,10 +215,16 @@ class PanelPage extends React.Component {
                   </div>
                   <footer className="cc-panel-footer">
                     <div className="btn-group">
-                      <button className="btn btn-secondary btn-close">
+                      <button
+                        className="btn btn-secondary btn-close"
+                        type="button"
+                      >
                         Close
                       </button>
-                      <button className="btn btn-secondary btn-toggle">
+                      <button
+                        className="btn btn-secondary btn-toggle"
+                        type="button"
+                      >
                         Toggle
                       </button>
                     </div>
